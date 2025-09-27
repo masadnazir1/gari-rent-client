@@ -297,3 +297,4 @@ db.cars.find({
 - Car listings with geospatial search
 - Booking, payments, reviews, and notifications
 - Admin and global platform settings
+# gari-rent-client
