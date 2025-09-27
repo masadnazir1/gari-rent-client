@@ -1,0 +1,103 @@
+<div class="filter-panel">
+  <h3>Filters</h3>
+
+  <!-- Vehicle Brand -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faCar"></fa-icon> Vehicle Brand</label>
+    <button
+      class="selectbrandbutton"
+      (click)="openModalFor('brand', brandNames)"
+    >
+      {{ selectedBrand || "All" }}
+      <fa-icon [icon]="downarrow"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Category -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faCar"></fa-icon> Category</label>
+    <button
+      class="selectbrandbutton"
+      (click)="openModalFor('category', CategoriesNames)"
+    >
+      {{ selectedCategory || "All" }}
+      <fa-icon [icon]="downarrow"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Transmission -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faTransmission"></fa-icon> Transmission</label>
+    <button
+      class="selectbrandbutton"
+      (click)="openModalFor('transmission', transmissions)"
+    >
+      {{ selectedTransmission || "All" }}
+      <fa-icon [icon]="downarrow"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Fuel Type -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faFuel"></fa-icon> Fuel Type</label>
+    <button class="selectbrandbutton" (click)="openModalFor('fuel', fuels)">
+      {{ selectedFuel || "All" }}
+      <fa-icon [icon]="downarrow"></fa-icon>
+    </button>
+  </div>
+
+  <!-- AC -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faAC"></fa-icon> AC</label>
+    <button class="selectbrandbutton" (click)="openModalFor('ac', acOptions)">
+      {{ selectedAC || "Any" }}
+      <fa-icon [icon]="downarrow"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Year -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faYear"></fa-icon> Year</label>
+    <button class="selectbrandbutton" (click)="openModalFor('year', years)">
+      {{ selectedYear || "All" }}
+      <fa-icon [icon]="downarrow"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Price -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faPrice"></fa-icon> Price (₨)</label>
+    <div class="range-inputs">
+      <input type="number" placeholder="Min" [(ngModel)]="minPrice" />
+      <input type="number" placeholder="Max" [(ngModel)]="maxPrice" />
+    </div>
+  </div>
+
+  <!-- Mileage -->
+  <div class="filter-group">
+    <label><fa-icon [icon]="faMileage"></fa-icon> Mileage (km)</label>
+    <div class="range-inputs">
+      <input type="number" placeholder="Min" [(ngModel)]="minMileage" />
+      <input type="number" placeholder="Max" [(ngModel)]="maxMileage" />
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="filter-actions">
+    <button class="btn apply" (click)="applyFilter()">Apply</button>
+    <button class="btn reset" (click)="resetFilter()">Reset</button>
+  </div>
+
+  <!-- Reusable Modal -->
+  <app-modelsheet>
+    <div class="content-modelsheet">
+      <button
+        class="options-button"
+        *ngFor="let option of modalOptions"
+        (click)="setActiveOption(option)"
+      >
+        {{ option }}
+      </button>
+    </div>
+  </app-modelsheet>
+</div>

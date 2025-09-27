@@ -1,0 +1,40 @@
+<div class="feedback-card">
+  <h2 *ngIf="!submitted">
+    <fa-icon icon="comment-dots"></fa-icon> We Value Your Feedback
+  </h2>
+
+  <div *ngIf="!submitted; else thankYouBlock">
+    <!-- Star Rating -->
+    <div class="rating">
+      <fa-icon
+        *ngFor="let star of [1, 2, 3, 4, 5]"
+        icon="star"
+        [ngClass]="{ filled: star <= rating }"
+        (click)="setRating(star)"
+      >
+      </fa-icon>
+    </div>
+
+    <!-- Text Feedback -->
+    <textarea
+      [(ngModel)]="feedbackText"
+      placeholder="Tell us about your experience..."
+    >
+    </textarea>
+
+    <!-- Submit Button -->
+    <div class="buttonBox">
+      <button class="submit-btn" (click)="submitFeedback()">
+        <fa-icon icon="paper-plane"></fa-icon> Submit
+      </button>
+    </div>
+  </div>
+
+  <!-- Thank You Message -->
+  <ng-template #thankYouBlock>
+    <div class="thank-you">
+      <h3>🎉 Thank you for your feedback!</h3>
+      <p>Your opinion helps us improve the service.</p>
+    </div>
+  </ng-template>
+</div>

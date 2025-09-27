@@ -1,0 +1,23 @@
+<div class="mt-overlay" (click)="onOverlayClick()" *ngIf="visible">
+  <div
+    class="mt-panel"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="title"
+    (click)="$event.stopPropagation()"
+  >
+    <header class="mt-header">
+      <div class="mt-grab" *ngIf="isMobile" aria-hidden></div>
+      <h3 class="mt-title">{{ title }}</h3>
+      <button class="mt-close" (click)="close()" aria-label="Close">✕</button>
+    </header>
+
+    <section class="mt-body">
+      <ng-content></ng-content>
+    </section>
+
+    <footer class="mt-footer" *ngIf="showFooter">
+      <ng-content select="[slot=footer]"></ng-content>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+
+}
+
+.slide {
+    min-width: 100%;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+/* Slide content (text + button) */
+.content {
+    position: absolute;
+    /* bottom: 20%; */
+    left: 10%;
+    color: white;
+    animation: fadeInUp 1s ease;
+    z-index: 2;
+}
+
+.content h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.content p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.content button {
+    padding: 10px 20px;
+    border: none;
+    background: #ff5722;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.content button:hover {
+    background: #e64a19;
+}
+
+/* Car image animation */
+.car-img {
+    position: absolute;
+    /* bottom: 100px; */
+    right: -300px;
+    /* hidden outside screen */
+    /* width: 280px; */
+    max-width: 40%;
+    transition: transform 1s ease, right 1s ease, opacity 1s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+.car-img.animate-car {
+    right: 50px;
+    /* final position */
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Controls */
+.control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    user-select: none;
+    z-index: 3;
+}
+
+
+
+
+
+/* Smooth animation for text */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content h1 {
+        font-size: 1.8rem;
+    }
+
+    .content p {
+        font-size: 1rem;
+    }
+
+    .car-img {
+        display: none;
+    }
+
+    .car-img.animate-car {
+        right: 20px;
+    }
+}

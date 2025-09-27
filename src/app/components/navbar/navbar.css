@@ -1,0 +1,242 @@
+/* Navbar wrapper */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    background: transparent;
+    z-index: 1000;
+    backdrop-filter: blur(0px);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.622);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(6px);
+}
+
+/* Container */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+
+    margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    height: 40px;
+}
+
+.navbar.scrolled .logo {
+    color: #000000;
+}
+
+/* Menu (desktop) */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar.scrolled .nav-links a {
+    color: #000000;
+}
+
+/* Underline hover effect */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: #ff9800;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Buttons (desktop) */
+.nav-buttons {
+    display: flex;
+    gap: 14px;
+}
+
+.btn {
+    padding: 15px 22px;
+    border-radius: 6px;
+    font-weight: bolder;
+    font-size: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Login button */
+.login {
+    border: 2px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+}
+
+.login:hover {
+    background: #ffb61879;
+    color: #ffffff;
+}
+
+/* Partner button */
+.partner {
+    background: #ff9800;
+    color: #ffffff;
+    border: 2px solid #ff9800;
+}
+
+.partner:hover {
+    background: #e68900;
+    border-color: #e68900;
+}
+
+/* Scrolled button styles */
+.navbar.scrolled .login {
+    border: 2px solid #000000;
+    color: #000000;
+}
+
+.navbar.scrolled .login:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+    transition: transform 0.3s ease;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled .hamburger span {
+    background: #000000;
+}
+
+/* Hamburger animation */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+
+    .nav-links,
+    .nav-buttons {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* Side Drawer Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: #ff5722;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 20px;
+    transition: right 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.12);
+    z-index: 1050;
+}
+
+.mobile-menu.active {
+    right: 0;
+    opacity: 1;
+}
+
+/* Mobile Menu Links */
+.mobile-menu a {
+    display: block;
+    margin: 18px 0;
+    font-size: 18px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    color: #ff9800;
+}
+
+/* Mobile buttons */
+.mobile-menu .btn {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Optional enhancements */
+.navbar {
+    backdrop-filter: blur(0px);
+}
+
+.navbar.scrolled {
+    backdrop-filter: blur(8px);
+}
+
+.nav-links a:hover {
+    transform: scale(1.05);
+}
+
+.btn:hover {
+    transform: translateY(-2px) scale(1.02);
+}

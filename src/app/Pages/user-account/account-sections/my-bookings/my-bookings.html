@@ -1,0 +1,138 @@
+<div class="bookings-container" *ngIf="!isLoading">
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      class="tab"
+      [class.active]="activeTab === 'upcoming'"
+      (click)="switchTab('upcoming')"
+    >
+      <fa-icon [icon]="faCalendar"></fa-icon> Upcoming
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab === 'past'"
+      (click)="switchTab('past')"
+    >
+      <fa-icon [icon]="faChevronLeft"></fa-icon> Past
+    </button>
+  </div>
+
+  <!-- Empty State -->
+  <div
+    class="empty-state"
+    *ngIf="activeTab === 'upcoming' && upcomingBookings.length === 0"
+  >
+    <fa-icon [icon]="faCar" class="icon"></fa-icon>
+    <p>You don’t have any upcoming bookings.</p>
+    <button class="cta-btn">
+      <fa-icon [icon]="faCar"></fa-icon> Find a Car
+    </button>
+  </div>
+
+  <div
+    class="empty-state"
+    *ngIf="activeTab === 'past' && pastBookings.length === 0"
+  >
+    <fa-icon [icon]="faCoins" class="icon"></fa-icon>
+    <p>No past bookings yet.</p>
+    <button class="cta-btn secondary">
+      <fa-icon [icon]="faCar"></fa-icon> Make Your First Booking
+    </button>
+  </div>
+
+  <!-- Booking Cards -->
+  <div
+    class="booking-card"
+    *ngFor="
+      let booking of activeTab === 'upcoming' ? upcomingBookings : pastBookings
+    "
+  >
+    <img [src]="booking.car.image" alt="Car" class="car-image" />
+
+    <div class="content">
+      <!-- Car Info -->
+      <div class="details">
+        <div class="card-header">
+          <h3>{{ booking.car.name }}</h3>
+          <button class="cta-btn-options" (click)="toggleOptions(booking.id)">
+            <fa-icon [icon]="ThreeDots"></fa-icon>
+          </button>
+
+          <ul class="Options-list" *ngIf="activeBookingId === booking.id">
+            <li
+              *ngIf="activeTab !== 'past'"
+              (click)="openConfirmDialog(booking.id)"
+            >
+              Cancel
+            </li>
+            <li (click)="contactSupport(booking.id)">Support</li>
+            <li (click)="contactSupport(booking.id)">Revew</li>
+            <li (click)="contactSupport(booking.id)">Complaint</li>
+          </ul>
+        </div>
+
+        <div class="name-type">
+          <p class="type">
+            <fa-icon [icon]="faCar"></fa-icon> {{ booking.car.type }}
+          </p>
+
+          <p class="price">
+            <fa-icon [icon]="faCoins"></fa-icon> PKR
+            {{ booking.price | number }}
+          </p>
+        </div>
+        <div class="Pickupdetails">
+          <p>
+            <fa-icon [icon]="faMapPin"></fa-icon>
+            <strong>Pickup:</strong> {{ booking.pickupLocation }}
+          </p>
+          <p>
+            <fa-icon [icon]="faChevronRight"></fa-icon>
+            <strong>Dropoff:</strong> {{ booking.dropoffLocation }}
+          </p>
+        </div>
+        <div class="Pickupdetails">
+          <p>
+            <fa-icon [icon]="faCalendar"></fa-icon>
+            {{ booking.pickupDate | date : "medium" }} →
+            {{ booking.dropoffDate | date : "medium" }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Actions at bottom -->
+      <div class="actions">
+        <button
+          *ngIf="booking.status === 'upcoming'"
+          class="extend-btn"
+          (click)="extendBooking(booking.id)"
+        >
+          <fa-icon [icon]="faCalendar"></fa-icon> Extend
+        </button>
+        <button class="details-btn" (click)="viewBooking(booking.id)">
+          <fa-icon [icon]="faUser"></fa-icon> Details
+        </button>
+        <button
+          *ngIf="booking.status !== 'upcoming'"
+          class="rebook-btn"
+          (click)="rebook(booking.id)"
+        >
+          <fa-icon [icon]="faCar"></fa-icon> Rebook
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <app-confirm-dialog
+    [isOpen]="isDialogOpen"
+    title="Cancel Booking"
+    description="Are you sure you want to cancel this booking?"
+    confirmText="Yes, Cancel"
+    cancelText="No, Go Back"
+    (onConfirm)="cancelBookingNow()"
+    (onCancel)="isDialogOpen = false"
+  >
+  </app-confirm-dialog>
+</div>
+
+<app-loading [size]="120" *ngIf="isLoading"></app-loading>

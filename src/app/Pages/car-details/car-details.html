@@ -1,0 +1,131 @@
+<div class="car-details-container">
+  <!-- Left Column -->
+  <div class="left-column">
+    <!-- Image Gallery -->
+    <div class="image-carousel">
+      <div class="main-image">
+        <img [src]="mainImage" [alt]="car.name" />
+      </div>
+      <div class="thumbnail-scroll">
+        <img
+          *ngFor="let img of car.images"
+          [src]="img"
+          [alt]="car.name"
+          [class.active]="img === mainImage"
+          (click)="selectMainImage(img)"
+        />
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button
+        [class.active]="selectedTab === 'overview'"
+        (click)="selectTab('overview')"
+      >
+        Overview
+      </button>
+      <button
+        [class.active]="selectedTab === 'specs'"
+        (click)="selectTab('specs')"
+      >
+        Specs
+      </button>
+      <button
+        [class.active]="selectedTab === 'reviews'"
+        (click)="selectTab('reviews')"
+      >
+        Reviews
+      </button>
+      <button [class.active]="selectedTab === 'faq'" (click)="selectTab('faq')">
+        FAQ
+      </button>
+    </div>
+
+    <div class="tab-content">
+      <div *ngIf="selectedTab === 'overview'">
+        <p>{{ car.description }}</p>
+      </div>
+
+      <div *ngIf="selectedTab === 'specs'">
+        <div class="specs-grid">
+          <span><fa-icon [icon]="faUser"></fa-icon> {{ car.seats }} seats</span>
+          <span><fa-icon [icon]="faDoor"></fa-icon> {{ car.doors }} doors</span>
+          <span
+            ><fa-icon [icon]="faCogs"></fa-icon> {{ car.transmission }}</span
+          >
+          <span><fa-icon [icon]="faGas"></fa-icon> {{ car.fuel }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="selectedTab === 'reviews'">
+        <div class="review-card" *ngFor="let review of car.reviews">
+          <p>
+            <strong>{{ review.user }}</strong
+            >: {{ review.comment }}
+          </p>
+          <fa-icon
+            [icon]="faStar"
+            *ngFor="let r of [].constructor(review.rating)"
+          ></fa-icon>
+        </div>
+      </div>
+
+      <div *ngIf="selectedTab === 'faq'">
+        <div class="faq-card" *ngFor="let faq of car.faq">
+          <p><strong>Q:</strong> {{ faq.question }}</p>
+          <p><strong>A:</strong> {{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-column">
+    <!-- Booking Card -->
+    <div class="booking-card">
+      <h3>Book this Car</h3>
+      <form [formGroup]="bookingForm" (ngSubmit)="bookNow()">
+        <label
+          >Start Date<input type="date" formControlName="startDate"
+        /></label>
+        <label>End Date<input type="date" formControlName="endDate" /></label>
+        <label
+          >Guests<input type="number" formControlName="guests" min="1"
+        /></label>
+        <button type="submit" class="btn-primary">
+          <fa-icon [icon]="faCar"></fa-icon> Book Now
+        </button>
+      </form>
+    </div>
+
+    <!-- Dealer Info -->
+    <div class="dealer-card">
+      <img [src]="dealer.avatar" [alt]="dealer.name" class="dealer-avatar" />
+      <h4>{{ dealer.name }}</h4>
+      <div class="dealer-rating">
+        <fa-icon
+          [icon]="faStar"
+          *ngFor="let r of [].constructor(dealer.rating)"
+        ></fa-icon>
+      </div>
+      <div class="dealer-contact">
+        <button><fa-icon [icon]="faPhone"></fa-icon> Call</button>
+        <button><fa-icon [icon]="faChat"></fa-icon> Chat</button>
+        <button><fa-icon [icon]="faEmail"></fa-icon> Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Suggested Cars -->
+<section class="suggested-cars">
+  <h3>Similar Cars</h3>
+  <div class="suggested-grid">
+    <div class="car-card" *ngFor="let c of suggestedCars">
+      <img [src]="c.image" [alt]="c.name" class="suggested-image" />
+      <h4>{{ c.name }}</h4>
+      <p>₨{{ c.pricePerDay }}/day</p>
+    </div>
+  </div>
+</section>

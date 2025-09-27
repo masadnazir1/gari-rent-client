@@ -1,0 +1,92 @@
+:host {
+    display: block
+}
+
+.mt-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+    background: rgba(2, 6, 23, 0.48);
+}
+
+.mt-panel {
+    width: min(920px, 96%);
+    max-height: 90vh;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .28s ease;
+}
+
+.mt-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06)
+}
+
+.mt-grab {
+    width: 48px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    margin-right: 8px;
+    position: relative;
+    left: 50%;
+}
+
+.mt-title {
+    flex: 1;
+    font-size: 1.05rem;
+    margin: 0
+}
+
+.mt-close {
+    background: transparent;
+    border: 0;
+    font-size: 1.05rem;
+    padding: 6px;
+    cursor: pointer
+}
+
+.mt-body {
+    padding: 16px;
+    overflow: auto;
+    flex: 1
+}
+
+.mt-footer {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end
+}
+
+@media (max-width: 768px) {
+    .mt-overlay {
+        align-items: flex-end
+    }
+
+    .mt-panel {
+        width: 100%;
+        border-radius: 14px 14px 0 0;
+        max-height: 86vh;
+        margin: 0
+    }
+
+    .mt-header {
+        padding: 10px
+    }
+
+    .mt-title {
+        font-size: 1rem
+    }
+}

@@ -1,0 +1,37 @@
+<div class="car-card">
+  <div class="car-image-wrapper">
+    <img [src]="car.images[0]" [alt]="car.name" class="car-image" />
+    <span
+      *ngIf="car.badge"
+      class="badge"
+      [ngClass]="'badge-' + car.badge.toLowerCase()"
+      >{{ car.badge }}</span
+    >
+  </div>
+
+  <div class="car-info">
+    <h3 class="car-name">{{ car.name }}</h3>
+    <p class="car-category">{{ car.category }}</p>
+
+    <div class="car-specs">
+      <span><fa-icon [icon]="faUser"></fa-icon> {{ car.seats }} seats</span>
+      <span><fa-icon [icon]="faDoor"></fa-icon> {{ car.doors }} doors</span>
+      <span><fa-icon [icon]="faCogs"></fa-icon> {{ car.transmission }}</span>
+      <span><fa-icon [icon]="faFuel"></fa-icon> {{ car.fuel }}</span>
+    </div>
+
+    <div class="car-extra">
+      <span *ngIf="car.rating"
+        ><fa-icon [icon]="faStar"></fa-icon> {{ car.rating }}</span
+      >
+      <span *ngIf="car.certified"
+        ><fa-icon [icon]="faCertificate"></fa-icon> Certified</span
+      >
+    </div>
+
+    <div class="price">₨{{ car.dailyRate }}/day</div>
+    <button class="book-btn" (click)="goToBooking(car)">
+      <fa-icon [icon]="faCar"></fa-icon> Book Now
+    </button>
+  </div>
+</div>

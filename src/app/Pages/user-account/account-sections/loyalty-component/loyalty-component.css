@@ -1,0 +1,158 @@
+:root {
+    --primary: #06b6d4;
+    --primary-dark: #0891b2;
+    --success: #22c55e;
+    --success-dark: #16a34a;
+    --text-muted: #6b7280;
+    --card-bg: #fff;
+}
+
+/* Wrapper */
+.loyalty-wrapper {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: auto;
+    font-family: "Inter", sans-serif;
+}
+
+/* Hero Card */
+.hero-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+
+}
+
+.hero-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-card p {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.progress-bar {
+    background: #e5e7eb;
+    border-radius: 12px;
+    height: 12px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 12px;
+    transition: width 0.5s ease;
+}
+
+/* Tier Cards */
+.tiers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.tier-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s;
+    justify-content: flex-end;
+}
+
+.tier-card:hover {
+    transform: translateY(-5px);
+}
+
+.tier-card fa-icon {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.tier-card h3 {
+    margin: 0.3rem 0;
+}
+
+.tier-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.tier-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1rem 0;
+    text-align: left;
+    width: 100%;
+}
+
+.tier-card li {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.redeem-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 5px 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    transition: background 0.3s, transform 0.2s;
+    justify-content: space-between;
+}
+
+.redeem-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+.redeem-btn:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Mobile-first */
+@media (min-width: 600px) {
+    .tiers {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 900px) {
+    .tiers {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

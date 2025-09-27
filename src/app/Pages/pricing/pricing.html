@@ -1,0 +1,90 @@
+<app-page-header
+  background="/slider-1.jpg"
+  heading="Pricing Plans for Car Dealers"
+  description="Flexible subscription plans for car owners to list and earn from their cars."
+></app-page-header>
+
+<main class="pricing-page">
+  <!-- Dealer Tier Cards -->
+  <section class="tiers">
+    <h2>Owner Plans</h2>
+    <div class="tier-grid">
+      <article *ngFor="let tier of dealerTiers" class="tier-card">
+        <div class="tier-header">
+          <h3>{{ tier.name }}</h3>
+          <div class="price">{{ tier.priceLabel }}</div>
+        </div>
+        <ul class="bullets">
+          <li *ngFor="let bullet of tier.bullets">
+            <fa-icon [icon]="faCheck"></fa-icon> {{ bullet }}
+          </li>
+        </ul>
+        <button class="btn primary" (click)="selectTier(tier)">
+          Subscribe
+        </button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Quick Estimate -->
+  <section class="calc-cta">
+    <div class="calc-panel">
+      <h3>Quick Estimate</h3>
+      <label>
+        Days Active
+        <input type="number" [formControl]="daysControl" />
+      </label>
+      <label>
+        Average Rent per Day (₨)
+        <input type="number" [formControl]="avgPriceControl" />
+      </label>
+      <div class="result">
+        Estimated Earnings:
+        <strong>₨{{ estimate.dealerNet | number : "1.0-0" }}</strong>
+      </div>
+      <button class="btn primary" (click)="router.navigate(['/partner'])">
+        Subscribe Now
+      </button>
+    </div>
+
+    <div class="trust-panel">
+      <h4>Why choose Garirent?</h4>
+      <ul>
+        <li>Verified car owners in your city</li>
+        <li>Fast weekly payouts</li>
+        <li>Easy-to-use platform & support</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ & CTA -->
+  <section class="faq-cta">
+    <div class="faq">
+      <h3>FAQs</h3>
+      <details>
+        <summary>How do payouts work?</summary>
+        <p>
+          Payouts are made weekly. Commission is deducted automatically per
+          booking.
+        </p>
+      </details>
+      <details>
+        <summary>Can I list multiple cars?</summary>
+        <p>
+          Depends on your subscription plan: Starter allows 3 cars, Pro 10,
+          Premium unlimited.
+        </p>
+      </details>
+    </div>
+
+    <div class="final-cta">
+      <h3>Get Started Today</h3>
+      <p>Choose a plan and start earning by listing your cars on Garirent.</p>
+      <div class="cta-actions">
+        <button class="btn primary" (click)="router.navigate(['/partner'])">
+          Subscribe Now
+        </button>
+      </div>
+    </div>
+  </section>
+</main>

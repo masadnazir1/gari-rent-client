@@ -1,0 +1,83 @@
+<app-page-header
+  background="/slider-1.jpg"
+  heading="About Garirent"
+  description="Connecting Renters with Trusted Car Dealers — Simple, Affordable & Hassle-Free"
+/>
+
+<section class="story">
+  <h2>Our Story</h2>
+  <p>
+    At <strong>Garirent</strong>, we bridge the gap between car renters and
+    trusted local dealers. Whether you’re planning a family trip, business
+    travel, or just need a ride for the weekend — our platform makes it quick,
+    transparent, and worry-free. Dealers get more bookings, and renters enjoy
+    the best options nearby — a true win-win.
+  </p>
+</section>
+
+<section class="why-choose-us">
+  <h2>Why Choose Garirent?</h2>
+  <div class="features">
+    <div class="feature">
+      <fa-icon [icon]="['fas', 'car']"></fa-icon>
+      <h3>More Options</h3>
+      <p>Choose from verified cars listed by dealers in your city.</p>
+    </div>
+    <div class="feature">
+      <fa-icon [icon]="['fas', 'handshake']"></fa-icon>
+      <h3>Trusted Dealers</h3>
+      <p>We connect you with reliable partners to ensure peace of mind.</p>
+    </div>
+    <div class="feature">
+      <fa-icon [icon]="['fas', 'bolt']"></fa-icon>
+      <h3>Quick & Easy</h3>
+      <p>Book your ride in under 60 seconds — no paperwork, no hassle.</p>
+    </div>
+    <div class="feature">
+      <fa-icon [icon]="['fas', 'credit-card']"></fa-icon>
+      <h3>Fair Pricing</h3>
+      <p>No hidden fees. Dealers set transparent prices for every car.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <h2>Our Mission & Vision</h2>
+  <div class="mission-content">
+    <div>
+      <h3>Mission</h3>
+      <p>
+        To empower local dealers with digital visibility and provide renters
+        with the easiest, fastest, and most reliable way to book cars nearby.
+      </p>
+    </div>
+    <div>
+      <h3>Vision</h3>
+      <p>
+        To become the go-to platform where every car rental starts — trusted by
+        both dealers and renters across the region.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <h2>What Our Customers Say</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial" *ngFor="let t of testimonials">
+      <p>"{{ t.text }}"</p>
+      <div class="rating">
+        <fa-icon
+          *ngFor="let star of [].constructor(t.rating)"
+          [icon]="['fas', 'star']"
+        ></fa-icon>
+      </div>
+      <h4>- {{ t.name }}</h4>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Need a Ride? Let’s Get You Moving!</h2>
+  <button class="cta-btn">Browse Cars</button>
+</section>

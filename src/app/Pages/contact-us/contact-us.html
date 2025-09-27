@@ -1,0 +1,224 @@
+<app-page-header
+  background="/slider-1.jpg"
+  heading="We’re here to help"
+  description="Contact Garirent — whether you’re a renter or a dealer, we’ll respond quickly."
+></app-page-header>
+
+<main class="contact-page">
+  <!-- Quick contact cards -->
+  <section class="quick-contacts">
+    <article class="card phone">
+      <div class="icon large">
+        <fa-icon [icon]="['fas', 'phone']"></fa-icon>
+      </div>
+      <div class="meta">
+        <h4>Call Support</h4>
+        <p class="muted">Available 09:00 — 21:00</p>
+        <a class="link" href="tel:+1234567890">+1 (234) 567-890</a>
+      </div>
+    </article>
+
+    <article class="card email">
+      <div class="icon large">
+        <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+      </div>
+      <div class="meta">
+        <h4>Email Us</h4>
+        <p class="muted">General & Business</p>
+        <a class="link" href="mailto:support@garirent.example"
+          >support@garirent.example</a
+        >
+      </div>
+    </article>
+
+    <article class="card chat">
+      <div class="icon large">
+        <fa-icon [icon]="['fas', 'comments']"></fa-icon>
+      </div>
+      <div class="meta">
+        <h4>Live Chat</h4>
+        <p class="muted">Instant support (when available)</p>
+        <button class="btn-ghost">Start Chat</button>
+      </div>
+    </article>
+
+    <article class="card faq">
+      <div class="icon large">
+        <fa-icon [icon]="['fas', 'question-circle']"></fa-icon>
+      </div>
+      <div class="meta">
+        <h4>FAQs</h4>
+        <p class="muted">Find quick answers</p>
+        <a routerLink="/faq" class="link">Visit FAQs</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- Main area: form + map -->
+  <section class="main-grid">
+    <div class="form-card">
+      <h3>Contact Form</h3>
+
+      <form [formGroup]="contactForm" (ngSubmit)="submit()" novalidate>
+        <label class="field">
+          <span>Full name</span>
+          <input
+            type="text"
+            formControlName="fullName"
+            aria-label="Full name"
+            placeholder="Your full name"
+          />
+          <small class="err" *ngIf="fullName?.touched && fullName?.invalid">
+            <span *ngIf="fullName?.errors?.['required']"
+              >Name is required.</span
+            >
+            <span *ngIf="fullName?.errors?.['minlength']"
+              >Enter at least 2 characters.</span
+            >
+            <span *ngIf="fullName?.errors?.['maxlength']"
+              >Maximum length reached.</span
+            >
+          </small>
+        </label>
+
+        <div class="row contact-type">
+          <label>
+            <input
+              type="radio"
+              name="ctype"
+              [checked]="contactForm.value.contactType === 'email'"
+              (change)="onContactTypeChange('email')"
+            />
+            Email
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="ctype"
+              [checked]="contactForm.value.contactType === 'phone'"
+              (change)="onContactTypeChange('phone')"
+            />
+            Phone
+          </label>
+        </div>
+
+        <label class="field">
+          <span *ngIf="contactForm.value.contactType === 'email'">Email</span>
+          <span *ngIf="contactForm.value.contactType === 'phone'">Phone</span>
+          <input
+            [type]="contactForm.value.contactType === 'email' ? 'email' : 'tel'"
+            formControlName="contact"
+            aria-label="Contact"
+            placeholder="{{
+              contactForm.value.contactType === 'email'
+                ? 'you@example.com'
+                : '+923001234567'
+            }}"
+          />
+          <small class="err" *ngIf="contact?.touched && contact?.invalid">
+            <span *ngIf="contact?.errors?.['required']"
+              >Contact is required.</span
+            >
+            <span *ngIf="contact?.errors?.['email']">Enter a valid email.</span>
+            <span *ngIf="contact?.errors?.['pattern']"
+              >Enter a valid phone number.</span
+            >
+          </small>
+        </label>
+
+        <label class="field">
+          <span>You are</span>
+          <select formControlName="role" aria-label="Role">
+            <option value="renter">I am a Renter</option>
+            <option value="dealer">I am a Dealer</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Topic</span>
+          <select formControlName="topic" aria-label="Topic">
+            <option value="">Select a topic</option>
+            <option *ngFor="let t of topics" [value]="t">{{ t }}</option>
+          </select>
+          <small class="err" *ngIf="topic?.touched && topic?.invalid">
+            Please select a topic.
+          </small>
+        </label>
+
+        <label class="field">
+          <span>Message</span>
+          <textarea
+            formControlName="message"
+            rows="6"
+            placeholder="Tell us how we can help..."
+            aria-label="Message"
+          ></textarea>
+          <small class="err" *ngIf="message?.touched && message?.invalid">
+            <span *ngIf="message?.errors?.['required']"
+              >Message is required.</span
+            >
+            <span *ngIf="message?.errors?.['minlength']">
+              Please write at least 10 characters.
+            </span>
+          </small>
+        </label>
+
+        <label class="field">
+          <span>Attachment (optional)</span>
+          <input
+            type="file"
+            (change)="onFileChange($event)"
+            aria-label="Attachment"
+          />
+        </label>
+
+        <div class="form-actions">
+          <button class="btn primary" type="submit" [disabled]="sending">
+            <span *ngIf="!sending">Send Message</span>
+            <span *ngIf="sending">Sending…</span>
+          </button>
+          <button
+            type="button"
+            class="btn secondary"
+            (click)="
+              contactForm.reset({ contactType: 'email', role: 'renter' })
+            "
+          >
+            Reset
+          </button>
+        </div>
+
+        <p class="server-err" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <p class="server-success" *ngIf="successMessage">
+          {{ successMessage }}
+        </p>
+      </form>
+    </div>
+
+    <aside class="map-card">
+      <h4>Our Office</h4>
+      <p class="muted">Primary hub & support center</p>
+      <div class="map-wrap" aria-hidden="false">
+        <!-- replace src with real embed -->
+        <iframe
+          src="https://maps.google.com/maps?q=lahore&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="dealer-cta">
+        <h4>Are you a dealer?</h4>
+        <p>Join Garirent to get more bookings and grow your business.</p>
+        <button class="btn outline" (click)="goToPartner()">
+          Become a Partner
+        </button>
+      </div>
+
+      <div class="support-hours">
+        <h5>Support Hours</h5>
+        <p class="muted">Mon — Sun : 09:00 — 21:00</p>
+      </div>
+    </aside>
+  </section>
+</main>

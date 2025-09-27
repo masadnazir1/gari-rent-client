@@ -1,0 +1,63 @@
+<nav [class.scrolled]="isScrolled" class="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <img src="/logo.png" alt="Logo" class="logo" />
+
+    <!-- Desktop Menu -->
+    <ul class="nav-links">
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li><a routerLink="/cars" routerLinkActive="active">All Cars</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+    <!-- Desktop Buttons -->
+    <div class="nav-buttons">
+      <button class="btn login" (click)="Naviage('/login')">
+        Login to Account
+      </button>
+      <button class="btn partner" (click)="Naviage('/create')">
+        Become Partner
+      </button>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Side Drawer Menu -->
+  <div class="mobile-menu" [class.active]="menuOpen">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="toggleMenu()"
+      >Home</a
+    >
+    <a routerLink="/booking" routerLinkActive="active" (click)="toggleMenu()"
+      >Booking</a
+    >
+    <a routerLink="/about" routerLinkActive="active" (click)="toggleMenu()"
+      >About</a
+    >
+    <a routerLink="/services" routerLinkActive="active" (click)="toggleMenu()"
+      >Services</a
+    >
+    <a routerLink="/contact" routerLinkActive="active" (click)="toggleMenu()"
+      >Contact</a
+    >
+    <button class="btn login">Login</button>
+    <button class="btn partner">Become Partner</button>
+  </div>
+</nav>

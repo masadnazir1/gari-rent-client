@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <!-- Left side navigation -->
+  <div class="nav-left">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="/logo.png" alt="Logo" />
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="nav-right">
+    <!-- Notifications -->
+    <button class="icon-btn">
+      <fa-icon [icon]="faBell"></fa-icon>
+      <span class="badge">3</span>
+    </button>
+
+    <!-- Messages -->
+    <button class="icon-btn">
+      <fa-icon [icon]="faMessage"></fa-icon>
+      <span class="badge">5</span>
+    </button>
+
+    <!-- User profile -->
+    <div class="user-profile" (click)="Profile()">
+      <img src="/user.png" alt="User" />
+    </div>
+  </div>
+</nav>

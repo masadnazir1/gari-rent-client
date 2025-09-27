@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="header">
+    <h2>Explore Premium Car Brands</h2>
+    <button class="show-all">Show all Brands</button>
+  </div>
+
+  <div class="brand-grid">
+    <div class="brand-card" *ngFor="let brand of brands">
+      <img [src]="brand.logo" [alt]="brand.name" />
+      <p>{{ brand.name }}</p>
+    </div>
+  </div>
+</div>

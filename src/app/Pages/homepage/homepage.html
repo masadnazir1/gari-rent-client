@@ -1,0 +1,12 @@
+<app-hero-carousel></app-hero-carousel>
+
+<div class="App">
+  <app-search-form />
+  <app-topmoters />
+  <section class="car-grid-section">
+    <h2 class="grid-title">{{ title }}</h2>
+    <div class="car-grid">
+      <app-car-card *ngFor="let car of cars" [car]="car"></app-car-card>
+    </div>
+  </section>
+</div>

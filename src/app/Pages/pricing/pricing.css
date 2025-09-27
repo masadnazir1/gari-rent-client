@@ -1,0 +1,248 @@
+:root {
+    --primary: #ff9800;
+    --primary-dark: #e68900;
+    --muted: #6b6b6b;
+    --card-bg: #ff9800;
+    --radius: 12px;
+    --shadow: 0 6px 20px rgba(15, 15, 15, 0.08);
+    --transition: all 0.25s ease;
+}
+
+/* GENERAL PAGE STYLING */
+.pricing-page {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* TIER CARDS ENHANCED */
+.tiers {
+    margin-bottom: 3rem;
+}
+
+.tiers h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #111;
+}
+
+.tier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.tier-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.tier-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--primary);
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+}
+
+.tier-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(15, 15, 15, 0.15);
+}
+
+.tier-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.tier-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    color: #111;
+}
+
+.tier-header .price {
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.bullets {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.bullets li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.bullets li fa-icon {
+    color: var(--primary);
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    background-color: var(--primary-dark);
+}
+
+.btn.primary {
+    background-color: var(--primary-dark);
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-dark);
+}
+
+/* CALCULATOR PANEL */
+.calc-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.calc-panel {
+    flex: 1 1 400px;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.calc-panel h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.calc-panel label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.calc-panel input {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
+    margin-top: 0.25rem;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.calc-panel input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* RESULT */
+.result {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+    transition: var(--transition);
+}
+
+/* TRUST PANEL */
+.trust-panel {
+    flex: 1 1 250px;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.trust-panel h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.trust-panel ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    color: var(--muted);
+}
+
+.trust-panel ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* FAQ & FINAL CTA */
+.faq-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.faq,
+.final-cta {
+    flex: 1 1 400px;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.faq h3,
+.final-cta h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.faq details {
+    margin-bottom: 1rem;
+}
+
+.faq summary {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.faq p {
+    margin: 0.5rem 0 0 0;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+
+    .calc-cta,
+    .faq-cta {
+        flex-direction: column;
+    }
+}

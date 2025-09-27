@@ -1,0 +1,74 @@
+.page-header {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* Dark gradient overlay */
+.page-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.75),
+            rgba(0, 0, 0, 0.55));
+    z-index: 1;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.page-header .overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+/* Animations */
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 1s ease forwards;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+/* Keyframes */
+@keyframes fadeSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        height: 30vh;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+    }
+}

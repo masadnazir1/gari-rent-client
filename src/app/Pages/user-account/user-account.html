@@ -1,0 +1,78 @@
+<app-navbar />
+<div class="account-layout" [class.sidebar-collapsed]="sidebarCollapsed">
+  <!-- Sidebar (Desktop) -->
+  <aside class="sidebar desktop-only">
+    <div class="sidebar-header">
+      <button
+        class="collapse-btn"
+        (click)="toggleSidebar()"
+        [attr.aria-expanded]="!sidebarCollapsed"
+      >
+        <fa-icon
+          [icon]="sidebarCollapsed ? faChevronRight : faChevronLeft"
+        ></fa-icon>
+      </button>
+    </div>
+
+    <nav class="menu">
+      <button
+        *ngFor="let item of menu"
+        (click)="loadComponent(item.key)"
+        [class.active]="selectedKey === item.key"
+        class="menu-item"
+      >
+        <fa-icon [icon]="item.icon"></fa-icon>
+        <span *ngIf="!sidebarCollapsed">{{ item.label }}</span>
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Mobile Drawer -->
+  <div
+    class="drawer-backdrop"
+    *ngIf="mobileDrawerOpen"
+    (click)="toggleDrawer()"
+  ></div>
+  <aside class="drawer" [class.open]="mobileDrawerOpen">
+    <div class="drawer-header">
+      <span class="brand"><fa-icon [icon]="faShield"></fa-icon> Garirent</span>
+      <button class="close-btn" (click)="toggleDrawer()">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </button>
+    </div>
+
+    <nav class="menu">
+      <button
+        *ngFor="let item of menu"
+        (click)="loadComponent(item.key)"
+        [class.active]="selectedKey === item.key"
+        class="menu-item"
+      >
+        <fa-icon [icon]="item.icon"></fa-icon>
+        <span>{{ item.label }}</span>
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <section class="content-area">
+      <ng-container *ngIf="selectedComponent">
+        <ng-container *ngComponentOutlet="selectedComponent"></ng-container>
+      </ng-container>
+    </section>
+  </main>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav">
+    <button
+      *ngFor="let item of BottomTab"
+      (click)="loadComponent(item.key)"
+      [class.active]="selectedKey === item.key"
+      class="tab"
+    >
+      <fa-icon [icon]="item.icon"></fa-icon>
+      <span class="tab-label">{{ item.label }}</span>
+    </button>
+  </nav>
+</div>

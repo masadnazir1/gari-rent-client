@@ -1,0 +1,11 @@
+<div class="dialog-overlay" *ngIf="isOpen">
+  <div class="dialog-box">
+    <h2>{{ title }}</h2>
+    <p>{{ description }}</p>
+
+    <div class="dialog-actions">
+      <button class="btn confirm" (click)="confirm()">{{ confirmText }}</button>
+      <button class="btn cancel" (click)="cancel()">{{ cancelText }}</button>
+    </div>
+  </div>
+</div>

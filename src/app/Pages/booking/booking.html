@@ -1,0 +1,85 @@
+<app-navbar />
+
+<div class="booking-container">
+  <!-- Car Summary -->
+  <div class="car-summary">
+    <!-- Image Gallery -->
+    <div class="image-gallery">
+      <div class="main-image">
+        <img [src]="mainImage" [alt]="car.name" />
+      </div>
+      <div class="thumbnails">
+        <img
+          *ngFor="let img of car.images"
+          [src]="img"
+          [alt]="car.name"
+          (click)="setMainImage(img)"
+          [class.active]="mainImage === img"
+        />
+      </div>
+    </div>
+
+    <h2>
+      {{ car.name }}
+      <span *ngIf="car.badge" class="badge">{{ car.badge }}</span>
+    </h2>
+    <p class="location">
+      <fa-icon [icon]="faMap"></fa-icon> {{ car.location }}
+    </p>
+
+    <ul class="details">
+      <li><fa-icon [icon]="faUsers"></fa-icon> {{ car.seats }} Seats</li>
+      <li><fa-icon [icon]="faDoor"></fa-icon> {{ car.doors }} Doors</li>
+      <li><fa-icon [icon]="faCarSide"></fa-icon> {{ car.transmission }}</li>
+      <li><fa-icon [icon]="faGasPump"></fa-icon> {{ car.fuel }}</li>
+      <li><fa-icon [icon]="faCalendar"></fa-icon> {{ car.year }}</li>
+      <li><fa-icon [icon]="faMileage"></fa-icon> {{ car.mileage }} km</li>
+      <li>
+        <fa-icon [icon]="faAC"></fa-icon>
+        {{ car.ac ? "Air Conditioning" : "No AC" }}
+      </li>
+    </ul>
+
+    <p class="price">💲 {{ car.dailyRate }} / day</p>
+  </div>
+
+  <!-- Booking Form -->
+  <div class="booking-form">
+    <div class="stepper">
+      <div class="step" [class.active]="step === 1">1. Dates</div>
+      <div class="step" [class.active]="step === 2">2. Pickup</div>
+    </div>
+
+    <!-- Step 1 -->
+    <div *ngIf="step === 1" class="form-step">
+      <label>Start Date</label>
+      <input type="date" [(ngModel)]="startDate" (change)="calculatePrice()" />
+
+      <label>End Date</label>
+      <input type="date" [(ngModel)]="endDate" (change)="calculatePrice()" />
+
+      <p *ngIf="days > 0">Days: {{ days }}</p>
+      <p class="summary">Total: PKR {{ totalPrice }}</p>
+
+      <button (click)="nextStep()">Next</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div *ngIf="step === 2" class="form-step">
+      <label>Pickup Location</label>
+      <input type="text" [(ngModel)]="pickup" placeholder="Enter pickup" />
+
+      <label>Drop-off Location</label>
+      <input type="text" [(ngModel)]="dropoff" placeholder="Enter drop-off" />
+
+      <p class="summary">Total: PKR {{ totalPrice }}</p>
+
+      <div class="actions">
+        <button (click)="prevStep()">Back</button>
+        <button class="confirm" (click)="confirmBooking()">
+          <fa-icon [icon]="faCheck"></fa-icon> Confirm Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
