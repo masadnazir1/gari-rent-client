@@ -8,11 +8,12 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { filter } from 'rxjs/operators';
+import { ToastComponent } from './components/shared/toast/toast';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Navbar, CommonModule, Footer, RouterModule],
+  imports: [Navbar, CommonModule, Footer, RouterModule, ToastComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })

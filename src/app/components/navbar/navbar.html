@@ -23,9 +23,7 @@
       <button class="btn login" (click)="Naviage('/login')">
         Login to Account
       </button>
-      <button class="btn partner" (click)="Naviage('/create')">
-        Become Partner
-      </button>
+      <button class="btn partner" (click)="showToast()">Become Partner</button>
     </div>
 
     <!-- Hamburger -->
@@ -58,6 +56,6 @@
       >Contact</a
     >
     <button class="btn login">Login</button>
-    <button class="btn partner">Become Partner</button>
+    <button class="btn partner" (click)="showToast()">Become Partner</button>
   </div>
 </nav>

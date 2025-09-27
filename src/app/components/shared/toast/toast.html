@@ -1,0 +1,29 @@
+<div class="toast-container">
+  <div *ngFor="let toast of toasts" class="toast" [ngClass]="toast.type">
+    <!-- Left: App icon -->
+    <div class="icon">
+      <img src="/icon.png" alt="icon" />
+    </div>
+
+    <!-- Middle: Title + message -->
+    <div class="content">
+      <div class="header">
+        <strong class="title">{{ toast.title }}</strong>
+        <button class="close-btn" (click)="remove(toast.id)">✕</button>
+      </div>
+      <p class="message">{{ toast.message }}</p>
+    </div>
+
+    <!-- Optional action button -->
+    <button
+      *ngIf="toast.actionText"
+      class="action-btn"
+      (click)="handleAction(toast)"
+    >
+      {{ toast.actionText }}
+    </button>
+
+    <!-- Progress bar -->
+    <div class="progress"></div>
+  </div>
+</div>
