@@ -4,18 +4,18 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f7f9fc;
+    background: var(--bg);
     padding: 20px;
 }
 
+/* Form */
 .signup-form {
-    background: #fff;
+    background: var(--card-bg);
     padding: 30px 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius);
     width: 100%;
     max-width: 400px;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 /* Inputs */
@@ -28,7 +28,7 @@ label {
     margin-bottom: 6px;
     display: block;
     font-size: 14px;
-    color: #333;
+    color: var(--text-primary);
 }
 
 input[type="text"],
@@ -36,23 +36,24 @@ input[type="email"],
 input[type="tel"],
 input[type="password"] {
     width: 100%;
-    padding: 15px;
-    /* as per requirement */
-    border: 1px solid #dce0e5;
-    border-radius: 8px;
+    padding: var(--input-padding);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--radius);
     outline: none;
-    transition: 0.3s;
+    transition: var(--transition);
     font-size: 14px;
+    background: var(--card-bg);
+    color: var(--text-primary);
 }
 
 input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 6px rgba(59, 130, 246, 0.3);
+    border-color: var(--primary);
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.3);
 }
 
 /* Error text */
 .error {
-    color: #e11d48;
+    color: var(--danger);
     font-size: 12px;
     margin-top: 4px;
 }
@@ -62,11 +63,11 @@ input:focus {
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,12 +75,12 @@ input:focus {
 }
 
 .signup-btn {
-    background: #10b981;
-    color: white;
+    background: var(--primary);
+    color: var(--card-bg);
 }
 
 .signup-btn:hover {
-    background: #059669;
+    background: var(--primary-dark);
     transform: translateY(-2px);
 }
 
@@ -91,31 +92,25 @@ input:focus {
 }
 
 .login-link a {
-    color: #3b82f6;
+    color: var(--accent);
     text-decoration: none;
-    transition: 0.2s;
+    transition: var(--transition);
 }
 
 .login-link a:hover {
     text-decoration: underline;
 }
 
-
-
+/* Responsive */
 @media (max-width: 786px) {
 
-    /* Container */
     .signup-container {
-
-        background: #fff;
-
+        background: var(--card-bg);
+        padding: 15px;
     }
 
     .signup-form {
-        background: #fff;
-        box-shadow: none;
-        padding: 0;
-
+        padding: 20px;
+        box-shadow: var(--shadow);
     }
-
 }

@@ -18,6 +18,7 @@ import {
   faStar,
   faCertificate,
 } from '@fortawesome/free-solid-svg-icons';
+import { Navbar } from '../../navbar/navbar';
 
 @Component({
   selector: 'app-car-card',
@@ -41,7 +42,8 @@ export class CarCard implements OnInit, OnChanges {
   faCertificate = faCertificate;
 
   ngOnInit() {
-    console.log('hello');
+    // console.log('hello');
+    // console.log(this.car);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -54,5 +56,9 @@ export class CarCard implements OnInit, OnChanges {
 
   goToBooking(car: any) {
     this.ROUTER.navigate(['/book'], { state: { car } });
+  }
+  goToDetails(car: any) {
+    console.log('car', car);
+    this.ROUTER.navigate(['/car-details'], { state: { car } });
   }
 }

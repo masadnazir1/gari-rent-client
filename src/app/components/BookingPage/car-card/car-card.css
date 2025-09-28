@@ -8,6 +8,7 @@
     flex-direction: column;
     transition: var(--transition);
     cursor: pointer;
+    height: -webkit-fill-available;
 
 }
 

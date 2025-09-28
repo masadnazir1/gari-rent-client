@@ -1,0 +1,21 @@
+<!-- Backdrop -->
+<div class="modal-backdrop" *ngIf="isOpen" (click)="onClose()"></div>
+
+<!-- Modal container -->
+<div class="modal-container" *ngIf="isOpen" [ngClass]="size">
+  <!-- Header -->
+  <div class="modal-header">
+    <h2>{{ title }}</h2>
+    <button class="close-btn" (click)="onClose()">✕</button>
+  </div>
+
+  <!-- Body -->
+  <div class="modal-body">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Footer -->
+  <div class="modal-footer">
+    <button class="action-btn" (click)="onClose()">Close</button>
+  </div>
+</div>

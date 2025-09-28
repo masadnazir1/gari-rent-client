@@ -1,5 +1,5 @@
 <div class="car-card">
-  <div class="car-image-wrapper">
+  <div class="car-image-wrapper" (click)="goToDetails(car)">
     <img [src]="car.images[0]" [alt]="car.name" class="car-image" />
     <span
       *ngIf="car.badge"

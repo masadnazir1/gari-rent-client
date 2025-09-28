@@ -53,10 +53,21 @@
     <!-- Step 1 -->
     <div *ngIf="step === 1" class="form-step">
       <label>Start Date</label>
-      <input type="date" [(ngModel)]="startDate" (change)="calculatePrice()" />
+      <app-custom-datepicker
+        (dateStringChange)="onDateSelected($event, 'start')"
+        (change)="calculatePrice()"
+      >
+        {{ startDate }}
+      </app-custom-datepicker>
 
       <label>End Date</label>
-      <input type="date" [(ngModel)]="endDate" (change)="calculatePrice()" />
+
+      <app-custom-datepicker
+        (dateStringChange)="onDateSelected($event, 'end')"
+        (change)="calculatePrice()"
+      >
+        {{ endDate }}
+      </app-custom-datepicker>
 
       <p *ngIf="days > 0">Days: {{ days }}</p>
       <p class="summary">Total: PKR {{ totalPrice }}</p>

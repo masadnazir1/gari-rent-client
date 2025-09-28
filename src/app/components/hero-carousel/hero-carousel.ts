@@ -47,7 +47,7 @@ export class HeroCarousel implements OnInit, OnDestroy {
   startAutoplay() {
     this.autoplayInterval = setInterval(() => {
       this.next();
-    }, 5000); // ⏱ change slide every 5 seconds
+    }, 3000); //change slide every 5 seconds
   }
 
   stopAutoplay() {

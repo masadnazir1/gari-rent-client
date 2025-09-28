@@ -1,0 +1,52 @@
+<div class="datepicker">
+  <!-- Input Field with Icon -->
+  <div class="datepicker-input-wrapper">
+    <input
+      type="text"
+      class="datepicker-input"
+      readonly
+      (click)="toggleCalendar()"
+      [value]="
+        selectedDate ? (selectedDate | date : 'mediumDate') : 'Select Date'
+      "
+    />
+    <fa-icon
+      [icon]="faCalendar"
+      class="calendar-icon"
+      (click)="toggleCalendar()"
+    ></fa-icon>
+  </div>
+
+  <!-- Calendar Popup -->
+  <div *ngIf="showCalendar" class="calendar">
+    <!-- Header -->
+    <div class="calendar-header">
+      <button (click)="prevMonth()">
+        <fa-icon [icon]="faLeft"></fa-icon>
+      </button>
+      <span>{{ currentDate | date : "MMMM yyyy" }}</span>
+      <button (click)="nextMonth()">
+        <fa-icon [icon]="faRight"></fa-icon>
+      </button>
+    </div>
+
+    <!-- Days of Week -->
+    <div class="calendar-days">
+      <div *ngFor="let day of days" class="day-name">{{ day }}</div>
+    </div>
+
+    <!-- Dates -->
+    <div class="calendar-dates">
+      <div *ngFor="let blank of blanks" class="date-blank"></div>
+      <div
+        *ngFor="let date of calendarDays"
+        class="date"
+        [class.today]="isToday(date)"
+        [class.selected]="isSelected(date)"
+        (click)="selectDate(date)"
+      >
+        {{ date.getDate() }}
+      </div>
+    </div>
+  </div>
+</div>

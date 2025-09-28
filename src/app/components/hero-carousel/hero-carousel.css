@@ -1,3 +1,4 @@
+/*  Carousel */
 .carousel {
     position: relative;
     width: 100%;
@@ -8,7 +9,6 @@
 .slides {
     display: flex;
     transition: transform 0.7s ease-in-out;
-
 }
 
 .slide {
@@ -18,7 +18,6 @@
     overflow: hidden;
     display: flex;
     align-items: center;
-
 }
 
 .bg-img {
@@ -28,48 +27,54 @@
     filter: brightness(70%);
 }
 
-/* Slide content (text + button) */
+/*  Slide content (text + button) */
 .content {
     position: absolute;
-    /* bottom: 20%; */
     left: 10%;
-    color: white;
+    color: var(--card-bg);
     animation: fadeInUp 1s ease;
     z-index: 2;
+    max-width: 500px;
 }
 
 .content h1 {
     font-size: 2.5rem;
     margin: 0;
+    color: var(--card-bg);
 }
 
 .content p {
     font-size: 1.2rem;
     margin: 10px 0;
+    color: var(--muted-bg);
 }
 
+/*  CTA Button */
 .content button {
-    padding: 10px 20px;
+    padding: 14px 28px;
     border: none;
-    background: #ff5722;
-    color: white;
-    font-size: 1rem;
-    border-radius: 8px;
+    background: var(--accent);
+    /* 🔥 strong highlight */
+    color: var(--card-bg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: var(--radius);
     cursor: pointer;
-    transition: background 0.3s;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
 }
 
 .content button:hover {
-    background: #e64a19;
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Car image animation */
+/*  Car image animation */
 .car-img {
     position: absolute;
-    /* bottom: 100px; */
     right: -300px;
     /* hidden outside screen */
-    /* width: 280px; */
     max-width: 40%;
     transition: transform 1s ease, right 1s ease, opacity 1s ease;
     opacity: 0;
@@ -78,32 +83,32 @@
 
 .car-img.animate-car {
     right: 50px;
-    /* final position */
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Controls */
+/*  Controls */
 .control {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.5);
     border: none;
-    color: white;
+    color: var(--card-bg);
     font-size: 2rem;
     cursor: pointer;
     padding: 10px;
     border-radius: 50%;
     user-select: none;
     z-index: 3;
+    transition: var(--transition);
 }
 
+.control:hover {
+    background: var(--primary);
+}
 
-
-
-
-/* Smooth animation for text */
+/*  Smooth animation for text */
 @keyframes fadeInUp {
     from {
         transform: translateY(40px);
@@ -116,8 +121,12 @@
     }
 }
 
-/* Responsive */
+/*  Responsive */
 @media (max-width: 768px) {
+    .slide {
+        height: 400px;
+    }
+
     .content h1 {
         font-size: 1.8rem;
     }
@@ -128,9 +137,5 @@
 
     .car-img {
         display: none;
-    }
-
-    .car-img.animate-car {
-        right: 20px;
     }
 }

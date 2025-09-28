@@ -3,16 +3,16 @@
     position: fixed;
     top: 0;
     width: 100%;
-    transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    transition: var(--transition);
     background: transparent;
-    z-index: 1000;
+    z-index: 10;
     backdrop-filter: blur(0px);
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.622);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
 }
 
 /* Container */
@@ -20,8 +20,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 30px;
-
+    padding: 10px 20px;
     margin: 0 auto;
 }
 
@@ -29,13 +28,14 @@
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #ffffff;
-    transition: color 0.3s ease;
+    color: var(--card-bg);
+    /* white for transparent state */
+    transition: var(--transition);
     height: 40px;
 }
 
 .navbar.scrolled .logo {
-    color: #000000;
+    color: var(--text-primary);
 }
 
 /* Menu (desktop) */
@@ -51,16 +51,16 @@
 }
 
 .nav-links a {
-    color: #ffffff;
+    color: var(--card-bg);
     text-decoration: none;
     font-weight: 600;
     padding: 6px 0;
     position: relative;
-    transition: color 0.3s ease;
+    transition: var(--transition);
 }
 
 .navbar.scrolled .nav-links a {
-    color: #000000;
+    color: var(--text-primary);
 }
 
 /* Underline hover effect */
@@ -71,7 +71,7 @@
     bottom: -3px;
     width: 0;
     height: 2px;
-    background: #ff9800;
+    background: var(--accent);
     transition: width 0.3s ease;
 }
 
@@ -87,47 +87,48 @@
 
 .btn {
     padding: 15px 22px;
-    border-radius: 6px;
-    font-weight: bolder;
+    border-radius: var(--radius);
+    font-weight: 700;
     font-size: 100%;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     white-space: nowrap;
 }
 
 /* Login button */
 .login {
-    border: 2px solid #ffffff;
+    border: 2px solid var(--card-bg);
     background: transparent;
-    color: #ffffff;
+    color: var(--card-bg);
 }
 
 .login:hover {
-    background: #ffb61879;
-    color: #ffffff;
+    background: var(--accent);
+    color: var(--card-bg);
 }
 
 /* Partner button */
 .partner {
-    background: #ff9800;
-    color: #ffffff;
-    border: 2px solid #ff9800;
+    background: var(--accent);
+    color: var(--card-bg);
+    border: 2px solid var(--accent);
 }
 
 .partner:hover {
-    background: #e68900;
-    border-color: #e68900;
+    background: #d97706;
+    /* darker shade of accent */
+    border-color: #d97706;
 }
 
 /* Scrolled button styles */
 .navbar.scrolled .login {
-    border: 2px solid #000000;
-    color: #000000;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
 }
 
 .navbar.scrolled .login:hover {
-    background: #000000;
-    color: #ffffff;
+    background: var(--text-primary);
+    color: var(--card-bg);
 }
 
 /* Hamburger */
@@ -137,19 +138,19 @@
     gap: 5px;
     cursor: pointer;
     z-index: 1100;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 
 .hamburger span {
     width: 28px;
     height: 3px;
-    background: #ffffff;
+    background: var(--card-bg);
     border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .navbar.scrolled .hamburger span {
-    background: #000000;
+    background: var(--text-primary);
 }
 
 /* Hamburger animation */
@@ -186,12 +187,12 @@
     width: 80%;
     max-width: 300px;
     height: 100vh;
-    background: #ff5722;
+    background: var(--accent);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 60px 20px;
-    transition: right 0.4s ease, opacity 0.4s ease;
+    transition: var(--transition);
     opacity: 0;
     box-shadow: -2px 0 12px rgba(0, 0, 0, 0.12);
     z-index: 1050;
@@ -207,14 +208,14 @@
     display: block;
     margin: 18px 0;
     font-size: 18px;
-    color: #000000;
+    color: var(--card-bg);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: var(--transition);
 }
 
 .mobile-menu a:hover {
-    color: #ff9800;
+    color: var(--text-primary);
 }
 
 /* Mobile buttons */
@@ -224,15 +225,7 @@
     text-align: center;
 }
 
-/* Optional enhancements */
-.navbar {
-    backdrop-filter: blur(0px);
-}
-
-.navbar.scrolled {
-    backdrop-filter: blur(8px);
-}
-
+/* Enhancements */
 .nav-links a:hover {
     transform: scale(1.05);
 }

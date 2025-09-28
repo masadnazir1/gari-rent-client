@@ -8,7 +8,10 @@ import { ApiService } from '../../services/api.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CustomDatepickerComponent } from '../../components/custom-datepicker/custom-datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ToastService } from '../../services/shared/toast/toast.service';
+import { Toast } from '../../Interfaces/ToastInterface';
 
 import {
   faCarSide,
@@ -35,6 +38,7 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    CustomDatepickerComponent,
   ],
   templateUrl: './booking.html',
   styleUrls: ['./booking.css'],
@@ -51,6 +55,9 @@ export class Booking implements OnInit {
   faDoor = faDoorOpen;
   faAC = faSnowflake;
   faMileage = faTachometerAlt;
+
+  //
+  pickedDate: string | null = null;
 
   // Car data
   car: any;
@@ -69,7 +76,11 @@ export class Booking implements OnInit {
   renterId = '68d0976819d0a06a96f6fdc9';
   dealerId = '68c6254e95915538b394578d';
 
-  constructor(private router: Router, private API: ApiService) {
+  constructor(
+    private router: Router,
+    private API: ApiService,
+    private toast: ToastService
+  ) {
     const nav = this.router.getCurrentNavigation();
     this.car = nav?.extras.state?.['car'];
     if (this.car) {
@@ -85,6 +96,7 @@ export class Booking implements OnInit {
 
   calculatePrice() {
     if (this.startDate && this.endDate) {
+      console.log('CALC', this.startDate, this.endDate);
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
       const diff = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
@@ -94,10 +106,6 @@ export class Booking implements OnInit {
   }
 
   nextStep() {
-    // if (this.pickup === '' || this.dropoff === '') {
-    //   return alert('Please select the picup and dropoff date');
-    // }
-
     if (this.step < 2) this.step++;
   }
 
@@ -160,7 +168,17 @@ export class Booking implements OnInit {
       days: this.days, // optional: useful for backend checks
     }).subscribe({
       next: (data) => {
-        alert('Booking confirmed successfully!');
+        //show message
+        this.showToast(
+          'success',
+          'Booking confirmed',
+          'Booking confirmed successfully!',
+          'View',
+          () => {
+            window.location.href = '/user-account?tab=bookings';
+          }
+        );
+
         this.resetBookingForm();
       },
       error: (error) => {
@@ -185,5 +203,37 @@ export class Booking implements OnInit {
     this.days = 0;
     this.totalPrice = 0;
     this.mainImage = this.car.images[0];
+  }
+
+  onDateSelected(date: string, datetype: string) {
+    if (datetype === 'start') {
+      this.startDate = date;
+      console.log('Selected start date:', date);
+    } else if (datetype === 'end') {
+      this.endDate = date;
+      console.log('Selected end  date:', date);
+    }
+    //calculatePrice
+    this.calculatePrice();
+    this.pickedDate = date;
+  }
+
+  /// show message
+
+  showToast(
+    type: Toast['type'],
+    title: string,
+    message: string,
+    actionText: string,
+    action?: () => void
+  ) {
+    this.toast.show({
+      type: type,
+      title: title,
+      message: message,
+      actionText: actionText,
+      action: action,
+      duration: 5000,
+    });
   }
 }
