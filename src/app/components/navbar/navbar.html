@@ -27,7 +27,7 @@
         Become Partner
       </button>
       <!-- User profile -->
-      <div class="user-profile" (click)="ModelToggle()">
+      <div class="user-profile" (click)="ModelToggle()" *ngIf="!hideButton">
         <img src="/user.png" alt="User" />
 
         <app-dropdown [isOpen]="ismodal">
