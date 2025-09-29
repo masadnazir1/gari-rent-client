@@ -30,7 +30,7 @@ export class Login {
     if (form.valid) {
       //call the login api
       this.isLoading = true;
-      this.API.post<AuthResponse>('/auth/user/login', {
+      this.API.post<AuthResponse>('auth/user/login', {
         email: this.email,
         password: this.password,
       }).subscribe({

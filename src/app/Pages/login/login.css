@@ -14,20 +14,23 @@
     width: 100%;
     max-width: 380px;
     background: var(--card-bg);
+    box-shadow: var(--shadow);
     transition: var(--transition);
 }
 
 /* Inputs */
 .form-group {
     margin-bottom: 18px;
+    background: var(--card-bg);
 }
 
 label {
-    font-weight: 600;
-    margin-bottom: 6px;
     display: block;
     font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
     color: var(--text-secondary);
+    background: var(--card-bg);
 }
 
 input[type="email"],
@@ -35,7 +38,7 @@ input[type="password"] {
     width: 100%;
     padding: var(--input-padding);
     border: 1px solid var(--borderColor);
-    border-radius: 8px;
+    border-radius: var(--radius);
     outline: none;
     transition: var(--transition);
     font-size: 14px;
@@ -45,8 +48,8 @@ input[type="password"] {
 
 input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
-    /* matches primary */
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.3);
+    /* match primary */
 }
 
 /* Error text */
@@ -64,6 +67,7 @@ input:focus {
     margin: 15px 0;
     font-size: 13px;
     color: var(--muted);
+    background: var(--card-bg);
 }
 
 .forgot-password {
@@ -121,7 +125,7 @@ input:focus {
     position: relative;
     font-size: 13px;
     color: var(--muted);
-
+    background: var(--card-bg);
 }
 
 .divider span {
@@ -164,12 +168,13 @@ input:focus {
 /* Responsive */
 @media (max-width: 786px) {
     .login-container {
-        background: var(--bg);
+        background: var(--card-bg);
     }
 
     .login-form {
+        background: var(--card-bg);
         box-shadow: none;
         padding: 0;
-        background: var(--bg);
+
     }
 }

@@ -15,7 +15,6 @@
       </li>
       <li><a routerLink="/cars" routerLinkActive="active">All Cars</a></li>
       <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-      <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
       <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
     </ul>
     <!-- Desktop Buttons -->
@@ -68,20 +67,20 @@
       (click)="toggleMenu()"
       >Home</a
     >
-    <a routerLink="/booking" routerLinkActive="active" (click)="toggleMenu()"
-      >Booking</a
+    <a routerLink="/cars" routerLinkActive="active" (click)="toggleMenu()"
+      >All Cars</a
     >
     <a routerLink="/about" routerLinkActive="active" (click)="toggleMenu()"
       >About</a
     >
-    <a routerLink="/services" routerLinkActive="active" (click)="toggleMenu()"
-      >Services</a
-    >
+
     <a routerLink="/contact" routerLinkActive="active" (click)="toggleMenu()"
       >Contact</a
     >
-    <button class="btn login">Login</button>
-    <button class="btn partner" (click)="showToast()">Become Partner</button>
+    <button class="btn login" (click)="Naviage('/login')">Login</button>
+    <button class="btn partnerMobile" (click)="showToast()">
+      Become Partner
+    </button>
   </div>
 </nav>
 

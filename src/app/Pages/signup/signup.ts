@@ -29,7 +29,7 @@ export class Signup {
       //call the api
 
       this.isLoading = true;
-      this.API.post('/auth/user/register', {
+      this.API.post('auth/user/register', {
         fullName: this.fullName,
         email: this.email,
         phone: this.phone,

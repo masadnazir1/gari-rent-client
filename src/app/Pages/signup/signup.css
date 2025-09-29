@@ -111,6 +111,6 @@ input:focus {
 
     .signup-form {
         padding: 20px;
-        box-shadow: var(--shadow);
+        /* box-shadow: var(--shadow); */
     }
 }
