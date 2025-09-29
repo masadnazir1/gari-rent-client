@@ -32,6 +32,7 @@
     /* white for transparent state */
     transition: var(--transition);
     height: 40px;
+    cursor: pointer;
 }
 
 .navbar.scrolled .logo {
@@ -164,6 +165,42 @@
 
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* User profile */
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #d1fae5;
+    /* light green border */
+    cursor: pointer;
+    background-color: transparent !important;
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+.user-profile img:hover {
+    border-color: #10b981;
+    /* green accent */
+    transform: scale(1.05);
+}
+
+
+.listOptions {
+    padding: 5px;
+    margin: 5px 0px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    gap: 5px;
+}
+
+.listOptions:hover {
+
+    background-color: var(--primary);
+
 }
 
 /* Responsive */

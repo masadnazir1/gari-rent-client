@@ -1,7 +1,7 @@
 <nav [class.scrolled]="isScrolled" class="navbar">
   <div class="nav-container">
     <!-- Logo -->
-    <img src="/logo.png" alt="Logo" class="logo" />
+    <img src="/logo.png" alt="Logo" class="logo" (click)="home()" />
 
     <!-- Desktop Menu -->
     <ul class="nav-links">
@@ -20,10 +20,35 @@
     </ul>
     <!-- Desktop Buttons -->
     <div class="nav-buttons">
-      <button class="btn login" (click)="Naviage('/login')">
+      <button class="btn login" (click)="Naviage('/login')" *ngIf="hideButton">
         Login to Account
       </button>
-      <button class="btn partner" (click)="showToast()">Become Partner</button>
+      <button class="btn partner" (click)="showToast()" *ngIf="hideButton">
+        Become Partner
+      </button>
+      <!-- User profile -->
+      <div class="user-profile" (click)="ModelToggle()">
+        <img src="/user.png" alt="User" />
+
+        <app-dropdown [isOpen]="ismodal">
+          <li class="listOptions" (click)="Profile()">
+            <fa-icon [icon]="UserIcon" />
+            My Accunt
+          </li>
+          <li class="listOptions" (click)="Bookings()">
+            <fa-icon [icon]="BookingIcons" />
+            My Bookings
+          </li>
+          <li class="listOptions" (click)="Dashboard()">
+            <fa-icon [icon]="faDashboard" />
+            Dashboard
+          </li>
+          <li class="listOptions" (click)="isconfirm = !isconfirm">
+            <fa-icon [icon]="LogoutIcon" />
+            Logout
+          </li>
+        </app-dropdown>
+      </div>
     </div>
 
     <!-- Hamburger -->
@@ -59,3 +84,10 @@
     <button class="btn partner" (click)="showToast()">Become Partner</button>
   </div>
 </nav>
+
+<app-confirm-dialog
+  [isOpen]="isconfirm"
+  description="Do you really want to logout?"
+  (onConfirm)="logout()"
+  (onCancel)="isconfirm = false"
+/>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ApiService } from '../../../../services/api.service';
+import { Router } from '@angular/router';
 
 import {
   faUser,
@@ -60,7 +61,7 @@ export class MyBookings implements OnInit {
   endPoint = `bookings/user/upcoming?userId=`;
   UpcommingEndPoint = `bookings/user/upcoming?userId=`;
   pastEndPoint = `bookings/user/past?userId=`;
-  constructor(private API: ApiService) {}
+  constructor(private API: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     const UserData = localStorage.getItem('user');
@@ -175,5 +176,9 @@ export class MyBookings implements OnInit {
 
   contactSupport(id: string) {
     alert(`Support request opened for booking #${id}`);
+  }
+
+  gotoCarsPage() {
+    this.router.navigate(['/cars']);
   }
 }

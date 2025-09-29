@@ -40,6 +40,7 @@
     cursor: pointer;
     border: none;
     transition: all 0.2s;
+    width: 25%;
 }
 
 .btn.cancel {

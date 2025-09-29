@@ -1,0 +1,60 @@
+<div class="dashboard-wrapper">
+  <section class="Profiledetails">
+    <img src="/user.png" alt="" class="userpicture" />
+
+    <div class="RightSide">
+      <b class="UserName">{{ userdata?.fullName || "" }}</b>
+      <span class="planName">{{ userdata?.role || "role" }}</span>
+      <p class="Points">1,200 points</p>
+    </div>
+  </section>
+  <section class="Bookingdetails">
+    <div class="RightSideBooking">
+      <p class="Upcommig">Upcommig Booking</p>
+      <span class="VehicleName">Mercedes-Benz C-Class</span>
+      <p class="bookingStatus">Confirmed</p>
+
+      <div class="rounded">
+        <fa-icon [icon]="faClock" />
+        <span>Pickup: 10/26, 10:00 AM</span>
+      </div>
+    </div>
+    <img src="/car.png" alt="" class="Vehiclepicture" />
+  </section>
+  <section class="Bookingdetails">
+    <div class="button-grid">
+      <button *ngFor="let item of Items" class="optionsButtons">
+        <fa-icon [icon]="item.icon" />
+        {{ item.label }}
+      </button>
+    </div>
+  </section>
+  <section class="Insightdetails">
+    <span>Insight</span>
+    <div class="chartcard">
+      <h3>Spending</h3>
+      <h1>PKR {{ spending ?? 0 }}</h1>
+      <p>
+        <!-- Last 6 Months Spending -->
+        Last 6 Months
+        <span
+          [ngClass]="
+            percentage.startsWith('+') ? 'text-success' : 'text-danger'
+          "
+        >
+          {{ percentage }}
+        </span>
+      </p>
+
+      <div class="chart-wrapper">
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          chartType="bar"
+        >
+        </canvas>
+      </div>
+    </div>
+  </section>
+</div>

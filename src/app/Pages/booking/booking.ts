@@ -96,7 +96,6 @@ export class Booking implements OnInit {
 
   calculatePrice() {
     if (this.startDate && this.endDate) {
-      console.log('CALC', this.startDate, this.endDate);
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
       const diff = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
@@ -208,10 +207,8 @@ export class Booking implements OnInit {
   onDateSelected(date: string, datetype: string) {
     if (datetype === 'start') {
       this.startDate = date;
-      console.log('Selected start date:', date);
     } else if (datetype === 'end') {
       this.endDate = date;
-      console.log('Selected end  date:', date);
     }
     //calculatePrice
     this.calculatePrice();

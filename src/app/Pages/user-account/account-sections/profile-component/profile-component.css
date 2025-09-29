@@ -1,16 +1,3 @@
-:root {
-    --primary: #06b6d4;
-    --primary-dark: #0891b2;
-    --success: #22c55e;
-    --success-dark: #16a34a;
-    --danger: #ef4444;
-    --danger-dark: #dc2626;
-    --text-muted: #6b7280;
-    --bg-light: #f9fafb;
-    --card-shadow: rgba(0, 0, 0, 0.08);
-    --radius: 16px;
-}
-
 /* Wrapper */
 .profile-wrapper {
     max-width: 1200px;

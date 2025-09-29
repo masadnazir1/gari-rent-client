@@ -13,6 +13,7 @@ import {
   faBars,
   faChevronLeft,
   faChevronRight,
+  faDashboard,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,6 +28,7 @@ type LazyComponentType = any;
 })
 export class UserAccount {
   // Icons
+  faDashboard = faDashboard;
   faUser = faUser;
   faCalendar = faCalendar;
   faShield = faShieldAlt;
@@ -47,17 +49,19 @@ export class UserAccount {
   selectedComponent?: LazyComponentType;
 
   menu = [
-    { key: 'profile', label: 'Profile', icon: this.faUser },
+    { key: 'dashboard', label: 'Dashboard', icon: this.faDashboard },
     { key: 'bookings', label: 'Bookings', icon: this.faCalendar },
     { key: 'feedback', label: 'Feedback', icon: this.faFeedback },
     { key: 'loyalty', label: 'Loyalty', icon: this.faCoins },
+    { key: 'profile', label: 'Profile', icon: this.faUser },
   ];
 
   BottomTab = [
-    { key: 'profile', label: 'Profile', icon: this.faUser },
+    { key: 'dashboard', label: 'Dashboard', icon: this.faDashboard },
     { key: 'bookings', label: 'Bookings', icon: this.faCalendar },
-    { key: 'feedback', label: 'Feedback', icon: this.faFeedback },
+    // { key: 'feedback', label: 'Feedback', icon: this.faFeedback },
     { key: 'loyalty', label: 'Loyalty', icon: this.faCoins },
+    { key: 'profile', label: 'Profile', icon: this.faUser },
   ];
 
   constructor() {
@@ -138,6 +142,13 @@ export class UserAccount {
           './account-sections/loyalty-component/loyalty-component'
         );
         this.selectedComponent = mod.LoyaltyComponent;
+        break;
+      }
+      case 'dashboard': {
+        const mod = await import(
+          './account-sections/renter-dashboard/renter-dashboard'
+        );
+        this.selectedComponent = mod.RenterDashboard;
         break;
       }
       default:

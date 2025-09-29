@@ -4,6 +4,7 @@ import {
   Output,
   OnInit,
   ViewChild,
+  Input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -39,6 +40,7 @@ export class FilterPanel implements OnInit {
   faAC = faSnowflake;
   downarrow = faChevronDown;
   //
+  @Input() initialBrand: string = 'All'; //will come from parent
   Categories: any[] = []; // full Categories objects
   CategoriesNames: any[] = []; // full Categories objects
   //
@@ -70,6 +72,7 @@ export class FilterPanel implements OnInit {
   @Output() filterChange = new EventEmitter<any>();
 
   ngOnInit(): void {
+    this.selectedBrand = this.initialBrand || 'All'; // overwrite if parent sends
     this.getBrands();
   }
   //constructor
@@ -83,32 +86,32 @@ export class FilterPanel implements OnInit {
 
         // Extract brand names
         this.brandNames = data.data.map((b: any) => b.name);
-        console.log(this.brandNames); // ["Toyota", "Kia", "Chevrolet", ...]
       },
       error: (error) => {
-        console.log('Error getting brands ', error);
+        console.error('Error getting brands ', error);
       },
     });
   }
+
+  //fun to get the categories
   getcategories() {
     this.API.get<any>('/categories').subscribe({
       next: (data) => {
-        console.log(data.categories);
         // Store all brand objects
         this.Categories = data.categories;
         // Create a new array with just brand names
         // Extract just brand names
         this.CategoriesNames = data.categories.map((c: any) => c.name);
-        console.log(this.CategoriesNames); // ["Toyota", "Kia", "Chevrolet", ...]
       },
       error: (error) => {
-        console.log('Error getting categories ', error);
+        console.error('Error getting categories ', error);
       },
     });
   }
 
   applyFilter() {
     this.filterChange.emit({
+      Brand: this.selectedBrand,
       category: this.selectedCategory,
       transmission: this.selectedTransmission,
       fuel: this.selectedFuel,

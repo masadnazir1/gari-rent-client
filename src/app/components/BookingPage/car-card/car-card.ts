@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router } from '@angular/router';
@@ -27,7 +21,7 @@ import { Navbar } from '../../navbar/navbar';
   templateUrl: './car-card.html',
   styleUrls: ['./car-card.css'],
 })
-export class CarCard implements OnInit, OnChanges {
+export class CarCard implements OnChanges {
   @Input() car: any;
 
   constructor(private ROUTER: Router) {}
@@ -41,11 +35,6 @@ export class CarCard implements OnInit, OnChanges {
   faStar = faStar;
   faCertificate = faCertificate;
 
-  ngOnInit() {
-    // console.log('hello');
-    // console.log(this.car);
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     // if (changes['car']) {
     //     'CarCard received new car input:',
@@ -58,7 +47,6 @@ export class CarCard implements OnInit, OnChanges {
     this.ROUTER.navigate(['/book'], { state: { car } });
   }
   goToDetails(car: any) {
-    console.log('car', car);
     this.ROUTER.navigate(['/car-details'], { state: { car } });
   }
 }

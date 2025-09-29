@@ -26,7 +26,6 @@ export class Topmoters implements OnInit {
   GetBrands() {
     this.API.get('barnds').subscribe({
       next: (res: any) => {
-        console.log('BRANDS', res);
         if (res.success && Array.isArray(res.data)) {
           this.brands = res.data.map((b: any) => ({
             id: b._id,
@@ -34,11 +33,13 @@ export class Topmoters implements OnInit {
             logo: b.logo,
           }));
         }
-        console.log(this.brands);
       },
       error: (err) => {
         console.error('Error getting the brands', err);
       },
     });
+  }
+  FindByBrand(brandName: string) {
+    window.location.href = `/cars?Brand=${brandName}`;
   }
 }

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { UserNavbarComponent } from '../../components/Navbars/user-navbar/user-navbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { ActivatedRoute } from '@angular/router';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 import { Router } from '@angular/router';
@@ -33,10 +33,17 @@ export class CarsPage implements OnInit {
   filters: any = {};
   showFilters = true; // by default filters are visible
 
-  constructor(private API: ApiService, private ROUTER: Router) {}
+  brand: string | null = null;
+
+  constructor(
+    private API: ApiService,
+    private ROUTER: Router,
+    private route: ActivatedRoute
+  ) {}
   // Listen for window resize
   // Listen for window resize
   @HostListener('window:resize', ['$event'])
+  //
   onResize(event: Event) {
     const width = (event.target as Window).innerWidth;
     this.updateFilterState(width);
@@ -51,12 +58,19 @@ export class CarsPage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.brand = this.route.snapshot.queryParamMap.get('Brand');
+
+    if (this.brand) {
+      this.filters.Brand = this.brand; //overwrite Brand if query exists
+    }
+
     this.fetchAllCars();
   }
 
   // When filter panel changes
   onFilterChange(filters: any) {
     this.filters = filters;
+
     this.currentPage = 1; // reset pagination
     this.fetchAllCars();
   }

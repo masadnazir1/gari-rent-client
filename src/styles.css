@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     /* background: var(--muted-bg); */
+    scrollbar-color: #4df3bb #f4fff4;
 }
 
 
@@ -34,7 +35,7 @@
     /* 🔹 Text */
     --text-primary: #111827;
     /* Strong black */
-    --text-secondary: #374151;
+    --text-secondary: #5e5f62;
     /* Dark gray */
     --muted: #6b7280;
     /* Muted gray */
@@ -91,7 +92,7 @@ body {
 /* For Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: #004d33 #d4fcd5;
+    scrollbar-color: #4df3bb #f4fff4;
     /* thumb and track */
 }
 

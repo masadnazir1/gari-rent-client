@@ -68,9 +68,7 @@ export class SearchForm {
     document.body.style.overflow = 'hidden'; // disable page scroll
   }
 
-  onDateSelected(date: string, datetype: string) {
-    console.log(date);
-  }
+  onDateSelected(date: string, datetype: string) {}
   closeModal() {
     this.isModalOpen = false;
     document.body.style.overflow = 'auto'; // re-enable page scroll
@@ -78,13 +76,13 @@ export class SearchForm {
 
   SetOption(item: string) {
     if (this.locations.includes(item)) {
-      console.log(true);
       this.Destination = item;
       this.isModalOpen = false;
+      document.body.style.overflow = 'auto'; // re-enable page scroll
     } else if (this.PeopleQuantity.includes(item)) {
-      console.log(true);
       this.PeopleSelected = item;
       this.isModalOpen = false;
+      document.body.style.overflow = 'auto'; // re-enable page scroll
     }
   }
   ExploreAll() {

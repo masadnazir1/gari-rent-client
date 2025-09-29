@@ -5,7 +5,11 @@
   </div>
 
   <div class="brand-grid">
-    <div class="brand-card" *ngFor="let brand of brands">
+    <div
+      class="brand-card"
+      *ngFor="let brand of brands"
+      (click)="FindByBrand(brand.name)"
+    >
       <img [src]="brand.logo" [alt]="brand.name" />
       <p>{{ brand.name }}</p>
     </div>

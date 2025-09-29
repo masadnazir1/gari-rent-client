@@ -24,7 +24,7 @@
   >
     <fa-icon [icon]="faCar" class="icon"></fa-icon>
     <p>You don’t have any upcoming bookings.</p>
-    <button class="cta-btn">
+    <button class="cta-btn" (click)="gotoCarsPage()">
       <fa-icon [icon]="faCar"></fa-icon> Find a Car
     </button>
   </div>
@@ -35,7 +35,7 @@
   >
     <fa-icon [icon]="faCoins" class="icon"></fa-icon>
     <p>No past bookings yet.</p>
-    <button class="cta-btn secondary">
+    <button class="cta-btn secondary" (click)="gotoCarsPage()">
       <fa-icon [icon]="faCar"></fa-icon> Make Your First Booking
     </button>
   </div>

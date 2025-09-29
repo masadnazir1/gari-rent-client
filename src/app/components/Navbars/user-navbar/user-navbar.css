@@ -98,6 +98,24 @@
     transform: scale(1.05);
 }
 
+
+.listOptions {
+    padding: 5px;
+    margin: 5px 0px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    gap: 5px;
+}
+
+.listOptions:hover {
+
+    background-color: var(--primary);
+
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-right {

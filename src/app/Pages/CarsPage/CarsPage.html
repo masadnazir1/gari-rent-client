@@ -12,6 +12,7 @@
 <div class="booking-page">
   <div class="sidebar" [ngClass]="{ hidden: !showFilters }">
     <app-filter-panel
+      [initialBrand]="filters.Brand"
       (filterChange)="onFilterChange($event)"
     ></app-filter-panel>
   </div>

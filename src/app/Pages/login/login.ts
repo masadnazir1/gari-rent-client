@@ -37,7 +37,7 @@ export class Login {
         next: (data) => {
           this.isLoading = false;
           this.Naviagte('/user-account');
-          localStorage.setItem('user', JSON.stringify(data?.user));
+          localStorage.setItem('user', JSON.stringify(data.user));
           localStorage.setItem('token', data.token);
         },
 
