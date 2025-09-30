@@ -27,6 +27,7 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog'
   styleUrls: ['./navbar.css'],
 })
 export class Navbar implements OnInit {
+  [x: string]: any;
   //FontAwesome icons
   UserIcon = faUser;
   BookingIcons = faCalendarDay;
@@ -40,7 +41,7 @@ export class Navbar implements OnInit {
   islogedin = false;
   hideButton = true;
   ismodal: boolean = false;
-
+  userData: any = null;
   constructor(
     private router: Router,
     private toast: ToastService,
@@ -53,8 +54,11 @@ export class Navbar implements OnInit {
 
   //effect
   ngOnInit(): void {
-    if (this.localStorage.getItem('user')) {
+    const userData = this.localStorage.getItem<any>('user');
+    if (userData) {
       this.hideButton = false;
+      this.userData = userData;
+      console.log(userData);
     }
   }
 
@@ -97,7 +101,8 @@ export class Navbar implements OnInit {
   }
 
   logout() {
-    alert('loged out !');
+    this.localStorage.clear();
+    window.location.href = '/login';
     this.isconfirm = false;
   }
 }

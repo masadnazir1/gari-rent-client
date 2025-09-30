@@ -8,18 +8,26 @@
       <p class="Points">1,200 points</p>
     </div>
   </section>
-  <section class="Bookingdetails">
+  <!-- Booking info card -->
+  <section class="Bookingdetails" *ngIf="bookings.length > 0">
+    <div class="carimage">
+      <img src="{{ bookings[0].car.image }}" alt="" class="Vehiclepicture" />
+    </div>
     <div class="RightSideBooking">
       <p class="Upcommig">Upcommig Booking</p>
-      <span class="VehicleName">Mercedes-Benz C-Class</span>
+      <span class="VehicleName"> {{ bookings[0].car.name }}</span>
       <p class="bookingStatus">Confirmed</p>
 
       <div class="rounded">
         <fa-icon [icon]="faClock" />
-        <span>Pickup: 10/26, 10:00 AM</span>
+        <span>Pickup: {{ bookings[0].pickupDate | date : "dd/MM/yyyy" }}</span>
       </div>
     </div>
-    <img src="/car.png" alt="" class="Vehiclepicture" />
+  </section>
+
+  <!-- Booking no data -->
+  <section class="Bookingdetails" *ngIf="bookings.length === 0">
+    <p style="text-align: center">You currently have no upcoming bookings.</p>
   </section>
   <section class="Bookingdetails">
     <div class="button-grid">
@@ -31,7 +39,7 @@
   </section>
   <section class="Insightdetails">
     <span>Insight</span>
-    <div class="chartcard">
+    <div class="chartcard" *ngIf="ischartdata">
       <h3>Spending</h3>
       <h1>PKR {{ spending ?? 0 }}</h1>
       <p>
@@ -56,5 +64,7 @@
         </canvas>
       </div>
     </div>
+
+    <p *ngIf="!ischartdata">You don’t have any spendings right now.</p>
   </section>
 </div>

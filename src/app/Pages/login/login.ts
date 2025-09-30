@@ -36,7 +36,7 @@ export class Login {
       }).subscribe({
         next: (data) => {
           this.isLoading = false;
-          this.Naviagte('/user-account');
+          window.location.href = '/user-account?tab=dashboard';
           localStorage.setItem('user', JSON.stringify(data.user));
           localStorage.setItem('token', data.token);
         },

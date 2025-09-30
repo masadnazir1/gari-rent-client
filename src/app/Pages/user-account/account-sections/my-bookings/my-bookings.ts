@@ -120,6 +120,7 @@ export class MyBookings implements OnInit {
       {
         next: (res) => {
           this.isLoading = false;
+          this.getUpCommingg();
         },
         error: (error: any) => {
           this.isLoading = false;
@@ -145,6 +146,7 @@ export class MyBookings implements OnInit {
   }
 
   openConfirmDialog(id: string) {
+    this.activeBookingId = this.activeBookingId === id ? null : id;
     this.BookingIdDelete = id;
     this.isDialogOpen = true;
   }
@@ -159,14 +161,17 @@ export class MyBookings implements OnInit {
   }
 
   extendBooking(id: string) {
+    this.activeBookingId = this.activeBookingId === id ? null : id;
     alert(`Booking #${id} extension requested!`);
   }
 
   viewBooking(id: string) {
+    this.activeBookingId = this.activeBookingId === id ? null : id;
     alert(`Viewing details for booking #${id}`);
   }
 
   downloadInvoice(id: string) {
+    this.activeBookingId = this.activeBookingId === id ? null : id;
     alert(`Invoice for booking #${id} downloaded!`);
   }
 
@@ -175,6 +180,7 @@ export class MyBookings implements OnInit {
   }
 
   contactSupport(id: string) {
+    this.activeBookingId = this.activeBookingId === id ? null : id;
     alert(`Support request opened for booking #${id}`);
   }
 

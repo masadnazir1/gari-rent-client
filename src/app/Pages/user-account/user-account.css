@@ -21,7 +21,7 @@
     flex-direction: column;
     padding: 12px;
     transition: width 220ms ease;
-    z-index: 80000;
+    z-index: 1000;
     margin-top: 68px;
 }
 

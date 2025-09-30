@@ -3,27 +3,28 @@
     max-width: 1200px;
     margin: auto;
     font-family: "Inter", sans-serif;
-    gap: 15px;
+    gap: 1rem;
     display: flex;
     flex-direction: column;
+    padding: 1rem;
     padding-bottom: 10%;
 }
 
-
+/* Profile Card */
 .Profiledetails {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: var(--radius);
     padding: 1.6rem;
-    box-shadow: 0 6px 14px var(--card-shadow);
+    box-shadow: var(--shadow);
     animation: fadeIn 0.25s ease-in-out;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform var(--transition), box-shadow var(--transition);
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .RightSide {
-    width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -31,44 +32,36 @@
 }
 
 .userpicture {
-    width: 100px;
-    border-radius: 100%;
+    width: clamp(60px, 12vw, 100px);
+    border-radius: 50%;
 }
 
 .UserName {
-    font-size: 130%;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
     font-weight: bolder;
     color: var(--text-primary);
-
 }
 
-.planName {
-    color: var(--text-secondary);
-    font-size: 100%;
-    font-weight: bold;
-}
-
+.planName,
 .Points {
     color: var(--text-secondary);
-    font-size: 100%;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: bold;
 }
 
-
-/* Upcommig Booking styles */
-
+/* Booking Card */
 .Bookingdetails {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: var(--radius);
     padding: 1.6rem;
-    box-shadow: 0 6px 14px var(--card-shadow);
+    box-shadow: var(--shadow);
     animation: fadeIn 0.25s ease-in-out;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform var(--transition), box-shadow var(--transition);
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     align-items: center;
+    flex-wrap: wrap;
 }
-
 
 .RightSideBooking {
     width: 100%;
@@ -76,71 +69,65 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
+    margin-top: 1rem;
 }
 
 .Upcommig {
-
     color: var(--text-secondary);
-    font-size: 100%;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: bold;
 }
 
 .VehicleName {
     color: var(--text-primary);
-    font-size: 20px;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
     font-weight: bold;
 }
 
 .bookingStatus {
     color: var(--success);
-    font-size: 20px;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
     font-weight: bold;
 }
 
 .rounded {
     border-radius: 100px;
     background-color: aquamarine;
-    padding: 5px 10px;
-    margin: 10px 0px;
+    padding: 0.4rem 0.8rem;
+    margin: 0.6rem 0;
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carimage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Vehiclepicture {
-    width: 50%;
-    max-width: 100px;
+    width: 100%;
+    max-width: 200px;
+    border-radius: var(--radius);
 }
 
-
-@media (max-width: 767px) {
-    .Bookingdetails {
-        flex-direction: column-reverse;
-        gap: 30px;
-    }
-
-    .Vehiclepicture {
-        width: 80%;
-        max-width: 200px;
-
-    }
-}
-
-/* SOme options buttons */
+/* Buttons */
 .button-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* 2 equal columns */
     gap: 12px;
-    /* consistent spacing */
     width: 100%;
-    /* full row width */
 }
 
 .optionsButtons {
-    padding: 15px;
+    padding: 0.9rem;
     cursor: pointer;
     border: none;
     width: 100%;
     background-color: var(--primary);
-    font-size: 100%;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     border-radius: var(--radius);
     color: #fff;
 }
@@ -149,19 +136,16 @@
     background: var(--primary-dark);
 }
 
-
-/* Insightdetails styles  */
-
-
+/* Insights */
 .Insightdetails {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: var(--radius);
     padding: 1.6rem;
-    box-shadow: 0 6px 14px var(--card-shadow);
+    box-shadow: var(--shadow);
     animation: fadeIn 0.25s ease-in-out;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform var(--transition), box-shadow var(--transition);
     display: flex;
-    gap: 10px;
+    gap: 0.8rem;
     align-items: center;
     flex-direction: column;
     text-align: left;
@@ -170,23 +154,18 @@
 .Insightdetails span {
     text-align: left;
     width: 100%;
-    /* color: var(--text-primary); */
-    font-size: 20px;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
     font-weight: bold;
 }
-
 
 .chartcard {
     width: 100%;
 }
 
-
 .chart-wrapper {
     width: 100%;
-    height: 250px;
-    /* or any height you want */
+    height: clamp(200px, 40vw, 300px);
     position: relative;
-    /* Chart.js needs this for responsiveness */
 }
 
 .chart-wrapper canvas {
@@ -194,12 +173,64 @@
     height: 100% !important;
 }
 
+/* Text Utilities */
 .text-success {
     color: var(--success);
-    /* from your CSS variables */
 }
 
 .text-danger {
     color: var(--danger);
-    /* from your CSS variables */
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .dashboard-wrapper {
+        padding: 0.8rem;
+    }
+
+    .Profiledetails,
+    .Bookingdetails {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .RightSide,
+    .RightSideBooking {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .Bookingdetails {
+        flex-direction: column-reverse;
+        gap: 1.5rem;
+    }
+
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .optionsButtons {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .UserName {
+        font-size: 1.1rem;
+    }
+
+    .VehicleName,
+    .bookingStatus {
+        font-size: 1rem;
+    }
+
+    .optionsButtons {
+        padding: 0.8rem;
+    }
+
+    .chart-wrapper {
+        height: 200px;
+    }
 }

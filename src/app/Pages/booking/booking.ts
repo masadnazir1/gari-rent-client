@@ -12,6 +12,7 @@ import { CustomDatepickerComponent } from '../../components/custom-datepicker/cu
 import { MatNativeDateModule } from '@angular/material/core';
 import { ToastService } from '../../services/shared/toast/toast.service';
 import { Toast } from '../../Interfaces/ToastInterface';
+import { LocalStorageService } from '../../services/shared/storage/local-storage.service';
 
 import {
   faCarSide,
@@ -73,22 +74,32 @@ export class Booking implements OnInit {
   totalPrice = 0;
 
   //date for api
-  renterId = '68d0976819d0a06a96f6fdc9';
-  dealerId = '68c6254e95915538b394578d';
+  renterId = '';
+  dealerId = '';
 
   constructor(
     private router: Router,
     private API: ApiService,
-    private toast: ToastService
+    private toast: ToastService,
+    private localStorage: LocalStorageService
   ) {
     const nav = this.router.getCurrentNavigation();
     this.car = nav?.extras.state?.['car'];
     if (this.car) {
       this.mainImage = this.car.images[0];
+      this.dealerId = this.car.dealerId._id;
+      console.log(this.renterId);
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.dealerId);
+
+    const userData = this.localStorage.getItem<any>('user');
+    if (userData) {
+      this.renterId = userData._id;
+    }
+  }
 
   setMainImage(image: string) {
     this.mainImage = image;

@@ -26,15 +26,36 @@
       <img src="/user.png" alt="User" />
 
       <app-dropdown [isOpen]="ismodal">
-        <li class="listOptions">
-          <img src="/user.png" alt="User" />
+        <li class="listOptions" (click)="Profile()">
+          <fa-icon [icon]="UserIcon" />
           My Accunt
         </li>
-        <li class="listOptions">
-          <img src="/user.png" alt="User" />
-          My Accunt
+        <li
+          class="listOptions"
+          (click)="navigateTo('/user-account?tab=bookings')"
+        >
+          <fa-icon [icon]="BookingIcons" />
+          My Bookings
+        </li>
+        <li
+          class="listOptions"
+          (click)="navigateTo('/user-account?tab=dashboard')"
+        >
+          <fa-icon [icon]="faDashboard" />
+          Dashboard
+        </li>
+        <li class="listOptions" (click)="isconfirm = !isconfirm">
+          <fa-icon [icon]="LogoutIcon" />
+          Logout
         </li>
       </app-dropdown>
     </div>
   </div>
 </nav>
+
+<app-confirm-dialog
+  [isOpen]="isconfirm"
+  description="Do you really want to logout?"
+  (onConfirm)="logout()"
+  (onCancel)="isconfirm = false"
+/>

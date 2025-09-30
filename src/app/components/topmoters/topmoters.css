@@ -1,7 +1,7 @@
 /* Container */
 .container {
     background: var(--bg);
-    padding: 1rem;
+    /* padding: 1rem; */
 }
 
 /* Header */
@@ -13,7 +13,7 @@
     margin-bottom: 24px;
 }
 
-.header h2 {
+.header h5 {
     font-weight: 700;
     font-size: 2rem;
     /* responsive base */
@@ -23,7 +23,7 @@
 }
 
 .show-all {
-    padding: 8px 18px;
+    padding: 10px;
     border: 1px solid var(--primary);
     background: transparent;
     color: var(--primary);
@@ -116,12 +116,12 @@
 
 @media (max-width: 768px) {
     .header {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: flex-start;
         gap: 0.5rem;
     }
 
-    .header h2 {
+    .header h5 {
         font-size: 1.6rem;
     }
 
@@ -133,6 +133,11 @@
 
     .brand-card p {
         font-size: 0.85rem;
+    }
+
+    .show-all {
+
+        width: 100%;
     }
 }
 
@@ -149,5 +154,10 @@
 
     .brand-card p {
         font-size: 0.8rem;
+    }
+
+    .show-all {
+
+        width: 100%;
     }
 }

@@ -12,10 +12,26 @@
     padding: 30px 25px;
     border-radius: var(--radius);
     width: 100%;
-    max-width: 380px;
+    max-width: 500px;
     background: var(--card-bg);
     box-shadow: var(--shadow);
     transition: var(--transition);
+}
+
+.login-logo {
+    width: 100px;
+    display: flex;
+    justify-self: center;
+    margin-bottom: 10%;
+}
+
+.engagment-text {
+    padding: 15px 0px;
+    color: var(--text-primary);
+}
+
+.engagment-text h3 {
+    color: var(--text-primary);
 }
 
 /* Inputs */

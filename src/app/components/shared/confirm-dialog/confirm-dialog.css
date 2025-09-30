@@ -34,13 +34,12 @@
 }
 
 .btn {
-    padding: 15px 1.5rem;
+    padding: 10px 2.5rem;
     border-radius: var(--radius);
     font-size: 14px;
     cursor: pointer;
     border: none;
     transition: all 0.2s;
-    width: 25%;
 }
 
 .btn.cancel {

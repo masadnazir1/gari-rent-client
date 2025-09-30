@@ -221,4 +221,13 @@
         flex-direction: column;
         width: 100%;
     }
+
+    .buttonBox {
+        flex-direction: column;
+    }
+
+    .disable-btn {
+        width: 100%;
+    }
+
 }

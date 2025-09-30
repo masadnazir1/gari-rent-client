@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ApiService } from '../../../../services/api.service';
 import { LocalStorageService } from '../../../../services/shared/storage/local-storage.service';
+import { Booking } from '../../../../Interfaces/BookingInterface';
+
 import {
   Chart as ChartJS,
   Title,
@@ -12,6 +14,7 @@ import {
   BarController,
   BarElement,
 } from 'chart.js';
+import { Router } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { ChartConfiguration } from 'chart.js';
@@ -40,7 +43,7 @@ ChartJS.register(
   standalone: true,
   imports: [FontAwesomeModule, CommonModule, BaseChartDirective],
   templateUrl: './renter-dashboard.html',
-  styleUrls: ['./renter-dashboard.css'], //styleUrls (array)
+  styleUrls: ['./renter-dashboard.css'], //styleUrls
 })
 export class RenterDashboard implements OnInit {
   faClock = faClock;
@@ -50,6 +53,11 @@ export class RenterDashboard implements OnInit {
   faBookmark = faBookmark;
 
   //
+  ischartdata = true;
+  bookings: Booking[] = [];
+  userId = '';
+  endPoint = `bookings/user/upcoming?userId=`;
+  isLoading = false;
   userdata: any = null;
   chartLabels = [];
   chartdatasets = [];
@@ -58,18 +66,19 @@ export class RenterDashboard implements OnInit {
   //constructor
   constructor(
     private API: ApiService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getChartData();
-    // On app/component init
-
     const user = this.localStorage.getItem<any>('user');
     if (user) {
       this.userdata = user;
+      this.userId = user._id;
     } else {
     }
+    this.getChartData();
+    this.getUpComming();
   }
 
   //Chart configuration
@@ -109,7 +118,8 @@ export class RenterDashboard implements OnInit {
   ];
 
   getChartData() {
-    this.API.get('dashboard/chart/68d0976819d0a06a96f6fdc9').subscribe({
+    console.log('ID', this.userId);
+    this.API.get(`dashboard/chart/${this.userId}`).subscribe({
       next: (res: any) => {
         if (!res || !res.datasets || res.datasets.length === 0) {
           console.error('Invalid chart data received:', res);
@@ -128,10 +138,50 @@ export class RenterDashboard implements OnInit {
 
         // Set percentage
         this.percentage = res.percentage ?? 0;
+        if (res.labels.length === 0) {
+          this.ischartdata = false;
+        }
       },
       error: (err) => {
         console.error('Error fetching chart data:', err);
       },
     });
+  }
+
+  //api to get the upcomming bookings
+  getUpComming() {
+    this.isLoading = true;
+    this.API.get<{ bookings: any[] }>(
+      `${this.endPoint}${this.userId}`
+    ).subscribe({
+      next: (res) => {
+        // Map API bookings -> your Booking[]
+        this.bookings = res.bookings.map((b) => ({
+          id: b._id,
+          car: {
+            name: b.carId.name,
+            image: b.carId.images[0] || '/default-car.png',
+            type: b.carId.category,
+            status: b.status,
+          },
+          pickupLocation: b.pickupLocation,
+          dropoffLocation: b.dropoffLocation,
+          pickupDate: b.startDate,
+          dropoffDate: b.endDate,
+          price: b.totalPrice,
+          status: 'upcoming',
+        }));
+
+        this.isLoading = false;
+      },
+      error: (error: any) => {
+        console.error('Error fetching bookings', error);
+        this.isLoading = false;
+      },
+    });
+  }
+
+  navigateTo(path: string) {
+    this.router.navigate([path]);
   }
 }
