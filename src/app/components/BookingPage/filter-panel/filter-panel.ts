@@ -79,7 +79,7 @@ export class FilterPanel implements OnInit {
   constructor(private API: ApiService) {}
 
   getBrands() {
-    this.API.get<any>('/barnds').subscribe({
+    this.API.get<any>('barnds').subscribe({
       next: (data) => {
         // Store all brand objects
         this.brands = data.data;

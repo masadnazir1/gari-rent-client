@@ -216,12 +216,9 @@ export class MyBookings implements OnInit {
   }
 
   OpenModal(booking: any) {
-    console.log(' booking._id', booking.id);
     this.tobeReviewd = this.allBookingsData.filter((b: any) => {
       return booking.id == b._id;
     });
-    console.log(this.tobeReviewd);
-    console.log('ALL PAST', this.allBookingsData);
 
     this.isModalOpen = true;
     document.body.style.overflow = 'hidden'; // disable page scroll
@@ -232,7 +229,6 @@ export class MyBookings implements OnInit {
   }
 
   submitFeedback() {
-    console.log(' dealerId', this.tobeReviewd[0].carId._id);
     this.API.post('user/reviews/', {
       bookingId: this.tobeReviewd[0]._id,
       raterId: this.userId,

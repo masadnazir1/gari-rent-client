@@ -51,7 +51,6 @@ export class CarCard implements OnChanges {
   }
   ReMoveFav(car: any) {
     this.isconfirm = true;
-    console.log(car);
     this.API.delete(`saved`, {
       userId: '68d0976819d0a06a96f6fdc9',
       carId: car._id,
