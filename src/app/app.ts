@@ -38,6 +38,7 @@ export class App {
       '/user-account',
       '/book',
       '/cars',
+      '/saved',
     ];
 
     this.router.events

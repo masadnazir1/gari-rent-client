@@ -15,6 +15,7 @@ import {
   faChevronRight,
   faDashboard,
   faTimes,
+  faTicket,
 } from '@fortawesome/free-solid-svg-icons';
 
 type LazyComponentType = any;
@@ -40,7 +41,9 @@ export class UserAccount {
   faChevronRight = faChevronRight;
   faTimes = faTimes;
   faFeedback = faComment;
+  faTicket = faTicket;
 
+  //states
   sidebarCollapsed = false;
   isMobile = false;
   mobileDrawerOpen = false;
@@ -53,6 +56,7 @@ export class UserAccount {
     { key: 'bookings', label: 'Bookings', icon: this.faCalendar },
     { key: 'feedback', label: 'Feedback', icon: this.faFeedback },
     { key: 'loyalty', label: 'Loyalty', icon: this.faCoins },
+    { key: 'coupons', label: 'Coupons', icon: this.faTicket },
     { key: 'profile', label: 'Profile', icon: this.faUser },
   ];
 
@@ -142,6 +146,11 @@ export class UserAccount {
           './account-sections/loyalty-component/loyalty-component'
         );
         this.selectedComponent = mod.LoyaltyComponent;
+        break;
+      }
+      case 'coupons': {
+        const mod = await import('./account-sections/coupons/coupons');
+        this.selectedComponent = mod.Coupons;
         break;
       }
       case 'dashboard': {

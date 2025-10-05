@@ -116,6 +116,60 @@
 
 }
 
+
+
+.NotificationsBox {
+    padding: 5px;
+    margin: 5px 0px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    gap: 5px;
+    flex-direction: column;
+    min-height: 200px;
+}
+
+.NotificationsBoxHeader {
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    align-items: center;
+    justify-content: center;
+    background-color: #ccc;
+    position: absolute;
+    top: 0;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    padding: 5px 0;
+}
+
+.NotificationsBoxFooter {
+    margin: 5px 0px;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.ViewallBtn {
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 10px;
+    background-color: transparent;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-right {
@@ -134,5 +188,11 @@
     .user-profile img {
         width: 34px;
         height: 34px;
+    }
+}
+
+@media (min-width: 768px) {
+    .NotificationsBox {
+        min-width: 400px;
     }
 }

@@ -1,13 +1,15 @@
 /* Wrapper */
 .dashboard-wrapper {
-    max-width: 1200px;
     margin: auto;
     font-family: "Inter", sans-serif;
     gap: 1rem;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 10px;
     padding-bottom: 10%;
+    background: var(--card-bg, #ffffff);
+    box-shadow: var(--shadow);
+    height: auto;
 }
 
 /* Profile Card */
@@ -15,13 +17,14 @@
     background: var(--card-bg);
     border-radius: var(--radius);
     padding: 1.6rem;
-    box-shadow: var(--shadow);
+    /* box-shadow: var(--shadow); */
     animation: fadeIn 0.25s ease-in-out;
     transition: transform var(--transition), box-shadow var(--transition);
     display: flex;
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
+    border: 1px solid #ccc;
 }
 
 .RightSide {
@@ -54,13 +57,14 @@
     background: var(--card-bg);
     border-radius: var(--radius);
     padding: 1.6rem;
-    box-shadow: var(--shadow);
+    /* box-shadow: var(--shadow); */
     animation: fadeIn 0.25s ease-in-out;
     transition: transform var(--transition), box-shadow var(--transition);
     display: flex;
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
+    border: 1px solid #ccc;
 }
 
 .RightSideBooking {
@@ -119,6 +123,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     width: 100%;
+
 }
 
 .optionsButtons {
@@ -130,6 +135,7 @@
     font-size: clamp(0.9rem, 2vw, 1.1rem);
     border-radius: var(--radius);
     color: #fff;
+
 }
 
 .optionsButtons:hover {
@@ -141,7 +147,7 @@
     background: var(--card-bg);
     border-radius: var(--radius);
     padding: 1.6rem;
-    box-shadow: var(--shadow);
+    /* box-shadow: var(--shadow); */
     animation: fadeIn 0.25s ease-in-out;
     transition: transform var(--transition), box-shadow var(--transition);
     display: flex;
@@ -149,6 +155,7 @@
     align-items: center;
     flex-direction: column;
     text-align: left;
+    border: 1px solid #ccc;
 }
 
 .Insightdetails span {

@@ -12,9 +12,11 @@ import { ResetPassword } from './Pages/reset-password/reset-password';
 import { AddressPage } from './Pages/address-page/address-page';
 import { UserAccount } from './Pages/user-account/user-account';
 import { Booking } from './Pages/booking/booking';
+import { SavedCars } from './Pages/saved-cars/saved-cars';
 
 export const routes: Routes = [
   { path: 'cars', component: CarsPage },
+  { path: 'saved', component: SavedCars },
   { path: 'home', component: Homepage },
   { path: 'about', component: AboutUs },
   { path: 'contact', component: ContactUsComponent },

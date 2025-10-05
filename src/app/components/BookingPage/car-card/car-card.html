@@ -30,8 +30,29 @@
     </div>
 
     <div class="price">₨{{ car.dailyRate }}/day</div>
-    <button class="book-btn" (click)="goToBooking(car)">
-      <fa-icon [icon]="faCar"></fa-icon> Book Now
-    </button>
+    <div class="buttonRow">
+      <button
+        class="save-btn"
+        (click)="isconfirm = !isconfirm"
+        *ngIf="car.saved"
+      >
+        <fa-icon [icon]="faHeartBroken"></fa-icon>
+      </button>
+
+      <button class="save-btn" (click)="addToFav(car._id)" *ngIf="!car.saved">
+        <fa-icon [icon]="faHeart"></fa-icon>
+      </button>
+
+      <button class="book-btn" (click)="goToBooking(car)">
+        <fa-icon [icon]="faCar"></fa-icon> Book Now
+      </button>
+    </div>
   </div>
 </div>
+
+<app-confirm-dialog
+  [isOpen]="isconfirm"
+  (onConfirm)="ReMoveFav(car)"
+  description="Do you really want to remove the car from saved."
+  (onCancel)="isconfirm = !isconfirm"
+/>

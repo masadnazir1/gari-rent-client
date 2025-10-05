@@ -82,6 +82,15 @@
 
       <label>Drop-off Location</label>
       <input type="text" [(ngModel)]="dropoff" placeholder="Enter drop-off" />
+      <label for="coupon">Have a coupon code?</label>
+      <input
+        id="coupon"
+        type="text"
+        [(ngModel)]="CouponCode"
+        name="coupon"
+        placeholder="Enter your coupon code"
+        class="coupon-input"
+      />
 
       <p class="summary">Total: PKR {{ totalPrice }}</p>
 

@@ -9,6 +9,7 @@ import {
   faUser,
   faCalendarDay,
   faSignOut,
+  faHeart,
   faDashboard,
 } from '@fortawesome/free-solid-svg-icons';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog';
@@ -34,6 +35,7 @@ export class Navbar implements OnInit {
   LogoutIcon = faSignOut;
   isconfirm = false;
   faDashboard = faDashboard;
+  faHeart = faHeart;
 
   //States
   isScrolled = false;
@@ -58,7 +60,6 @@ export class Navbar implements OnInit {
     if (userData) {
       this.hideButton = false;
       this.userData = userData;
-      console.log(userData);
     }
   }
 
@@ -92,6 +93,9 @@ export class Navbar implements OnInit {
   }
   Profile() {
     window.location.href = '/user-account?tab=profile';
+  }
+  Saved() {
+    window.location.href = '/saved';
   }
   Bookings() {
     window.location.href = '/user-account?tab=bookings';

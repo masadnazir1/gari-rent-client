@@ -1,11 +1,13 @@
 .feedback-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
+    margin: auto;
+    font-family: "Inter", sans-serif;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-bottom: 10%;
+    background: var(--card-bg, #ffffff);
     box-shadow: var(--shadow);
-    text-align: center;
 }
 
 .feedback-card h2 {

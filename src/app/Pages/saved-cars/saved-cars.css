@@ -1,0 +1,118 @@
+.mainContaine {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 12px;
+    background: var(--muted-bg);
+}
+
+/* Top header styling */
+/* .topHeader {
+    text-align: center;
+} */
+
+.topHeader h5 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.topHeader p {
+    font-size: 1rem;
+    color: var(--muted);
+}
+
+/* Grid container */
+.car-grid-container {
+    flex: 1;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 10px;
+}
+
+/* No cars */
+.noCars {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 24px;
+    background: var(--muted-bg);
+    min-height: 100vh;
+    text-align: center;
+
+}
+
+.noCars span:first-of-type {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.IconSave {
+    color: var(--buttons);
+}
+
+/* Button */
+.ExploreCars {
+    margin-top: 0.75rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius);
+    border: none;
+    background-color: var(--buttons);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.ExploreCars:hover {
+    background-color: var(--buttonHover);
+}
+
+/* =====================
+   RESPONSIVENESS
+   ===================== */
+
+/* Tablet (up to 992px) */
+@media (max-width: 992px) {
+    .topHeader h5 {
+        font-size: 1.5rem;
+    }
+
+    .car-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+/* Mobile (up to 600px) */
+@media (max-width: 600px) {
+    .mainContaine {
+        padding: 8px;
+    }
+
+    .topHeader h5 {
+        font-size: 1.3rem;
+    }
+
+    .topHeader p {
+        font-size: 0.9rem;
+    }
+
+    .car-grid {
+        grid-template-columns: 1fr;
+        /* single column */
+        gap: 16px;
+    }
+
+    .ExploreCars {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+}

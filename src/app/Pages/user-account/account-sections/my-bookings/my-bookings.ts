@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ApiService } from '../../../../services/api.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import {
   faUser,
@@ -17,20 +18,24 @@ import {
   faChevronRight,
   faListDots,
   faTimes,
+  faCheckCircle,
   faMapPin,
 } from '@fortawesome/free-solid-svg-icons';
 import { Booking } from '../../../../Interfaces/BookingInterface';
 import { ConfirmDialogComponent } from '../../../../components/shared/confirm-dialog/confirm-dialog';
 import { LoadingComponent } from '../../../../components/shared/loading/loading';
+import { Modalrelative } from '../../../../components/shared/modalrelative/modalrelative';
 
 @Component({
   selector: 'app-my-bookings',
   standalone: true,
   imports: [
+    FormsModule,
     CommonModule,
     FaIconComponent,
     ConfirmDialogComponent,
     LoadingComponent,
+    Modalrelative,
   ],
   templateUrl: './my-bookings.html',
   styleUrls: ['./my-bookings.css'],
@@ -50,7 +55,7 @@ export class MyBookings implements OnInit {
   faTimes = faTimes;
   faMapPin = faMapPin;
   ThreeDots = faListDots;
-
+  faCheckCircle = faCheckCircle;
   isLoading = false;
 
   activeTab: 'upcoming' | 'past' = 'upcoming';
@@ -61,6 +66,13 @@ export class MyBookings implements OnInit {
   endPoint = `bookings/user/upcoming?userId=`;
   UpcommingEndPoint = `bookings/user/upcoming?userId=`;
   pastEndPoint = `bookings/user/past?userId=`;
+  isModalOpen: boolean = false;
+
+  //
+  rating = 0;
+  feedbackText = '';
+  submitted = false;
+  //
   constructor(private API: ApiService, private router: Router) {}
 
   ngOnInit(): void {
@@ -73,6 +85,10 @@ export class MyBookings implements OnInit {
   }
 
   bookings: Booking[] = [];
+  tobeReviewd: any[] = [];
+
+  allBookingsData: any[] = [];
+  ActiveBooking: Booking[] = [];
 
   get upcomingBookings() {
     return this.bookings.filter((b) => b.status === 'upcoming');
@@ -90,6 +106,7 @@ export class MyBookings implements OnInit {
     ).subscribe({
       next: (res) => {
         // Map API bookings -> your Booking[]
+        this.allBookingsData = res.bookings;
         this.bookings = res.bookings.map((b) => ({
           id: b._id,
           car: {
@@ -186,5 +203,55 @@ export class MyBookings implements OnInit {
 
   gotoCarsPage() {
     this.router.navigate(['/cars']);
+  }
+
+  goToDetails(id: any) {
+    this.ActiveBooking = this.allBookingsData.filter(
+      (booking) => booking?._id === id
+    );
+
+    this.router.navigate(['/car-details'], {
+      state: { car: this.allBookingsData[0].carId },
+    });
+  }
+
+  OpenModal(booking: any) {
+    console.log(' booking._id', booking.id);
+    this.tobeReviewd = this.allBookingsData.filter((b: any) => {
+      return booking.id == b._id;
+    });
+    console.log(this.tobeReviewd);
+    console.log('ALL PAST', this.allBookingsData);
+
+    this.isModalOpen = true;
+    document.body.style.overflow = 'hidden'; // disable page scroll
+  }
+  closeModal() {
+    this.isModalOpen = false;
+    document.body.style.overflow = 'auto'; // re-enable page scroll
+  }
+
+  submitFeedback() {
+    console.log(' dealerId', this.tobeReviewd[0].carId._id);
+    this.API.post('user/reviews/', {
+      bookingId: this.tobeReviewd[0]._id,
+      raterId: this.userId,
+      dealerId: this.tobeReviewd[0].dealerId,
+      carId: this.tobeReviewd[0].carId._id,
+      rating: this.rating,
+      comment: this.feedbackText,
+    }).subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          this.submitted = true;
+        }
+      },
+
+      error: (err) => {},
+    });
+  }
+
+  setRating(star: number) {
+    this.rating = star;
   }
 }

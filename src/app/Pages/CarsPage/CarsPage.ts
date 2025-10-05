@@ -41,7 +41,6 @@ export class CarsPage implements OnInit {
     private route: ActivatedRoute
   ) {}
   // Listen for window resize
-  // Listen for window resize
   @HostListener('window:resize', ['$event'])
   //
   onResize(event: Event) {

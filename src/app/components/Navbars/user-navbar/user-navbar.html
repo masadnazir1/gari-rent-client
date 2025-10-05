@@ -10,10 +10,24 @@
   <!-- Right side -->
   <div class="nav-right">
     <!-- Notifications -->
-    <button class="icon-btn">
+    <button
+      class="icon-btn"
+      (click)="isNotificationmodal = !isNotificationmodal"
+    >
       <fa-icon [icon]="faBell"></fa-icon>
       <span class="badge">3</span>
     </button>
+
+    <app-dropdown [isOpen]="isNotificationmodal">
+      <div class="NotificationsBox">
+        <div class="NotificationsBoxHeader">
+          <span>Notifications</span>
+        </div>
+        <div class="NotificationsBoxFooter">
+          <button class="ViewallBtn">View all Notifications</button>
+        </div>
+      </div>
+    </app-dropdown>
 
     <!-- Messages -->
     <button class="icon-btn">

@@ -72,6 +72,7 @@ export class Booking implements OnInit {
   pickup = '';
   dropoff = '';
   totalPrice = 0;
+  CouponCode?: string;
 
   //date for api
   renterId = '';
@@ -88,13 +89,10 @@ export class Booking implements OnInit {
     if (this.car) {
       this.mainImage = this.car.images[0];
       this.dealerId = this.car.dealerId._id;
-      console.log(this.renterId);
     }
   }
 
   ngOnInit(): void {
-    console.log(this.dealerId);
-
     const userData = this.localStorage.getItem<any>('user');
     if (userData) {
       this.renterId = userData._id;
@@ -116,7 +114,31 @@ export class Booking implements OnInit {
   }
 
   nextStep() {
-    if (this.step < 2) this.step++;
+    if (this.startDate && this.endDate) {
+      let start = new Date(this.startDate);
+      const end = new Date(this.endDate);
+      if (end <= start) {
+        this.showToast(
+          'warning',
+          'Details are missing',
+          'End date must be after the start date.',
+          ''
+        );
+
+        return;
+      }
+    }
+
+    if (this.startDate === undefined || this.endDate === undefined) {
+      this.showToast(
+        'warning',
+        'Details are missing',
+        'Please select both start and end dates.',
+        ''
+      );
+    } else {
+      if (this.step < 2) this.step++;
+    }
   }
 
   prevStep() {
@@ -126,32 +148,66 @@ export class Booking implements OnInit {
   BookVehicle() {
     // --- Validations ---
     if (!this.car || !this.car._id) {
-      alert('Car details are missing. Please try again.');
+      this.showToast(
+        'warning',
+        'Details are missing',
+        'Car details are missing. Please try again.',
+        ''
+      );
+
       return;
     }
 
     if (!this.startDate || !this.endDate) {
-      alert('Please select both start and end dates.');
+      this.showToast(
+        'warning',
+        'Details are missing',
+        'Please select both start and end dates.',
+        ''
+      );
       return;
     }
 
     const start = new Date(this.startDate);
     const end = new Date(this.endDate);
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
-      alert('Invalid date format.');
+      this.showToast(
+        'warning',
+        'Details are missing',
+        'Invalid date format.',
+        ''
+      );
+
       return;
     }
     if (end <= start) {
-      alert('End date must be after the start date.');
+      this.showToast(
+        'warning',
+        'Details are missing',
+        'End date must be after the start date.',
+        ''
+      );
+
       return;
     }
 
     if (!this.pickup.trim()) {
-      alert('Please enter a pickup location.');
+      this.showToast(
+        'warning',
+        'Details are missing',
+        'Please enter a pickup location.',
+        ''
+      );
+
       return;
     }
     if (!this.dropoff.trim()) {
-      alert('Please enter a dropoff location.');
+      this.showToast(
+        'warning',
+        'Details are missing',
+        'Please enter a dropoff location.',
+        ''
+      );
       return;
     }
 
@@ -176,6 +232,7 @@ export class Booking implements OnInit {
       dropoffLocation: this.dropoff.trim(),
       totalPrice: this.totalPrice, // include calculated price
       days: this.days, // optional: useful for backend checks
+      couponCode: this.CouponCode,
     }).subscribe({
       next: (data) => {
         //show message
@@ -192,8 +249,19 @@ export class Booking implements OnInit {
         this.resetBookingForm();
       },
       error: (error) => {
+        if (error.status === 409) {
+          //show message
+          this.showToast(
+            'warning',
+            'Active Booking Found',
+            'You already have a pending or confirmed booking.',
+            'View',
+            () => {
+              window.location.href = '/user-account?tab=bookings';
+            }
+          );
+        }
         console.error('Booking failed:', error);
-        alert('Something went wrong while booking. Please try again.');
       },
     });
   }
@@ -227,7 +295,6 @@ export class Booking implements OnInit {
   }
 
   /// show message
-
   showToast(
     type: Toast['type'],
     title: string,

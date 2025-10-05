@@ -148,7 +148,6 @@
 /* Booking Form */
 .booking-form {
     flex: 2;
-    min-width: 340px;
     background: var(--card-bg);
     padding: 2rem;
     border-radius: var(--radius);
@@ -180,7 +179,7 @@
 .form-step {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 10px;
 }
 
 .form-step label {

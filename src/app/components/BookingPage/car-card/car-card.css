@@ -101,6 +101,35 @@
     margin-top: 0.5rem;
 }
 
+.buttonRow {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 10px;
+}
+
+
+.save-btn {
+    margin-top: 0.75rem;
+    padding: 1rem 1rem;
+    border-radius: var(--radius);
+    border: none;
+    background-color: var(--danger);
+    color: #fff;
+    font-weight: var(--fontWeight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.5rem;
+}
+
+.save-btn:hover {
+    background-color: var(--buttonHover);
+}
+
 .book-btn {
     margin-top: 0.75rem;
     padding: 1rem 1rem;
@@ -115,6 +144,29 @@
     gap: 0.5rem;
     cursor: pointer;
     transition: var(--transition);
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+.book-btn:hover {
+    background-color: var(--buttonHover);
+}
+
+.book-btn {
+    margin-top: 0.75rem;
+    padding: 1rem 1rem;
+    border-radius: var(--radius);
+    border: none;
+    background-color: var(--buttons);
+    color: #fff;
+    font-weight: var(--fontWeight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.5rem;
 }
 
 .book-btn:hover {

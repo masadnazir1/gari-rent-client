@@ -31,7 +31,11 @@
   </section>
   <section class="Bookingdetails">
     <div class="button-grid">
-      <button *ngFor="let item of Items" class="optionsButtons">
+      <button
+        *ngFor="let item of Items"
+        class="optionsButtons"
+        (click)="navigateTo(item.key)"
+      >
         <fa-icon [icon]="item.icon" />
         {{ item.label }}
       </button>

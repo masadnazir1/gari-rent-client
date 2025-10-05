@@ -45,6 +45,7 @@ export class UserNavbarComponent {
 
   //
   ismodal = false;
+  isNotificationmodal: boolean = false;
   //
   constructor(
     private ROUTER: Router,

@@ -1,8 +1,15 @@
 /* Wrapper */
 .loyalty-wrapper {
-    max-width: 1200px;
     margin: auto;
     font-family: "Inter", sans-serif;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-bottom: 10%;
+    background: var(--card-bg, #ffffff);
+    box-shadow: var(--shadow);
+    height: 100vh;
 }
 
 /* Hero Card */
@@ -10,7 +17,6 @@
     background: var(--card-bg);
     border-radius: var(--radius);
     padding: 1.5rem;
-    box-shadow: var(--shadow);
     margin-bottom: 1.5rem;
     text-align: center;
     animation: fadeIn 0.3s ease;

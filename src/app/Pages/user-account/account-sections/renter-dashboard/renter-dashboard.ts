@@ -118,7 +118,6 @@ export class RenterDashboard implements OnInit {
   ];
 
   getChartData() {
-    console.log('ID', this.userId);
     this.API.get(`dashboard/chart/${this.userId}`).subscribe({
       next: (res: any) => {
         if (!res || !res.datasets || res.datasets.length === 0) {
@@ -182,6 +181,10 @@ export class RenterDashboard implements OnInit {
   }
 
   navigateTo(path: string) {
-    this.router.navigate([path]);
+    if (path === 'explore') {
+      this.router.navigate(['/cars']);
+    } else {
+      this.router.navigate([path]);
+    }
   }
 }
