@@ -88,14 +88,14 @@ export class Booking implements OnInit {
     this.car = nav?.extras.state?.['car'];
     if (this.car) {
       this.mainImage = this.car.images[0];
-      this.dealerId = this.car.dealerId._id;
+      this.dealerId = this.car.dealerId.id;
     }
   }
 
   ngOnInit(): void {
     const userData = this.localStorage.getItem<any>('user');
     if (userData) {
-      this.renterId = userData._id;
+      this.renterId = userData.id;
     }
   }
 
@@ -147,7 +147,7 @@ export class Booking implements OnInit {
 
   BookVehicle() {
     // --- Validations ---
-    if (!this.car || !this.car._id) {
+    if (!this.car || !this.car.id) {
       this.showToast(
         'warning',
         'Details are missing',
@@ -223,7 +223,7 @@ export class Booking implements OnInit {
 
     // --- API call ---
     this.API.post('bookings/create', {
-      carId: this.car._id,
+      carId: this.car.id,
       renterId: this.renterId,
       dealerId: this.dealerId,
       startDate: this.startDate,

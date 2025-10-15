@@ -1,0 +1,71 @@
+<div class="profile-wrapper">
+  <!-- Default View -->
+  <div *ngIf="!isEditing" class="profile-card">
+    <div class="profile-header">
+      <div class="avatar-wrapper">
+        <img [src]="'/usershashky.jpg'" alt="Profile" class="profile-avatar" />
+      </div>
+
+      <div class="profile-info">
+        <h2>{{ user.name }}</h2>
+        <p class="role">
+          <fa-icon [icon]="'user'"></fa-icon>
+          {{ user.role | titlecase }}
+        </p>
+      </div>
+
+      <button class="icon-btn edit" (click)="startEdit()">
+        <fa-icon [icon]="'pen'"></fa-icon>
+      </button>
+    </div>
+
+    <div class="profile-body">
+      <p>
+        <fa-icon [icon]="'envelope'"></fa-icon>
+        {{ user.email }}
+      </p>
+      <p>
+        <fa-icon [icon]="'phone'"></fa-icon>
+        {{ user.phone || "Not added" }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Edit View -->
+  <form *ngIf="isEditing" class="edit-card" (ngSubmit)="saveEdit()">
+    <div class="edit-avatar">
+      <img
+        [src]="tempUser.profileImage || 'assets/default-avatar.png'"
+        alt="Preview"
+      />
+      <label class="upload-btn">
+        <fa-icon [icon]="'camera'"></fa-icon> Change
+        <input type="file" accept="image/*" (change)="onFileChange($event)" />
+      </label>
+    </div>
+
+    <label>
+      Full Name
+      <input type="text" [(ngModel)]="tempUser.name" name="name" required />
+    </label>
+
+    <label>
+      Email
+      <input type="email" [(ngModel)]="tempUser.email" name="email" required />
+    </label>
+
+    <label>
+      Phone
+      <input type="tel" [(ngModel)]="tempUser.phone" name="phone" />
+    </label>
+
+    <div class="actions">
+      <button type="submit" class="save">
+        <fa-icon [icon]="'save'"></fa-icon> Save
+      </button>
+      <button type="button" class="cancel" (click)="cancelEdit()">
+        <fa-icon [icon]="'times'"></fa-icon> Cancel
+      </button>
+    </div>
+  </form>
+</div>

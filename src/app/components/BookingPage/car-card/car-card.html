@@ -39,7 +39,7 @@
         <fa-icon [icon]="faHeartBroken"></fa-icon>
       </button>
 
-      <button class="save-btn" (click)="addToFav(car._id)" *ngIf="!car.saved">
+      <button class="save-btn" (click)="addToFav(car.id)" *ngIf="!car.saved">
         <fa-icon [icon]="faHeart"></fa-icon>
       </button>
 

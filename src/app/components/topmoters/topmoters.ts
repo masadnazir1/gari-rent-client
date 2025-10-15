@@ -28,7 +28,7 @@ export class Topmoters implements OnInit {
       next: (res: any) => {
         if (res.success && Array.isArray(res.data)) {
           this.brands = res.data.map((b: any) => ({
-            id: b._id,
+            id: b.id,
             name: b.name,
             logo: b.logo,
           }));

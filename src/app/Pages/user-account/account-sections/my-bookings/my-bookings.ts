@@ -79,7 +79,7 @@ export class MyBookings implements OnInit {
     const UserData = localStorage.getItem('user');
     if (UserData) {
       const user = JSON.parse(UserData);
-      this.userId = user._id;
+      this.userId = user.id;
     }
     this.getUpCommingg();
   }
@@ -108,7 +108,7 @@ export class MyBookings implements OnInit {
         // Map API bookings -> your Booking[]
         this.allBookingsData = res.bookings;
         this.bookings = res.bookings.map((b) => ({
-          id: b._id,
+          id: b.id,
           car: {
             name: b.carId.name,
             image: b.carId.images[0] || '/default-car.png',
@@ -207,7 +207,7 @@ export class MyBookings implements OnInit {
 
   goToDetails(id: any) {
     this.ActiveBooking = this.allBookingsData.filter(
-      (booking) => booking?._id === id
+      (booking) => booking?.id === id
     );
 
     this.router.navigate(['/car-details'], {
@@ -217,7 +217,7 @@ export class MyBookings implements OnInit {
 
   OpenModal(booking: any) {
     this.tobeReviewd = this.allBookingsData.filter((b: any) => {
-      return booking.id == b._id;
+      return booking.id == b.id;
     });
 
     this.isModalOpen = true;
@@ -230,10 +230,10 @@ export class MyBookings implements OnInit {
 
   submitFeedback() {
     this.API.post('user/reviews/', {
-      bookingId: this.tobeReviewd[0]._id,
+      bookingId: this.tobeReviewd[0].id,
       raterId: this.userId,
       dealerId: this.tobeReviewd[0].dealerId,
-      carId: this.tobeReviewd[0].carId._id,
+      carId: this.tobeReviewd[0].carId.id,
       rating: this.rating,
       comment: this.feedbackText,
     }).subscribe({

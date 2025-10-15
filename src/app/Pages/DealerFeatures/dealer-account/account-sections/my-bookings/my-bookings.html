@@ -1,0 +1,67 @@
+<div class="bookings-container" *ngIf="!isLoading">
+  <section class="bookings-section">
+    <div class="recent-bookings">
+      <!-- Header -->
+      <div class="row-title">
+        <div class="title-column">
+          <h1 class="titlecase">Recent Bookings</h1>
+          <h3 class="BsubHeading">Manage Your Bookings and Reservations</h3>
+        </div>
+        <button class="NewBookingButton">New Booking</button>
+      </div>
+
+      <!-- Status Buttons -->
+      <div class="Row-status">
+        <button
+          *ngFor="let status of bookingStatuses"
+          class="statusButton"
+          [class.active]="status === selectedStatus"
+          (click)="onStatusClick(status)"
+        >
+          {{ status }}
+        </button>
+      </div>
+
+      <!-- Table / No Data -->
+      <ng-container *ngIf="bookings && bookings.length > 0; else noData">
+        <div class="table-wrapper">
+          <table class="bookings-table">
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Vehicle</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let booking of bookings">
+                <td>#{{ booking.booking_id }}</td>
+                <td>{{ booking.vehicle }}</td>
+                <td>{{ booking.customer }}</td>
+                <td>
+                  <span class="status" [ngClass]="booking.status.toLowerCase()">
+                    {{ booking.status | titlecase }}
+                  </span>
+                </td>
+                <td>{{ booking.start_date }}</td>
+                <td>{{ booking.end_date }}</td>
+                <td>${{ booking.amount }}</td>
+                <td><button class="view-btn">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-container>
+
+      <!-- No Data Template -->
+      <ng-template #noData>
+        <p class="no-data">No bookings found.</p>
+      </ng-template>
+    </div>
+  </section>
+</div>

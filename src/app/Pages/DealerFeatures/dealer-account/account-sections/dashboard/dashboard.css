@@ -1,0 +1,276 @@
+/* ===========================
+   DASHBOARD STYLES (UI/UX Optimized)
+   =========================== */
+
+.dashboard-wrapper {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    padding: 2rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 100vh;
+}
+
+/* ---------- Page Headings ---------- */
+.dashboard-wrapper h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-wrapper>p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* ---------- KPI Cards ---------- */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+}
+
+.cardMain {
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    transition: var(--transition);
+    border: 1px solid var(--borderColor);
+}
+
+.cardMain:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.card-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 0.3rem;
+    color: var(--primary-dark);
+}
+
+/* ---------- Monthly Stats ---------- */
+.monthly-stats-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    border: 1px solid var(--borderColor);
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.stats-header h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.stats-body {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.stat {
+    flex: 1;
+    min-width: 150px;
+}
+
+.stat .label {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.stat .value {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.stat.change.positive .value {
+    color: var(--success);
+}
+
+.stat.change.negative .value {
+    color: var(--danger);
+}
+
+/* ---------- Insights Section ---------- */
+.Insightdetails {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borderColor);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.Insightdetails span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.chartcard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.chartcard h1 {
+    font-size: 1.6rem;
+    color: var(--primary-dark);
+}
+
+.chartcard p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
+/* ---------- Recent Bookings ---------- */
+.bookingssection {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    border: 1px solid var(--borderColor);
+}
+
+.recent-bookings {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.recent-bookings h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Wrap the table for horizontal scroll */
+.recent-bookings {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Table Styling */
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+    /* ensures scroll on small screens */
+}
+
+.bookings-table th,
+.bookings-table td {
+    text-align: left;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--borderColor);
+    white-space: nowrap;
+}
+
+.bookings-table th {
+    background-color: var(--muted-bg);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bookings-table tr:hover {
+    background-color: #f9fafb;
+}
+
+.bookings-table td {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+/* Booking Status Pills */
+.status {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status.pending {
+    background-color: var(--warning);
+    color: #111;
+}
+
+.status.confirmed {
+    background-color: var(--success);
+    color: #fff;
+}
+
+.status.cancelled {
+    background-color: var(--danger);
+    color: #fff;
+}
+
+.no-data {
+    text-align: center;
+    color: var(--muted);
+    padding: 1.5rem 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .dashboard-wrapper {
+        padding: 1.25rem;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .stat .value {
+        font-size: 1.2rem;
+    }
+
+    .bookings-table th,
+    .bookings-table td {
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-wrapper h1 {
+        font-size: 1.5rem;
+    }
+
+    .chart-wrapper {
+        height: 200px;
+    }
+
+    .bookings-table {
+        min-width: 700px;
+    }
+}

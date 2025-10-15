@@ -53,7 +53,7 @@ export class CarCard implements OnChanges {
     this.isconfirm = true;
     this.API.delete(`saved`, {
       userId: '68d0976819d0a06a96f6fdc9',
-      carId: car._id,
+      carId: car.id,
     }).subscribe({
       next: (res: any) => {
         if (res.success) {

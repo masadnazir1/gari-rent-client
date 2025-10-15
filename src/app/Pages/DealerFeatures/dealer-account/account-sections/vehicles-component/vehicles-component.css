@@ -1,0 +1,151 @@
+.vehicles-container {
+    background: var(--card-bg);
+    min-height: 100vh;
+    color: var(--text-primary);
+}
+
+.recent-vehicles {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 25px;
+}
+
+.recent-vehicles h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.VsubHeading {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* 🔹 Status Filter Buttons */
+.Row-status {
+    margin-bottom: 20px;
+}
+
+.statusButton {
+    background: var(--muted-bg);
+    border: 1px solid var(--borderColor);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    margin-right: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.statusButton:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.statusButton.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary-dark);
+}
+
+/* 🔹 Table Styles */
+.vehicles-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.vehicles-table th {
+    background: var(--muted-bg);
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.vehicles-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--borderColor);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+/* 🔹 Vehicle Thumbnail */
+.vehicle-thumb {
+    width: 80px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* 🔹 Status Tags */
+.status {
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    color: #fff;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.status.available {
+    background-color: var(--success);
+}
+
+.status.rented {
+    background-color: var(--warning);
+    color: var(--text-primary);
+}
+
+.status.maintenance {
+    background-color: var(--danger);
+}
+
+/* 🔹 Action Button */
+.view-btn {
+    background-color: var(--buttons);
+    color: #fff;
+    padding: 6px 14px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.view-btn:hover {
+    background-color: var(--buttonHover);
+}
+
+/* 🔹 No Data Message */
+.no-data {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 30px;
+}
+
+/* 🔹 Responsive Table */
+@media (max-width: 768px) {
+    .vehicles-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .statusButton {
+        margin-bottom: 8px;
+    }
+
+    .recent-vehicles {
+        padding: 16px;
+    }
+}

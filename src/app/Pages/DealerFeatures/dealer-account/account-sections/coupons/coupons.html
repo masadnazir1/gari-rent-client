@@ -1,0 +1,57 @@
+<div class="dashboard-wrapper">
+  <!-- Active / Unused Coupons -->
+  <div class="details-card">
+    <span>Exclusive Offers & Coupons</span>
+    <p>Save more on your next car rental.</p>
+
+    <ng-container *ngFor="let coupon of coupons">
+      <div *ngIf="!coupon.used" class="couponcard">
+        <h1>{{ coupon.couponId.code }}</h1>
+
+        <p class="couponDetails">{{ WELCOME }}</p>
+
+        <p>Expires: {{ coupon.couponId.endDate | date : "mediumDate" }}</p>
+
+        <div class="copon-bottom">
+          <b>Code</b>
+          <div class="dasheBorder">
+            {{ coupon.couponId.code }}
+            <button
+              class="copybutton"
+              (click)="UniversalFunction('copy', coupon.couponId.code)"
+            >
+              <fa-icon [icon]="faCopy" />
+              copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Used / Expired Coupons -->
+  <div class="details-card">
+    <span>Expired & Used Coupons</span>
+
+    <ng-container *ngFor="let coupon of coupons">
+      <div *ngIf="coupon.used" class="couponcard used">
+        <h1>{{ coupon.couponId.code }}</h1>
+
+        <p class="couponDetails">{{ WELCOME }}</p>
+
+        <p>Expired: {{ coupon.couponId.endDate | date : "mediumDate" }}</p>
+
+        <div class="copon-bottom">
+          <b>Code</b>
+          <div class="dasheBorder">
+            {{ coupon.couponId.code }}
+            <button class="copybutton" disabled>
+              <fa-icon [icon]="faCopy" />
+              copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

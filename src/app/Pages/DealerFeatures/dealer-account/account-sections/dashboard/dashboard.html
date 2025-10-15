@@ -1,0 +1,133 @@
+<div class="dashboard-wrapper">
+  <!-- ===== HEADER ===== -->
+  <header class="dashboard-header">
+    <div class="header-text">
+      <h1 class="dashboard-title">Dashboard</h1>
+      <p class="dashboard-subtitle">Overview of your business performance</p>
+    </div>
+  </header>
+
+  <!-- ===== TOP METRICS ===== -->
+  <section class="dashboard-cards">
+    <div class="cardMain" *ngFor="let card of mainCards">
+      <p class="card-label">{{ card.label }}</p>
+      <h3 class="card-value">{{ card.value }}</h3>
+    </div>
+  </section>
+
+  <!-- ===== MONTHLY STATS ===== -->
+  <section class="monthly-stats-card">
+    <div class="stats-header">
+      <h4>Monthly Revenue Overview</h4>
+    </div>
+
+    <div class="stats-body" *ngIf="monthlyChange">
+      <div class="stat">
+        <p class="label">Current Month</p>
+        <h3 class="value">
+          PKR {{ monthlyChange[0]?.current_month_revenue || 0 }}
+        </h3>
+      </div>
+
+      <div class="stat">
+        <p class="label">Last Month</p>
+        <h3 class="value">
+          PKR {{ monthlyChange[0]?.last_month_revenue || 0 }}
+        </h3>
+      </div>
+
+      <div
+        class="stat change"
+        [ngClass]="{
+          positive: monthlyChange[0].change_percent > 0,
+          negative: monthlyChange[0].change_percent < 0
+        }"
+      >
+        <p class="label">Change</p>
+        <h3 class="value">{{ monthlyChange[0]?.change_percent || 0 }}%</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INSIGHTS ===== -->
+  <section class="Insightdetails">
+    <div class="insight-header">
+      <span class="insight-title">Performance Overview</span>
+      <p class="insight-subtitle">Revenue and growth trends over time</p>
+    </div>
+
+    <div class="chartcard" *ngIf="ischartdata; else noChart">
+      <div class="insight-summary">
+        <h2>PKR {{ monthlyRev ?? 0 }}</h2>
+        <p>
+          Last 6 Months
+          <span
+            [ngClass]="
+              percentage.startsWith('+') ? 'text-success' : 'text-danger'
+            "
+          >
+            {{ percentage }}
+          </span>
+        </p>
+      </div>
+
+      <div class="chart-wrapper">
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          chartType="bar"
+        ></canvas>
+      </div>
+    </div>
+
+    <ng-template #noChart>
+      <p class="no-data">You don’t have any spending data yet.</p>
+    </ng-template>
+  </section>
+
+  <!-- ===== RECENT BOOKINGS ===== -->
+  <section class="bookingssection" *ngIf="bookings">
+    <div class="recent-bookings">
+      <div class="row-title">
+        <h3>Recent Bookings</h3>
+        <button class="NewBookingButton">+ New Booking</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="bookings-table" *ngIf="bookings; else noData">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Vehicle</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let booking of bookings">
+              <td>#{{ booking.booking_id }}</td>
+              <td>{{ booking.vehicle }}</td>
+              <td>{{ booking.customer }}</td>
+              <td>
+                <span class="status" [ngClass]="booking.status.toLowerCase()">
+                  {{ booking.status | titlecase }}
+                </span>
+              </td>
+              <td>{{ booking.start_date }}</td>
+              <td>{{ booking.end_date }}</td>
+              <td>PKR {{ booking.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #noData>
+        <p class="no-data">No recent bookings found.</p>
+      </ng-template>
+    </div>
+  </section>
+</div>

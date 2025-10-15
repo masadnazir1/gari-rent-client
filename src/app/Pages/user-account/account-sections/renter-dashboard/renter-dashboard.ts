@@ -74,7 +74,7 @@ export class RenterDashboard implements OnInit {
     const user = this.localStorage.getItem<any>('user');
     if (user) {
       this.userdata = user;
-      this.userId = user._id;
+      this.userId = user.id;
     } else {
     }
     this.getChartData();
@@ -156,7 +156,7 @@ export class RenterDashboard implements OnInit {
       next: (res) => {
         // Map API bookings -> your Booking[]
         this.bookings = res.bookings.map((b) => ({
-          id: b._id,
+          id: b.id,
           car: {
             name: b.carId.name,
             image: b.carId.images[0] || '/default-car.png',

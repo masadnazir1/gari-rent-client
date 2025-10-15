@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../../services/api.service';
+import { ApiService } from '../../../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import { WELCOME10 } from '../../../../../Data/couponsDescription';
-import { ToastService } from '../../../../services/shared/toast/toast.service';
-import { Toast } from '../../../../Interfaces/ToastInterface';
-import { LocalStorageService } from '../../../../services/shared/storage/local-storage.service';
+import { WELCOME10 } from '../../../../../../Data/couponsDescription';
+import { ToastService } from '../../../../../services/shared/toast/toast.service';
+import { Toast } from '../../../../../Interfaces/ToastInterface';
+import { LocalStorageService } from '../../../../../services/shared/storage/local-storage.service';
 
 @Component({
   selector: 'app-coupons',

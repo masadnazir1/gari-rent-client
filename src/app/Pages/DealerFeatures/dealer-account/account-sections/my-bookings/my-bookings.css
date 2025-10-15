@@ -1,0 +1,226 @@
+/* ==========================
+   BOOKINGS PAGE 
+   ========================== */
+
+/*  Container */
+.bookings-container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background: var(--bg);
+    max-width: 100vw;
+    overflow-x: hidden;
+    color: var(--text-primary);
+}
+
+/*  Header Row */
+.row-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.title-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.titlecase {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+}
+
+.BsubHeading {
+    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/*  New Booking Button */
+.NewBookingButton {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.NewBookingButton:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/*  Recent Bookings Section */
+.recent-bookings {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    width: 100%;
+    padding: 20px;
+}
+
+/*  Status Filter Buttons */
+.Row-status {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.statusButton {
+    background: var(--muted-bg);
+    border: 1px solid var(--borderColor);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.statusButton:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.statusButton.active {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    border-color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/*  Table Wrapper */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+}
+
+/*  Bookings Table */
+.bookings-table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+    white-space: nowrap;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.bookings-table th {
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 1rem;
+    background: var(--muted-bg);
+    border-bottom: 1px solid var(--borderColor);
+    font-weight: 600;
+}
+
+.bookings-table td {
+    color: var(--text-primary);
+    padding: 1rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--borderColor);
+    vertical-align: middle;
+}
+
+/*  Booking Status Badges */
+.status {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status.completed {
+    background-color: var(--success);
+    color: #fff;
+}
+
+.status.pending {
+    background-color: var(--warning);
+    color: var(--text-primary);
+}
+
+.status.cancelled {
+    background-color: var(--danger);
+    color: #fff;
+}
+
+/*  Action Button */
+.view-btn {
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.view-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/*  No Data Message */
+.no-data {
+    background: var(--muted-bg);
+    color: var(--text-secondary);
+    font-style: italic;
+    border-radius: var(--radius);
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/*  Scrollbar */
+.table-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--borderColor);
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary);
+}
+
+/*  Responsive */
+@media (max-width: 768px) {
+    .bookings-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .recent-bookings {
+        padding: 16px;
+    }
+
+    .NewBookingButton {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+}

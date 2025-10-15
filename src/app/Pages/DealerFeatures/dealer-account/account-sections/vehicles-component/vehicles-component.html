@@ -1,0 +1,73 @@
+<div class="vehicles-container" *ngIf="!isLoading">
+  <section class="vehiclessection" *ngIf="vehicles.length; else noData">
+    <div class="recent-vehicles">
+      <h1 class="titlecase">Your Vehicles</h1>
+      <h3 class="VsubHeading">Manage Your Cars and Fleet</h3>
+
+      <div class="Row-status">
+        <button
+          *ngFor="let status of vehicleStatuses"
+          class="statusButton"
+          [class.active]="status.toLowerCase() === selectedStatus"
+          (click)="onStatusClick(status)"
+        >
+          {{ status }}
+        </button>
+      </div>
+
+      <table class="vehicles-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Vehicle</th>
+            <th>Image</th>
+            <th>Transmission</th>
+            <th>Fuel</th>
+            <th>Rate/Day</th>
+            <th>Location</th>
+            <th>Seats</th>
+            <th>Doors</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let vehicle of filteredVehicles">
+            <td>#{{ vehicle.id }}</td>
+            <td>{{ vehicle.name }}</td>
+            <td>
+              <img
+                [src]="
+                  vehicle.images?.[0]?.startsWith('http')
+                    ? vehicle.images[0]
+                    : 'http://localhost:3000' + vehicle.images[0]
+                "
+                alt="vehicle"
+                class="vehicle-thumb"
+              />
+            </td>
+            <td>{{ vehicle.transmission | titlecase }}</td>
+            <td>{{ vehicle.fuel | titlecase }}</td>
+            <td>Rs. {{ vehicle.daily_rate }}</td>
+            <td>{{ vehicle.location }}</td>
+            <td>{{ vehicle.seats }}</td>
+            <td>{{ vehicle.doors }}</td>
+            <td>
+              <span class="status" [ngClass]="vehicle.status.toLowerCase()">
+                {{ vehicle.status | titlecase }}
+              </span>
+            </td>
+            <td>
+              <button class="view-btn">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <ng-template #noData>
+    <p class="no-data">No vehicles found.</p>
+  </ng-template>
+</div>

@@ -13,6 +13,7 @@ import { AddressPage } from './Pages/address-page/address-page';
 import { UserAccount } from './Pages/user-account/user-account';
 import { Booking } from './Pages/booking/booking';
 import { SavedCars } from './Pages/saved-cars/saved-cars';
+import { DealerAccount } from './Pages/DealerFeatures/dealer-account/dealer-account';
 
 export const routes: Routes = [
   { path: 'cars', component: CarsPage },
@@ -31,4 +32,7 @@ export const routes: Routes = [
   { path: 'user-account', component: UserAccount },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'booking' },
+  //
+  //Dealer Routes
+  { path: 'dealer-account', component: DealerAccount },
 ];
