@@ -213,7 +213,7 @@
 @media (max-width: 768px) {
     .bookings-table {
         display: block;
-        overflow-x: auto;
+        overflow-x: hidden;
     }
 
     .recent-bookings {

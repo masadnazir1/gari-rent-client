@@ -5,6 +5,7 @@ import { ToastService } from '../../services/shared/toast/toast.service';
 import { LocalStorageService } from '../../services/shared/storage/local-storage.service';
 import { ModalrelativeComponent } from '../shared/dropdown/dropdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserContextService } from '../../services/shared/context/user-context.service';
 import {
   faUser,
   faCalendarDay,
@@ -44,10 +45,12 @@ export class Navbar implements OnInit {
   hideButton = true;
   ismodal: boolean = false;
   userData: any = null;
+  userRole: string | undefined | null;
   constructor(
     private router: Router,
     private toast: ToastService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private UserContext: UserContextService
   ) {}
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -61,6 +64,9 @@ export class Navbar implements OnInit {
       this.hideButton = false;
       this.userData = userData;
     }
+
+    const role = this.UserContext.getUser();
+    this.userRole = role?.role;
   }
 
   toggleMenu() {
@@ -79,10 +85,7 @@ export class Navbar implements OnInit {
       title: 'Working on',
       message: 'Your file has been uploaded successfully.',
       icon: '/icon.png',
-      // actionText: 'View',
-      // action: () => {
-      //   alert('Viewing uploaded file...');
-      // },
+
       duration: 5000,
     });
   }
@@ -93,20 +96,34 @@ export class Navbar implements OnInit {
   }
 
   ModelToggle() {
-    // this.ROUTER.navigate(['/user-account']);
     this.ismodal = !this.ismodal;
   }
-  Profile() {
-    window.location.href = '/user-account?tab=profile';
+  Profile(role: string | null | undefined) {
+    if (role && role === 'dealer') {
+      window.location.href = '/dealer-account?tab=profile';
+    } else if (role === 'rentor') {
+      window.location.href = '/user-account?tab=profile';
+    }
   }
   Saved() {
     window.location.href = '/saved';
   }
-  Bookings() {
-    window.location.href = '/user-account?tab=bookings';
+  Bookings(role: string | null | undefined) {
+    if (role && role === 'dealer') {
+      window.location.href = '/dealer-account?tab=bookings';
+    } else if (role === 'rentor') {
+      window.location.href = '/user-account?tab=bookings';
+    }
   }
-  Dashboard() {
+  Dashboard(role: string | null | undefined) {
     window.location.href = '/user-account?tab=dashboard';
+
+    console.log('role', role);
+    if (role && role === 'dealer') {
+      window.location.href = '/dealer-account?tab=dashboard';
+    } else if (role === 'rentor') {
+      window.location.href = '/user-account?tab=dashboard';
+    }
   }
 
   logout() {

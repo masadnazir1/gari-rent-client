@@ -1,0 +1,74 @@
+<!-- reviews.html -->
+<div class="reviews-wrapper" *ngIf="!loading; else loadingTpl">
+  <div class="header">
+    <h2>Customer Reviews ({{ totalReviews }})</h2>
+  </div>
+
+  <div class="summary" *ngIf="totalReviews > 0">
+    <div class="average">
+      <h1>{{ avgRating }}</h1>
+      <div class="stars">
+        <fa-icon
+          *ngFor="let star of [1, 2, 3, 4, 5]"
+          [icon]="faStar"
+          [ngClass]="{ active: star <= avgRating }"
+        ></fa-icon>
+      </div>
+      <p>Average Rating</p>
+    </div>
+
+    <div class="distribution">
+      <div *ngFor="let count of ratingDistribution; let i = index">
+        <span>{{ 5 - i }}★</span>
+        <div class="bar">
+          <div
+            class="fill"
+            [style.width.%]="(count / totalReviews) * 100"
+          ></div>
+        </div>
+        <span>{{ count }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="reviews.length > 0; else emptyTpl" class="reviews-grid">
+    <div class="review-card" *ngFor="let review of reviews">
+      <div class="review-header">
+        <fa-icon [icon]="faUserCircle" class="avatar"></fa-icon>
+        <div>
+          <h3>{{ review.rater_name }}</h3>
+          <small>Booking #{{ review.booking_id }}</small>
+        </div>
+        <div class="rating">
+          <fa-icon
+            *ngFor="let star of [1, 2, 3, 4, 5]"
+            [icon]="faStar"
+            [ngClass]="{ active: star <= review.rating }"
+          ></fa-icon>
+        </div>
+      </div>
+
+      <p class="comment">{{ review.comment }}</p>
+
+      <div class="meta">
+        <div class="vehicle-info">
+          <fa-icon [icon]="faCarSide"></fa-icon>
+          {{ review.car_name }}
+        </div>
+        <span class="date">{{ review.created_at | date : "mediumDate" }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="loading-state">
+    <div class="skeleton-card" *ngFor="let s of [1, 2, 3, 4]"></div>
+  </div>
+</ng-template>
+
+<ng-template #emptyTpl>
+  <div class="empty-state">
+    <p>No reviews yet</p>
+  </div>
+</ng-template>

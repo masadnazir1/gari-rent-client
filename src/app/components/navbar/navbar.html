@@ -31,19 +31,23 @@
         <img src="/user.png" alt="User" />
 
         <app-dropdown [isOpen]="ismodal">
-          <li class="listOptions" (click)="Profile()">
+          <li class="listOptions" (click)="Profile(userRole)">
             <fa-icon [icon]="UserIcon" />
             My Accunt
           </li>
-          <li class="listOptions" (click)="Saved()">
+          <li
+            class="listOptions"
+            (click)="Saved()"
+            *ngIf="userRole !== 'dealer'"
+          >
             <fa-icon [icon]="faHeart" />
             Saved Cars
           </li>
-          <li class="listOptions" (click)="Bookings()">
+          <li class="listOptions" (click)="Bookings(userRole)">
             <fa-icon [icon]="BookingIcons" />
             My Bookings
           </li>
-          <li class="listOptions" (click)="Dashboard()">
+          <li class="listOptions" (click)="Dashboard(userRole)">
             <fa-icon [icon]="faDashboard" />
             Dashboard
           </li>
@@ -89,7 +93,11 @@
       Signup
     </button>
 
-    <div class="user-profile-Mobile" (click)="Profile()" *ngIf="!hideButton">
+    <div
+      class="user-profile-Mobile"
+      (click)="Profile(userRole)"
+      *ngIf="!hideButton"
+    >
       <img src="/user.png" alt="User" />
 
       <b>{{ userData.fullName }}</b>

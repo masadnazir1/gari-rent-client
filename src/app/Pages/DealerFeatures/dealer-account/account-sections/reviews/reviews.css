@@ -1,0 +1,132 @@
+/* reviews.css */
+.reviews-wrapper {
+    padding: 24px;
+    background: #fff;
+    border-radius: 12px;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.summary {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 32px;
+}
+
+.average {
+    text-align: center;
+}
+
+.average h1 {
+    font-size: 48px;
+    color: var(--primary-dark);
+    margin: 0;
+}
+
+.stars fa-icon {
+    color: #d1d5db;
+    margin: 0 2px;
+}
+
+.stars fa-icon.active {
+    color: var(--primary);
+}
+
+.distribution div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+}
+
+.bar {
+    flex: 1;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 8px;
+}
+
+.fill {
+    height: 8px;
+    background: var(--primary);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.review-card {
+    border: 1px solid var(--borderColor);
+    border-radius: var(--radius);
+    padding: 16px;
+    background: var(--card-bg);
+
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.avatar {
+    font-size: 36px;
+    color: var(--primary-dark);
+}
+
+.comment {
+    margin: 12px 0;
+    color: var(--text-secondary);
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.vehicle-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.loading-state {
+    display: grid;
+    gap: 12px;
+}
+
+.skeleton-card {
+    height: 120px;
+    background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+    font-size: 16px;
+}

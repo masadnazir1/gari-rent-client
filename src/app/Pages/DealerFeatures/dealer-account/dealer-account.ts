@@ -12,6 +12,7 @@ import {
   faBell,
   faCar,
   faCalendar,
+  faStar,
   faUsers,
   faBars,
   faChevronLeft,
@@ -57,6 +58,7 @@ export class DealerAccount {
   faTimes = faTimes;
   faFeedback = faComment;
   faTicket = faTicket;
+  faStar = faStar;
 
   //states
   sidebarCollapsed = false;
@@ -71,7 +73,7 @@ export class DealerAccount {
     { key: 'bookings', label: 'Bookings', icon: this.faCalendar },
     { key: 'vehicles', label: 'Vehicles', icon: this.faCarAlt },
     { key: 'customers', label: 'Customers', icon: this.faUsers },
-    { key: 'coupons', label: 'Coupons', icon: this.faTicket },
+    { key: 'reviews', label: 'Reviews', icon: this.faStar },
     { key: 'profile', label: 'Profile', icon: this.faUser },
   ];
 
@@ -162,9 +164,9 @@ export class DealerAccount {
         this.selectedComponent = mod.CustomersComponent;
         break;
       }
-      case 'coupons': {
-        const mod = await import('./account-sections/coupons/coupons');
-        this.selectedComponent = mod.Coupons;
+      case 'reviews': {
+        const mod = await import('./account-sections/reviews/reviews');
+        this.selectedComponent = mod.DealerReviews;
         break;
       }
       case 'dashboard': {
