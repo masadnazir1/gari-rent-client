@@ -1,0 +1,138 @@
+<div class="add-vehicle-container" *ngIf="!success">
+  <h2>Add New Vehicle</h2>
+
+  <form (ngSubmit)="addVehicle()" #f="ngForm">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Car Name</label>
+        <input type="text" name="carName" [(ngModel)]="form.carName" required />
+      </div>
+
+      <div class="form-group">
+        <label>Brand ID</label>
+        <input
+          type="number"
+          name="brand_id"
+          [(ngModel)]="form.brand_id"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Category ID</label>
+        <input
+          type="number"
+          name="category_id"
+          [(ngModel)]="form.category_id"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Transmission</label>
+        <select name="transmission" [(ngModel)]="form.transmission">
+          <option value="auto">Automatic</option>
+          <option value="manual">Manual</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Fuel Type</label>
+        <select name="fuel" [(ngModel)]="form.fuel">
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+          <option value="hybrid">Hybrid</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Seats</label>
+        <input type="number" name="seats" [(ngModel)]="form.seats" />
+      </div>
+
+      <div class="form-group">
+        <label>Doors</label>
+        <input type="number" name="doors" [(ngModel)]="form.doors" />
+      </div>
+
+      <div class="form-group">
+        <label>Year</label>
+        <input type="number" name="year" [(ngModel)]="form.year" />
+      </div>
+
+      <div class="form-group">
+        <label>Mileage (km)</label>
+        <input type="number" name="mileage" [(ngModel)]="form.mileage" />
+      </div>
+
+      <div class="form-group">
+        <label>Daily Rate (PKR)</label>
+        <input type="number" name="daily_rate" [(ngModel)]="form.daily_rate" />
+      </div>
+
+      <div class="form-group">
+        <label>Badge</label>
+        <input type="text" name="badge" [(ngModel)]="form.badge" />
+      </div>
+
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="location" [(ngModel)]="form.location" />
+      </div>
+
+      <div class="form-group toggle">
+        <label>
+          <input type="checkbox" [(ngModel)]="form.ac" name="ac" /> AC
+        </label>
+      </div>
+
+      <div class="form-group full">
+        <label>Description</label>
+        <textarea
+          name="description"
+          [(ngModel)]="form.description"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="form-group full">
+        <label>Upload Vehicle Images (Max 10)</label>
+        <div class="image-upload-area" (click)="fileInput.click()">
+          <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+          <p>Click or Drop Images Here</p>
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            (change)="onFilesSelected($event)"
+            hidden
+            #fileInput
+          />
+        </div>
+
+        <div class="preview-container" *ngIf="previews.length > 0">
+          <div
+            class="image-preview"
+            *ngFor="let img of previews; let i = index"
+          >
+            <img [src]="img" />
+            <button type="button" class="remove-btn" (click)="removeImage(i)">
+              <fa-icon [icon]="faTrashAlt"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="loading">
+        {{ loading ? "Adding..." : "Add Vehicle" }}
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="success-container" *ngIf="success">
+  <fa-icon [icon]="faCheckCircle" size="10x" />
+  <h2>Vehicle Added Successfully</h2>
+</div>

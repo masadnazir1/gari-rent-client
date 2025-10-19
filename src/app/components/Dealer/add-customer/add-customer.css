@@ -1,0 +1,163 @@
+.add-customer-container {
+    max-width: 700px;
+    margin: 60px auto;
+    background: var(--card-bg);
+    padding: 40px;
+    color: var(--text-primary);
+
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.add-customer-container h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+input,
+textarea {
+    padding: var(--input-padding);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background: var(--muted-bg);
+    transition: var(--transition);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+textarea {
+    resize: none;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+button {
+    background: var(--buttons);
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover:not([disabled]) {
+    background: var(--buttonHover);
+}
+
+button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    text-align: center;
+    animation: fadeInScale 0.5s ease-in-out;
+}
+
+.success-container fa-icon {
+    color: var(--success);
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.success-container h2 {
+    margin-top: 20px;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .add-customer-container {
+        padding: 24px;
+        margin: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
