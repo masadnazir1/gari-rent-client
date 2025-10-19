@@ -8,6 +8,8 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { AuthResponse } from '../../Interfaces/loginResponse';
 import { UserContextService } from '../../services/shared/context/user-context.service';
+import { Toast } from '../../Interfaces/ToastInterface';
+import { ToastService } from '../../services/shared/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +30,8 @@ export class Login {
   constructor(
     private API: ApiService,
     private router: Router,
-    private UserContext: UserContextService
+    private UserContext: UserContextService,
+    private toast: ToastService
   ) {}
 
   onSubmit(form: NgForm) {
@@ -39,20 +42,32 @@ export class Login {
         email: this.email,
         password: this.password,
       }).subscribe({
-        next: (data) => {
+        next: (data: any) => {
           this.isLoading = false;
 
           //set the userid in the context
-          this.UserContext.setUserId(data.user.id);
-          if (data.user.role === 'dealer') {
-            window.location.href = '/dealer-account?tab=dashboard';
-          } else if (data.user.role === 'rentor') {
-            window.location.href = '/user-account?tab=dashboard';
-          }
+          // after login
+          this.UserContext.setUser({
+            ...data.user,
+            token: data.token,
+          });
 
           //set the local storage
           localStorage.setItem('user', JSON.stringify(data.user));
           localStorage.setItem('token', data.token);
+          this.showToast(
+            'success',
+            'Login Successful',
+            'User account has been logged in successfully.',
+            ''
+          );
+
+          console.log('Login data', data);
+          if (data.user.role === 'renter') {
+            window.location.href = '/user-account?tab=dashboard';
+          } else if (data.user.role === 'dealer') {
+            window.location.href = '/dealer-account?tab=dashboard';
+          }
         },
 
         error: (error: any) => {
@@ -65,5 +80,23 @@ export class Login {
 
   Naviagte(path: string) {
     this.router.navigate([path]);
+  }
+
+  /// show message
+  showToast(
+    type: Toast['type'],
+    title: string,
+    message: string,
+    actionText: string,
+    action?: () => void
+  ) {
+    this.toast.show({
+      type: type,
+      title: title,
+      message: message,
+      actionText: actionText,
+      action: action,
+      duration: 5000,
+    });
   }
 }

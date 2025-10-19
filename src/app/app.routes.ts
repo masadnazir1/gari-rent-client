@@ -14,6 +14,7 @@ import { UserAccount } from './Pages/user-account/user-account';
 import { Booking } from './Pages/booking/booking';
 import { SavedCars } from './Pages/saved-cars/saved-cars';
 import { DealerAccount } from './Pages/DealerFeatures/dealer-account/dealer-account';
+import { RoleSelection } from './Pages/role-selection/role-selection';
 
 export const routes: Routes = [
   { path: 'cars', component: CarsPage },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'pricing', component: PricingComponent },
   { path: 'car-details', component: CarDetailsComponent },
   { path: 'login', component: Login },
+  { path: 'role-selection', component: RoleSelection },
   { path: 'create', component: Signup },
   { path: 'address-age', component: AddressPage },
   { path: 'forgot-assword', component: ForgotPassword },

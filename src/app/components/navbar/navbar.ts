@@ -87,6 +87,11 @@ export class Navbar implements OnInit {
     });
   }
 
+  //naviagte to the role-selection
+  roleSelection() {
+    this.router.navigate(['role-selection']);
+  }
+
   ModelToggle() {
     // this.ROUTER.navigate(['/user-account']);
     this.ismodal = !this.ismodal;

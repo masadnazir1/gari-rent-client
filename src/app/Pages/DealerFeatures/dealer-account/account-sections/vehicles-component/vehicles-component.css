@@ -23,7 +23,7 @@
     margin-bottom: 20px;
 }
 
-/* 🔹 Status Filter Buttons */
+/*  Status Filter Buttons */
 .Row-status {
     margin-bottom: 20px;
 }
@@ -51,7 +51,7 @@
     border-color: var(--primary-dark);
 }
 
-/* 🔹 Table Styles */
+/*  Table Styles */
 .vehicles-table {
     width: 100%;
     border-collapse: collapse;
@@ -76,16 +76,15 @@
     vertical-align: middle;
 }
 
-/* 🔹 Vehicle Thumbnail */
+/*  Vehicle Thumbnail */
 .vehicle-thumb {
     width: 80px;
     height: 55px;
-    object-fit: cover;
+    object-fit: scale-down;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
 }
 
-/* 🔹 Status Tags */
+/*  Status Tags */
 .status {
     padding: 4px 10px;
     border-radius: var(--radius);
@@ -108,7 +107,7 @@
     background-color: var(--danger);
 }
 
-/* 🔹 Action Button */
+/*  Action Button */
 .view-btn {
     background-color: var(--buttons);
     color: #fff;
@@ -125,15 +124,14 @@
     background-color: var(--buttonHover);
 }
 
-/* 🔹 No Data Message */
+/*  No Data Message */
 .no-data {
     text-align: center;
     color: var(--muted);
     font-size: 0.95rem;
-    margin-top: 30px;
 }
 
-/* 🔹 Responsive Table */
+/*  Responsive Table */
 @media (max-width: 768px) {
     .vehicles-table {
         display: block;

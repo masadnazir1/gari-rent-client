@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DealerHeader } from './account-sections/dealer-header/dealer-header';
+import { Modalrelative } from '../../../components/shared/modalrelative/modalrelative';
+import { AddVehicle } from '../../../components/Dealer/add-vehicle/add-vehicle';
+
 import {
   faUser,
   faComment,
@@ -8,13 +12,14 @@ import {
   faBell,
   faCar,
   faCalendar,
-  faCoins,
+  faUsers,
   faBars,
   faChevronLeft,
   faChevronRight,
   faDashboard,
   faTimes,
   faCarAlt,
+  faAdd,
   faTicket,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,12 +28,21 @@ type LazyComponentType = any;
 @Component({
   selector: 'app-dealer-account',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, NgIf, NgFor],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    NgIf,
+    NgFor,
+    DealerHeader,
+    Modalrelative,
+    AddVehicle,
+  ],
   templateUrl: './dealer-account.html',
   styleUrls: ['./dealer-account.css'],
 })
 export class DealerAccount {
   // Icons
+  faAdd = faAdd;
   faDashboard = faDashboard;
   faUser = faUser;
   faCarAlt = faCarAlt;
@@ -36,7 +50,7 @@ export class DealerAccount {
   faShield = faShieldAlt;
   faBell = faBell;
   faCar = faCar;
-  faCoins = faCoins;
+  faUsers = faUsers;
   faBars = faBars;
   faChevronLeft = faChevronLeft;
   faChevronRight = faChevronRight;
@@ -48,15 +62,15 @@ export class DealerAccount {
   sidebarCollapsed = false;
   isMobile = false;
   mobileDrawerOpen = false;
-
+  isModalOpen: boolean = false;
   selectedKey = 'profile';
   selectedComponent?: LazyComponentType;
 
   menu = [
     { key: 'dashboard', label: 'Dashboard', icon: this.faDashboard },
     { key: 'bookings', label: 'Bookings', icon: this.faCalendar },
-    { key: 'vehicles', label: 'vehicles', icon: this.faCarAlt },
-    { key: 'loyalty', label: 'Loyalty', icon: this.faCoins },
+    { key: 'vehicles', label: 'Vehicles', icon: this.faCarAlt },
+    { key: 'customers', label: 'Customers', icon: this.faUsers },
     { key: 'coupons', label: 'Coupons', icon: this.faTicket },
     { key: 'profile', label: 'Profile', icon: this.faUser },
   ];
@@ -141,11 +155,11 @@ export class DealerAccount {
         this.selectedComponent = mod.VehiclesComponent;
         break;
       }
-      case 'loyalty': {
+      case 'customers': {
         const mod = await import(
-          './account-sections/loyalty-component/loyalty-component'
+          './account-sections/customers-component/customers-component'
         );
-        this.selectedComponent = mod.LoyaltyComponent;
+        this.selectedComponent = mod.CustomersComponent;
         break;
       }
       case 'coupons': {
@@ -162,5 +176,14 @@ export class DealerAccount {
         this.selectedComponent = undefined;
         break;
     }
+  }
+
+  openModal() {
+    this.isModalOpen = !this.isModalOpen;
+    document.body.style.overflow = 'hidden'; // disable page scroll
+  }
+  closeModal() {
+    this.isModalOpen = !this.isModalOpen;
+    document.body.style.overflow = 'auto'; // enable page scroll
   }
 }

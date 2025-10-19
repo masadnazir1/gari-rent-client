@@ -1,0 +1,45 @@
+<!-- role-selection.html -->
+<div class="role-container">
+  <div class="role-card">
+    <h1 class="title">Choose Your Role</h1>
+    <p class="subtitle">Select how you want to use the platform</p>
+
+    <div class="role-options">
+      <div
+        class="role-option"
+        [class.active]="selectedRole === 'dealer'"
+        (click)="selectRole('dealer')"
+      >
+        <div class="icon">
+          <img src="/icons/dealer.png" alt="Dealer" />
+        </div>
+        <h2>I’m a Dealer</h2>
+        <p>List your cars, manage bookings, and grow your rental business.</p>
+      </div>
+
+      <div
+        class="role-option"
+        [class.active]="selectedRole === 'renter'"
+        (click)="selectRole('renter')"
+      >
+        <div class="icon">
+          <img src="/icons/renter.png" alt="Renter" />
+        </div>
+        <h2>I’m a Renter</h2>
+        <p>Find cars near you and book easily for your trips.</p>
+      </div>
+    </div>
+
+    <button
+      class="continue-btn"
+      [disabled]="!selectedRole"
+      (click)="continue()"
+    >
+      Continue
+    </button>
+
+    <p class="signin-link">
+      Already have an account? <a href="/login">Sign in</a>
+    </p>
+  </div>
+</div>

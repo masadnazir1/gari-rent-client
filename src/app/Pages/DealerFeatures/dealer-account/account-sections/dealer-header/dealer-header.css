@@ -1,0 +1,121 @@
+/* dealer-header.css */
+.dealer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--borderColor);
+    box-shadow: var(--shadow);
+    width: -webkit-fill-available;
+    position: fixed;
+    top: 0;
+}
+
+
+.B-logo-row {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    background: var(--muted-bg);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--radius);
+    padding: 8px 34px 8px 12px;
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+    background: #fff;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.notification-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    padding: 6px;
+    transition: var(--transition);
+}
+
+.notification-btn:hover {
+    background: var(--muted-bg);
+    border-radius: 50%;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.user-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+    .header-title {
+        display: none;
+    }
+
+    .search-box input {
+        width: 150px;
+    }
+
+    .user-name {
+        display: none;
+    }
+}

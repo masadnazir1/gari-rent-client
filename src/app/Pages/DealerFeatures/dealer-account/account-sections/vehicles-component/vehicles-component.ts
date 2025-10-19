@@ -15,6 +15,7 @@ export class VehiclesComponent implements OnInit {
   isLoading = true;
   selectedStatus: string = 'all';
   vehicleStatuses: string[] = ['All', 'Available', 'Rented', 'Maintenance'];
+  userId: any | null = null;
 
   constructor(
     private api: ApiService,
@@ -22,14 +23,15 @@ export class VehiclesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userContext.userId$.subscribe();
-    console.log('USER ID', this.userContext.getUserId());
+    const user = this.userContext.getUser();
+    this.userId = user?.id;
+
     this.fetchVehicles();
   }
 
   fetchVehicles() {
     this.isLoading = true;
-    this.api.get(`dealer/vehicle/${this.userContext.getUserId()}`).subscribe({
+    this.api.get(`dealer/vehicle/${this.userId}`).subscribe({
       next: (res: any) => {
         this.vehicles = res?.data || [];
         this.isLoading = false;

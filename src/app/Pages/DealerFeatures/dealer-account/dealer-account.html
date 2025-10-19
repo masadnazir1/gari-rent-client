@@ -25,37 +25,22 @@
         <span *ngIf="!sidebarCollapsed">{{ item.label }}</span>
       </button>
     </nav>
-  </aside>
 
-  <!-- Mobile Drawer -->
-  <div
-    class="drawer-backdrop"
-    *ngIf="mobileDrawerOpen"
-    (click)="toggleDrawer()"
-  ></div>
-  <aside class="drawer" [class.open]="mobileDrawerOpen">
-    <div class="drawer-header">
-      <span class="brand"><fa-icon [icon]="faShield"></fa-icon> Garirent</span>
-      <button class="close-btn" (click)="toggleDrawer()">
-        <fa-icon [icon]="faTimes"></fa-icon>
+    <div class="side-bottom-section">
+      <button class="add-new-car" (click)="openModal()">
+        <fa-icon [icon]="faAdd"></fa-icon>
+        <span *ngIf="!sidebarCollapsed"> Add Vehicle</span>
       </button>
     </div>
 
     <nav class="menu">
-      <button
-        *ngFor="let item of menu"
-        (click)="loadComponent(item.key)"
-        [class.active]="selectedKey === item.key"
-        class="menu-item"
-      >
-        <fa-icon [icon]="item.icon"></fa-icon>
-        <span>{{ item.label }}</span>
-      </button>
+      <button class="menu-item"></button>
     </nav>
   </aside>
 
   <!-- Main Content -->
   <main class="main">
+    <app-dealer-header />
     <section class="content-area">
       <ng-container *ngIf="selectedComponent">
         <ng-container *ngComponentOutlet="selectedComponent"></ng-container>
@@ -75,4 +60,15 @@
       <span class="tab-label">{{ item.label }}</span>
     </button>
   </nav>
+</div>
+
+<div class="Topdiv">
+  <app-modalrelative
+    [title]="'Add New Vehicle'"
+    [isOpen]="isModalOpen"
+    [size]="'md'"
+    (close)="closeModal()"
+  >
+    <app-add-vehicle />
+  </app-modalrelative>
 </div>

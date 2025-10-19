@@ -22,8 +22,8 @@
       <button class="btn login" (click)="Naviage('/login')" *ngIf="hideButton">
         Login to Account
       </button>
-      <button class="btn partner" (click)="showToast()" *ngIf="hideButton">
-        Become Partner
+      <button class="btn partner" (click)="roleSelection()" *ngIf="hideButton">
+        Become Member
       </button>
       <!-- User profile -->
       <div class="user-profile" (click)="ModelToggle()" *ngIf="!hideButton">
@@ -86,7 +86,7 @@
       Login
     </button>
     <button class="btn partnerMobile" (click)="showToast()" *ngIf="hideButton">
-      Become Partner
+      Signup
     </button>
 
     <div class="user-profile-Mobile" (click)="Profile()" *ngIf="!hideButton">

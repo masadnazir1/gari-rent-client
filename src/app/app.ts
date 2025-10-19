@@ -40,6 +40,7 @@ export class App {
       '/book',
       '/cars',
       '/saved',
+      '/role-selection',
     ];
 
     this.router.events

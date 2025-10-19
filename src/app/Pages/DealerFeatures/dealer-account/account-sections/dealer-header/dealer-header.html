@@ -1,0 +1,20 @@
+<!-- dealer-header.html -->
+<header class="dealer-header">
+  <div class="B-logo-row" *ngIf="businessData">
+    <img [src]="businessData.logo_url" alt="User Avatar" class="avatar" />
+    <h2 class="header-title">{{ businessData.business_name }}</h2>
+  </div>
+  <div class="header-right">
+    <button class="notification-btn" (click)="onNotificationClick()">
+      <span class="icon">&#128276;</span>
+    </button>
+
+    <div class="user-profile" *ngIf="businessData">
+      <img [src]="businessData.logo_url" alt="User Avatar" class="avatar" />
+      <div class="user-info">
+        <span class="user-name">{{ User.fullName }}</span>
+        <span class="user-role">{{ User.role }}</span>
+      </div>
+    </div>
+  </div>
+</header>
