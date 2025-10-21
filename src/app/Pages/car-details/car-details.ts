@@ -37,6 +37,7 @@ export class CarDetailsComponent {
     const nav = this.router.getCurrentNavigation();
     if (nav?.extras?.state?.['car']) {
       this.car = nav.extras.state['car'];
+      console.log('Car state', this.car);
     }
 
     if (this.car?.images?.length) {

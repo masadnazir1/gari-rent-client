@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ToastService } from '../../services/shared/toast/toast.service';
 import { Toast } from '../../Interfaces/ToastInterface';
 import { LocalStorageService } from '../../services/shared/storage/local-storage.service';
+import { UserContextService } from '../../services/shared/context/user-context.service';
 
 import {
   faCarSide,
@@ -75,27 +76,31 @@ export class Booking implements OnInit {
   CouponCode?: string;
 
   //date for api
-  renterId = '';
-  dealerId = '';
+  renterId: number = 0;
+  dealerId: number = 0;
 
   constructor(
     private router: Router,
     private API: ApiService,
     private toast: ToastService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private UserContext: UserContextService
   ) {
     const nav = this.router.getCurrentNavigation();
     this.car = nav?.extras.state?.['car'];
     if (this.car) {
       this.mainImage = this.car.images[0];
-      this.dealerId = this.car.dealerId.id;
+      this.dealerId = this.car.dealer_id;
+      console.log('Car on book', this.car);
     }
   }
 
   ngOnInit(): void {
-    const userData = this.localStorage.getItem<any>('user');
-    if (userData) {
-      this.renterId = userData.id;
+    const user = this.UserContext.getUser();
+    console.log('USER', user);
+
+    if (user) {
+      this.renterId = user?.id;
     }
   }
 
@@ -110,7 +115,7 @@ export class Booking implements OnInit {
       const diff = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
       this.days = diff > 0 ? diff : 0;
     }
-    this.totalPrice = this.days * this.car.dailyRate;
+    this.totalPrice = this.days * this.car.daily_rate;
   }
 
   nextStep() {
@@ -214,7 +219,8 @@ export class Booking implements OnInit {
     // Calculate price and days
     const diff = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
     this.days = diff > 0 ? diff : 0;
-    this.totalPrice = this.days * this.car.dailyRate;
+    this.totalPrice = this.days * this.car.daily_rate;
+    console.log('TOTAL', this.days);
 
     if (this.days <= 0) {
       alert('Booking duration must be at least 1 day.');

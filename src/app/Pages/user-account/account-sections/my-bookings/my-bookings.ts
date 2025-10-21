@@ -101,27 +101,50 @@ export class MyBookings implements OnInit {
   //api to get the upcomming bookings
   getUpCommingg() {
     this.isLoading = true;
-    this.API.get<{ bookings: any[] }>(
-      `${this.endPoint}${this.userId}`
-    ).subscribe({
-      next: (res) => {
-        // Map API bookings -> your Booking[]
-        this.allBookingsData = res.bookings;
-        this.bookings = res.bookings.map((b) => ({
+    this.API.get<{ data: any[] }>(`${this.endPoint}${this.userId}`).subscribe({
+      next: (res: any) => {
+        const bookings = res?.data || [];
+
+        this.bookings = bookings.map((b: any) => ({
           id: b.id,
           car: {
-            name: b.carId.name,
-            image: b.carId.images[0] || '/default-car.png',
-            type: b.carId.category,
+            id: b.car.id,
+            name: b.car.name,
+            brand: b.car.brand?.name,
+            category: b.car.category?.name,
+            image: b.car.images?.[0] || '/default-car.png',
+            year: b.car.year,
+            transmission: b.car.transmission,
+            fuel: b.car.fuel,
+            ac: b.car.ac,
+            location: b.car.location,
+            dealer: {
+              id: b.car.dealer?.id,
+              name: b.car.dealer?.full_name,
+              business: b.car.dealer?.business,
+              phone: b.car.dealer?.phone,
+              email: b.car.dealer?.email,
+            },
           },
-          pickupLocation: b.pickupLocation,
-          dropoffLocation: b.dropoffLocation,
-          pickupDate: b.startDate,
-          dropoffDate: b.endDate,
-          price: b.totalPrice,
-          status: this.activeTab === 'upcoming' ? 'upcoming' : 'completed',
+          pickupLocation: b.pickup_location,
+          dropoffLocation: b.dropoff_location,
+          pickupDate: b.start_date,
+          dropoffDate: b.end_date,
+          totalPrice: Number(b.total_price),
+          discount: Number(b.discount),
+          finalAmount: Number(b.final_amount),
+          status: b.status,
+          paymentStatus: b.payment_status,
+          coupon: b.coupon
+            ? {
+                code: b.coupon.code,
+                discountType: b.coupon.discount_type,
+                discountValue: b.coupon.discount_value,
+              }
+            : null,
         }));
 
+        console.log('Mapped Bookings:', this.bookings);
         this.isLoading = false;
       },
       error: (error: any) => {

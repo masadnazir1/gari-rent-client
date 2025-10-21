@@ -1,6 +1,9 @@
 export interface Booking {
+  finalAmount: string | number;
   id: string;
   car: {
+    brand: any;
+    category: any;
     name: string;
     image: string;
     type: string;
@@ -10,5 +13,5 @@ export interface Booking {
   pickupDate: string;
   dropoffDate: string;
   price: number;
-  status: 'upcoming' | 'completed' | 'cancelled';
+  status: 'confirmed' | 'cancelled' | 'upcoming';
 }
