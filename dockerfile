@@ -17,4 +17,4 @@ COPY --from=builder /app/dist/garirent ./dist/garirent
 # no need to install express, it's already in dist
 EXPOSE 4200
 
-CMD ["node", "dist/garirent/server/server.mjs"]
+CMD ["npm", "start"]
