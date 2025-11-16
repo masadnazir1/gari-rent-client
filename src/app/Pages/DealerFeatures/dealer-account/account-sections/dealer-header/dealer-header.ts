@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faShop } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faShop } from '@fortawesome/free-solid-svg-icons';
+import { AddVehicle } from '../../../../../components/Dealer/add-vehicle/add-vehicle';
+import { Modalrelative } from '../../../../../components/shared/modalrelative/modalrelative';
 import { ApiService } from '../../../../../services/api.service';
 import { UserContextService } from '../../../../../services/shared/context/user-context.service';
 
 @Component({
   selector: 'app-dealer-header',
-  imports: [CommonModule, FaIconComponent],
+  imports: [CommonModule, FaIconComponent, AddVehicle, Modalrelative],
   standalone: true,
   templateUrl: './dealer-header.html',
   styleUrls: ['./dealer-header.css'],
@@ -17,6 +19,8 @@ export class DealerHeader implements OnInit {
   User: any | null = null;
   searchTerm = '';
   faShop = faShop;
+  faPlus = faPlus;
+  isModalOpen: boolean = false;
 
   constructor(
     private API: ApiService,
@@ -52,5 +56,14 @@ export class DealerHeader implements OnInit {
         this.businessData = null;
       },
     });
+  }
+
+  openModal() {
+    this.isModalOpen = !this.isModalOpen;
+    document.body.style.overflow = 'hidden'; // disable page scroll
+  }
+  closeModal() {
+    this.isModalOpen = !this.isModalOpen;
+    document.body.style.overflow = 'auto'; // enable page scroll
   }
 }

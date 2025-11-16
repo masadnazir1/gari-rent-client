@@ -87,6 +87,7 @@
     font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
+
 }
 
 .statusButton:hover {
@@ -219,6 +220,12 @@
 
 /*  Responsive */
 @media (max-width: 768px) {
+
+    .statusButton {
+
+        width: 100%;
+    }
+
     .bookings-table {
         display: block;
         overflow-x: hidden;

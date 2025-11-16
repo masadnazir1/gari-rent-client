@@ -2,7 +2,7 @@
 
 .add-vehicle-container {
     background: var(--card-bg);
-    padding: 40px;
+    padding: 10px;
     animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -275,8 +275,8 @@ button[disabled] {
 
 @media (max-width: 700px) {
     .add-vehicle-container {
-        padding: 24px;
-        margin: 20px;
+        padding: 10px;
+
     }
 
     .form-grid {
