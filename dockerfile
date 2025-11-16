@@ -13,7 +13,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copy Angular build output
-COPY --from=builder /app/dist/your-app-name /usr/share/nginx/html
+COPY --from=builder /app/dist/garirent /usr/share/nginx/html
 
 # Copy Nginx config from project folder
 COPY ./nginx/dealer-tapride.conf /etc/nginx/conf.d/default.conf
