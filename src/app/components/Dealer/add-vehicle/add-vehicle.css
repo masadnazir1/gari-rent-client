@@ -199,6 +199,7 @@ button {
     border-radius: var(--radius);
     cursor: pointer;
     transition: var(--transition);
+    width: 100%;
 }
 
 button:hover:not([disabled]) {
