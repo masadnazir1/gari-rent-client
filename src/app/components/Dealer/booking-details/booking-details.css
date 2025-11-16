@@ -1,0 +1,85 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section {
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.row span {
+  color: #555;
+}
+
+.img-box {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 3px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  cursor: pointer;
+  flex: 1;
+  padding: 10px;
+  border: none;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.confirm {
+  background: #1c8f2e;
+  color: #fff;
+}
+
+.cancel {
+  background: #c62828;
+  color: #fff;
+}
+
+.complete {
+  background: #1565c0;
+  color: #fff;
+}
+
+button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media (max-width: 200px) {
+  .row {
+    flex-direction: column;
+    gap: 2px;
+  }
+}

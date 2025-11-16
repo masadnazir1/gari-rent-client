@@ -1,0 +1,74 @@
+<div class="container" *ngIf="data">
+  <div class="actions" *ngIf="data">
+    <button class="confirm" [disabled]="data.booking.status !== 'pending'">
+      Confirm Booking
+    </button>
+
+    <button class="cancel" [disabled]="data.booking.status === 'cancelled'">
+      Cancel Booking
+    </button>
+
+    <button class="complete" [disabled]="data.booking.status !== 'confirmed'">
+      Mark Completed
+    </button>
+  </div>
+  <div class="section">
+    <div class="title">Booking</div>
+    <div class="row">
+      <span>ID</span><strong>{{ data.booking.id }}</strong>
+    </div>
+    <div class="row">
+      <span>Status</span><strong>{{ data.booking.status }}</strong>
+    </div>
+    <div class="row">
+      <span>Payment</span><strong>{{ data.booking.payment_status }}</strong>
+    </div>
+    <div class="row">
+      <span>Start</span><strong>{{ data.booking.start_date | date }}</strong>
+    </div>
+    <div class="row">
+      <span>End</span><strong>{{ data.booking.end_date | date }}</strong>
+    </div>
+    <div class="row">
+      <span>Days</span><strong>{{ data.booking.days }}</strong>
+    </div>
+    <div class="row">
+      <span>Final Amount</span><strong>{{ data.booking.final_amount }}</strong>
+    </div>
+    <div class="row">
+      <span>Pickup</span><strong>{{ data.booking.pickup_location }}</strong>
+    </div>
+    <div class="row">
+      <span>Dropoff</span><strong>{{ data.booking.dropoff_location }}</strong>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title">Renter</div>
+    <div class="row">
+      <span>Name</span><strong>{{ data.renter.name }}</strong>
+    </div>
+    <div class="row">
+      <span>Email</span><strong>{{ data.renter.email }}</strong>
+    </div>
+    <div class="row">
+      <span>Phone</span><strong>{{ data.renter.phone }}</strong>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title">Car</div>
+    <div class="row">
+      <span>Name</span><strong>{{ data.car.name }}</strong>
+    </div>
+    <div class="row">
+      <span>Year</span><strong>{{ data.car.year }}</strong>
+    </div>
+    <div class="row">
+      <span>Rate/Day</span><strong>{{ data.car.daily_rate }}</strong>
+    </div>
+    <div class="img-box" *ngIf="data.car.images?.length">
+      <img [src]="data.car.images[0]" alt="car" />
+    </div>
+  </div>
+</div>

@@ -9,23 +9,23 @@
       </div>
 
       <div class="form-group">
-        <label>Brand ID</label>
-        <input
-          type="number"
-          name="brand_id"
-          [(ngModel)]="form.brand_id"
-          required
-        />
+        <label>Select Brand</label>
+        <select name="brand_id" [(ngModel)]="form.brand_id" required>
+          <option value="" disabled>Select a brand</option>
+          <option *ngFor="let b of brands" [value]="b.id">
+            {{ b.brand_name }}
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label>Category ID</label>
-        <input
-          type="number"
-          name="category_id"
-          [(ngModel)]="form.category_id"
-          required
-        />
+        <label>Select Category</label>
+        <select name="category_id" [(ngModel)]="form.category_id" required>
+          <option value="" disabled>Select a Category</option>
+          <option *ngFor="let c of categories" [value]="c.id">
+            {{ c.category_name }}
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -46,18 +46,16 @@
       </div>
 
       <div class="form-group">
-        <label>Seats</label>
-        <input type="number" name="seats" [(ngModel)]="form.seats" />
-      </div>
-
-      <div class="form-group">
-        <label>Doors</label>
-        <input type="number" name="doors" [(ngModel)]="form.doors" />
-      </div>
-
-      <div class="form-group">
         <label>Year</label>
-        <input type="number" name="year" [(ngModel)]="form.year" />
+        <select name="year" [(ngModel)]="form.year">
+          <option value="">Select Year</option>
+          <option
+            *ngFor="let y of [].constructor(26); let i = index"
+            [value]="2025 - i"
+          >
+            {{ 2025 - i }}
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -72,18 +70,33 @@
 
       <div class="form-group">
         <label>Badge</label>
-        <input type="text" name="badge" [(ngModel)]="form.badge" />
+        <select name="badge" [(ngModel)]="form.badge">
+          <option value="">Select Badge</option>
+          <option value="New">New</option>
+          <option value="Featured">Featured</option>
+          <option value="Premium">Premium</option>
+          <option value="Verified">Verified</option>
+          <option value="Hot Deal">Hot Deal</option>
+          <option value="Limited">Limited</option>
+          <option value="Bestseller">Bestseller</option>
+          <option value="Certified">Certified</option>
+          <option value="Exclusive">Exclusive</option>
+          <option value="Top Rated">Top Rated</option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label>Location</label>
-        <input type="text" name="location" [(ngModel)]="form.location" />
+        <label>Select Location</label>
+        <select name="location" [(ngModel)]="form.location">
+          <option value="rawalpindi">Rawalpindi</option>
+          <option value="lahore">Lahore</option>
+        </select>
       </div>
 
-      <div class="form-group toggle">
-        <label>
-          <input type="checkbox" [(ngModel)]="form.ac" name="ac" /> AC
-        </label>
+      <div class="form-group-select">
+        <input type="checkbox" id="ac" [(ngModel)]="form.ac" name="ac" />
+        <label for="ac"></label>
+        <span class="switch-text">AC Available</span>
       </div>
 
       <div class="form-group full">

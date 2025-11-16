@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../../../services/api.service';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  faTrashAlt,
   faCheckCircle,
   faPlus,
+  faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from '../../../services/api.service';
+import { UserContextService } from '../../../services/shared/context/user-context.service';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -16,13 +17,15 @@ import {
   templateUrl: './add-vehicle.html',
   styleUrls: ['./add-vehicle.css'],
 })
-export class AddVehicle {
+export class AddVehicle implements OnInit {
+  //
+  //
   faTrashAlt = faTrashAlt;
   faCheckCircle = faCheckCircle;
   faPlus = faPlus;
 
   form = {
-    dealer_id: '6',
+    dealer_id: 0,
     brand_id: '',
     carName: '',
     category_id: '',
@@ -40,12 +43,51 @@ export class AddVehicle {
     mileage: '',
   };
 
+  constructor(
+    private API: ApiService,
+    private UserContext: UserContextService
+  ) {
+    this.form.dealer_id = this.UserContext.getUser()?.id || 0;
+  }
   selectedFiles: File[] = [];
   previews: string[] = [];
+  brands: any[] = [];
+  categories: any[] = [];
   loading = false;
   success = false;
 
-  constructor(private API: ApiService) {}
+  async getBrands() {
+    try {
+      this.API.get('/dealer/brands').subscribe({
+        next: (data: any) => {
+          if (data.statusCode === 200) {
+            this.brands = data.data;
+          }
+        },
+      });
+    } catch (err) {
+      console.error('error getting the brands names', err);
+    }
+  }
+
+  async getCategories() {
+    try {
+      this.API.get('/dealer/categories').subscribe({
+        next: (data: any) => {
+          if (data.statusCode === 200) {
+            this.categories = data.data;
+          }
+        },
+      });
+    } catch (err) {
+      console.error('error getting the brands names', err);
+    }
+  }
+
+  ngOnInit(): void {
+    this.getBrands();
+    this.getCategories();
+  }
 
   onFilesSelected(event: any) {
     const files = Array.from(event.target.files) as File[];
@@ -73,7 +115,7 @@ export class AddVehicle {
     this.loading = true;
 
     const formData = new FormData();
-    formData.append('dealer_id', this.form.dealer_id);
+    formData.append('dealer_id', this.form?.dealer_id.toString());
     formData.append('brand_id', String(Number(this.form.brand_id)));
     formData.append('category_id', String(Number(this.form.category_id)));
     formData.append('carName', this.form.carName);
@@ -96,9 +138,9 @@ export class AddVehicle {
 
     this.API.post('dealer/vehicle/add', formData).subscribe({
       next: (res: any) => {
-        console.log('Vehicle added:', res);
         this.loading = false;
         this.success = true;
+        window.location.reload;
       },
       error: (err) => {
         console.error('Error in addVehicles:', err);
