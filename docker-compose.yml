@@ -3,5 +3,5 @@ services:
     build: .
     container_name: angular_client
     ports:
-      - "80:80"
+      - "4200:80" # container port 80 mapped to host 4200
     restart: unless-stopped
