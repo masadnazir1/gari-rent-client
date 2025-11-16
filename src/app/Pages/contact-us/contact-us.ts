@@ -26,6 +26,8 @@ export class ContactUsComponent {
   successMessage = '';
 
   topics = ['Booking Issue', 'Payment', 'Partnership', 'Technical Support'];
+  email: any;
+  subject: any;
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.contactForm = this.fb.group({
@@ -46,7 +48,7 @@ export class ContactUsComponent {
     });
   }
 
-  // ✅ Typed getters for form controls
+  //  Typed getters for form controls
   get fullName() {
     return this.contactForm.get('fullName');
   }

@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
-import { ApiService } from '../../services/api.service';
-import { Router } from '@angular/router';
 import { AuthResponse } from '../../Interfaces/loginResponse';
-import { UserContextService } from '../../services/shared/context/user-context.service';
 import { Toast } from '../../Interfaces/ToastInterface';
+import { ApiService } from '../../services/api.service';
+import { UserContextService } from '../../services/shared/context/user-context.service';
 import { ToastService } from '../../services/shared/toast/toast.service';
 
 @Component({
@@ -62,7 +62,6 @@ export class Login {
             ''
           );
 
-          console.log('Login data', data);
           if (data.user.role === 'renter') {
             window.location.href = '/user-account?tab=dashboard';
           } else if (data.user.role === 'dealer') {

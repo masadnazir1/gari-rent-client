@@ -1,0 +1,167 @@
+/* ───────────────────────────── */
+/* Features Section Styles       */
+/* ───────────────────────────── */
+
+.features {
+    background: var(--bg);
+    padding: 40px 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.features-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 60px auto;
+}
+
+.features-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.features-header p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px 24px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius);
+    display: grid;
+    place-items: center;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--primary);
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.feature-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.feature-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+/* ───────── Responsive ───────── */
+
+@media (max-width: 900px) {
+    .features {
+        padding: 60px 0;
+    }
+
+    .features-header h2 {
+        font-size: 28px;
+    }
+
+    .feature-card {
+        padding: 28px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .features-header h2 {
+        font-size: 24px;
+    }
+
+    .features-header p {
+        font-size: 14px;
+    }
+
+    .feature-title {
+        font-size: 16px;
+    }
+
+    .feature-desc {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .features {
+        padding: 40px 0;
+    }
+
+    .feature-card {
+        padding: 20px 14px;
+    }
+
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .features-header h2 {
+        font-size: 20px;
+    }
+
+    .features-header p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 220px) {
+    .features {
+        padding: 28px 0;
+    }
+
+    .feature-card {
+        padding: 12px;
+    }
+
+    .feature-title {
+        font-size: 13px;
+    }
+
+    .feature-desc {
+        font-size: 11px;
+    }
+
+    .feature-icon {
+        width: 30px;
+        height: 30px;
+    }
+}

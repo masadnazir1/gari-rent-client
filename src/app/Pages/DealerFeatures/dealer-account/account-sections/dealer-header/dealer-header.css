@@ -52,6 +52,18 @@
     background: #fff;
 }
 
+.icon {
+    background-color: var(--success);
+    color: #fff;
+    padding: 2px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+}
+
 .search-icon {
     position: absolute;
     right: 10px;
@@ -66,7 +78,7 @@
     border: none;
     cursor: pointer;
     position: relative;
-    padding: 6px;
+
     transition: var(--transition);
 }
 

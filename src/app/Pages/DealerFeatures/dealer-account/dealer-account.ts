@@ -22,6 +22,7 @@ import {
   faCarAlt,
   faAdd,
   faTicket,
+  faShop,
 } from '@fortawesome/free-solid-svg-icons';
 
 type LazyComponentType = any;
@@ -59,6 +60,7 @@ export class DealerAccount {
   faFeedback = faComment;
   faTicket = faTicket;
   faStar = faStar;
+  faShop = faShop;
 
   //states
   sidebarCollapsed = false;
@@ -73,6 +75,7 @@ export class DealerAccount {
     { key: 'bookings', label: 'Bookings', icon: this.faCalendar },
     { key: 'vehicles', label: 'Vehicles', icon: this.faCarAlt },
     { key: 'customers', label: 'Customers', icon: this.faUsers },
+    { key: 'Website', label: 'Apki Website', icon: this.faShop },
     { key: 'reviews', label: 'Reviews', icon: this.faStar },
     { key: 'profile', label: 'Profile', icon: this.faUser },
   ];

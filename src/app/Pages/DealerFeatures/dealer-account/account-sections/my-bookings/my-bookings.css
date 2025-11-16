@@ -209,6 +209,14 @@
     background-color: var(--text-secondary);
 }
 
+.Topdiv {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    z-index: 1000000;
+    position: relative;
+}
+
 /*  Responsive */
 @media (max-width: 768px) {
     .bookings-table {

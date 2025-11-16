@@ -2,30 +2,81 @@
   class="carousel"
   (mouseenter)="stopAutoplay()"
   (mouseleave)="startAutoplay()"
+  role="region"
+  aria-label="Hero Carousel"
 >
   <!-- Slides wrapper -->
   <div
     class="slides"
     [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'"
+    aria-live="polite"
   >
-    <div class="slide" *ngFor="let slide of slides(); let i = index">
-      <!-- Background image -->
-      <img [src]="slide.image" [alt]="slide.title" class="bg-img" />
+    <div
+      class="slide"
+      *ngFor="let slide of slides(); let i = index; trackBy: trackByIndex"
+      [attr.aria-hidden]="i !== currentIndex()"
+    >
+      <!-- Background image (covers entire slide) -->
+      <div
+        class="bg"
+        [style.backgroundImage]="'url(' + slide.image + ')'"
+        role="img"
+        [attr.aria-label]="slide.title + ' background image'"
+      ></div>
 
-      <!-- Content -->
-      <div class="content">
-        <h1>{{ slide.title }}</h1>
-        <p>{{ slide.subtitle }}</p>
-        <button>{{ slide.button }}</button>
+      <!-- Main hero container (split layout) -->
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">{{ slide.title }}</h1>
+          <p class="hero-sub">{{ slide.subtitle }}</p>
+
+          <div class="cta-row">
+            <button class="btn primary" type="button">
+              {{ slide.primaryBtn }}
+            </button>
+            <button class="btn secondary" type="button">
+              {{ slide.secondaryBtn }}
+            </button>
+          </div>
+
+          <ul class="trust-list" aria-hidden="false">
+            <li>Instant Payouts</li>
+            <li>24/7 Support</li>
+            <li>Secure Payments</li>
+          </ul>
+        </div>
+
+        <div class="hero-mockup" aria-hidden="true">
+          <img
+            [src]="slide.mockupImage"
+            [alt]="slide.title + ' dashboard preview'"
+            class="mockup-img"
+            [class.animate]="i === currentIndex()"
+            loading="lazy"
+          />
+        </div>
       </div>
-
-      <!-- Car image with animation -->
-      <img
-        [src]="slide.carImage"
-        alt="Car"
-        class="car-img"
-        [class.animate-car]="i === currentIndex()"
-      />
     </div>
+  </div>
+
+  <!-- Controls -->
+  <button class="nav prev" aria-label="Previous slide" (click)="prev()">
+    &lt;
+  </button>
+  <button class="nav next" aria-label="Next slide" (click)="next()">
+    &gt;
+  </button>
+
+  <!-- Indicators -->
+  <div class="indicators" role="tablist" aria-label="Slide indicators">
+    <button
+      *ngFor="let _ of slides(); let idx = index"
+      [class.active]="idx === currentIndex()"
+      (click)="goToSlide(idx)"
+      role="tab"
+      [attr.aria-selected]="idx === currentIndex()"
+      [attr.aria-controls]="'slide-' + idx"
+      [attr.id]="'indicator-' + idx"
+    ></button>
   </div>
 </div>

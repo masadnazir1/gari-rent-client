@@ -1,19 +1,19 @@
-import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
-import { ToastService } from '../../services/shared/toast/toast.service';
-import { LocalStorageService } from '../../services/shared/storage/local-storage.service';
-import { ModalrelativeComponent } from '../shared/dropdown/dropdown';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { UserContextService } from '../../services/shared/context/user-context.service';
 import {
-  faUser,
   faCalendarDay,
-  faSignOut,
-  faHeart,
   faDashboard,
+  faHeart,
+  faSignOut,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { UserContextService } from '../../services/shared/context/user-context.service';
+import { LocalStorageService } from '../../services/shared/storage/local-storage.service';
+import { ToastService } from '../../services/shared/toast/toast.service';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog';
+import { ModalrelativeComponent } from '../shared/dropdown/dropdown';
 
 @Component({
   selector: 'app-navbar',
@@ -92,7 +92,7 @@ export class Navbar implements OnInit {
 
   //naviagte to the role-selection
   roleSelection() {
-    this.router.navigate(['role-selection']);
+    this.router.navigate(['create']);
   }
 
   ModelToggle() {
@@ -118,7 +118,6 @@ export class Navbar implements OnInit {
   Dashboard(role: string | null | undefined) {
     window.location.href = '/user-account?tab=dashboard';
 
-    console.log('role', role);
     if (role && role === 'dealer') {
       window.location.href = '/dealer-account?tab=dashboard';
     } else if (role === 'rentor') {

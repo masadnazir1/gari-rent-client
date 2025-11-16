@@ -1,16 +1,8 @@
 <app-hero-carousel></app-hero-carousel>
 
 <div class="App">
-  <app-search-form />
-  <app-topmoters />
-  <section class="car-grid-section">
-    <div class="row-Home">
-      <h2 class="grid-title">{{ title }}</h2>
-      <button (click)="AllCars()" class="All-Cars">Explore all</button>
-    </div>
-
-    <div class="car-grid">
-      <app-car-card *ngFor="let car of carsList" [car]="car"></app-car-card>
-    </div>
-  </section>
+  <app-features-section />
+  <app-how-it-works />
+  <app-dashboard-preview />
+  <app-pricing-section />
 </div>

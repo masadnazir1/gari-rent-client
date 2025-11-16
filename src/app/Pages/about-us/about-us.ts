@@ -10,7 +10,7 @@ import { PageHeader } from '../../components/shared/page-header/page-header';
   standalone: true,
   imports: [CommonModule, FontAwesomeModule, PageHeader],
   templateUrl: './about-us.html',
-  styleUrl: './about-us.css',
+  styleUrls: ['./about-us.css'],
 })
 export class AboutUs {
   testimonials = [

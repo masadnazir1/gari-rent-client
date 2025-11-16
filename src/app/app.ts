@@ -34,13 +34,10 @@ export class App {
       '/car-details',
       '/create',
       '/reset-assword',
-      '/address-age',
-      '/user-account',
       '/dealer-account',
       '/book',
       '/cars',
       '/saved',
-      '/role-selection',
     ];
 
     this.router.events

@@ -31,17 +31,6 @@
       </div>
     </article>
 
-    <article class="card chat">
-      <div class="icon large">
-        <fa-icon [icon]="['fas', 'comments']"></fa-icon>
-      </div>
-      <div class="meta">
-        <h4>Live Chat</h4>
-        <p class="muted">Instant support (when available)</p>
-        <button class="btn-ghost">Start Chat</button>
-      </div>
-    </article>
-
     <article class="card faq">
       <div class="icon large">
         <fa-icon [icon]="['fas', 'question-circle']"></fa-icon>
@@ -161,15 +150,6 @@
               Please write at least 10 characters.
             </span>
           </small>
-        </label>
-
-        <label class="field">
-          <span>Attachment (optional)</span>
-          <input
-            type="file"
-            (change)="onFileChange($event)"
-            aria-label="Attachment"
-          />
         </label>
 
         <div class="form-actions">

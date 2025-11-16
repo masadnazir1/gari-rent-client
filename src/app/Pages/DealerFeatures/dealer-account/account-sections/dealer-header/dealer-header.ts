@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faShop } from '@fortawesome/free-solid-svg-icons';
 import { ApiService } from '../../../../../services/api.service';
-import { LocalStorageService } from '../../../../../services/shared/storage/local-storage.service';
 import { UserContextService } from '../../../../../services/shared/context/user-context.service';
 
 @Component({
   selector: 'app-dealer-header',
-  imports: [CommonModule],
+  imports: [CommonModule, FaIconComponent],
   standalone: true,
   templateUrl: './dealer-header.html',
   styleUrls: ['./dealer-header.css'],
@@ -15,36 +16,32 @@ export class DealerHeader implements OnInit {
   businessData: any = null;
   User: any | null = null;
   searchTerm = '';
+  faShop = faShop;
 
   constructor(
     private API: ApiService,
-    private LocalStorage: LocalStorageService,
     private userContext: UserContextService
   ) {}
 
   ngOnInit(): void {
     this.User = this.userContext.getUser();
 
-    console.log(this.User);
     this.getDealerData();
   }
 
   onSearchChange(event: any) {
     this.searchTerm = event.target.value;
-    console.log('Searching:', this.searchTerm);
   }
 
-  onNotificationClick() {
-    console.log('Notification clicked');
+  onWebsiteClick() {
+    alert('Notification clicked');
   }
 
   getDealerData() {
-    this.API.get('dealer/6').subscribe({
+    this.API.get(`dealer/${this.User?.id}`).subscribe({
       next: (res: any) => {
         if (res?.success && Array.isArray(res.data) && res.data.length > 0) {
           this.businessData = res.data[0];
-
-          console.log('businessData', this.businessData);
         } else {
           console.warn('Dealer data empty or invalid format');
           this.businessData = null;

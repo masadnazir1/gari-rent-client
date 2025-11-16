@@ -9,27 +9,32 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./hero-carousel.css'],
 })
 export class HeroCarousel implements OnInit, OnDestroy {
+  // Slides tailored for Dealer landing hero (headline + subtext + CTAs)
   slides = signal([
     {
-      title: 'Welcome to GariRent',
-      subtitle: 'Book your ride with ease',
+      title: 'Manage Your Car Rentals with Ease',
+      subtitle:
+        'TapRide helps you handle bookings, cars, and earnings from a single dashboard.',
       image: '/slider-1.jpg',
-      carImage: '/car.png',
-      button: 'Book Now',
+      mockupImage: '/dashboard-mockup.png',
+      primaryBtn: 'Register as Dealer',
+      secondaryBtn: 'Login',
     },
     {
-      title: 'Luxury Cars',
-      subtitle: 'Drive premium at affordable prices',
-      image: '/slider-1.jpg',
-      carImage: '/car.png',
-      button: 'Explore',
+      title: 'Add & Manage Cars Quickly',
+      subtitle: 'Create listings, set availability and pricing in seconds.',
+      image: '/hero-bg-2.jpg',
+      mockupImage: '/dashboard-mockup-2.png',
+      primaryBtn: 'Register as Dealer',
+      secondaryBtn: 'Learn More',
     },
     {
-      title: 'Anywhere, Anytime',
-      subtitle: 'Your ride is just one click away',
-      image: '/slider-1.jpg',
-      carImage: '/car.png',
-      button: 'Get Started',
+      title: 'Track Bookings & Earnings',
+      subtitle: 'View bookings, earnings reports and payouts in one place.',
+      image: '/hero-bg-3.jpg',
+      mockupImage: '/dashboard-mockup-3.png',
+      primaryBtn: 'Get Started',
+      secondaryBtn: 'Contact Sales',
     },
   ]);
 
@@ -45,14 +50,16 @@ export class HeroCarousel implements OnInit, OnDestroy {
   }
 
   startAutoplay() {
+    // change slide every 3 seconds
     this.autoplayInterval = setInterval(() => {
       this.next();
-    }, 3000); //change slide every 5 seconds
+    }, 3000);
   }
 
   stopAutoplay() {
     if (this.autoplayInterval) {
       clearInterval(this.autoplayInterval);
+      this.autoplayInterval = null;
     }
   }
 
@@ -68,5 +75,10 @@ export class HeroCarousel implements OnInit, OnDestroy {
 
   goToSlide(index: number) {
     this.currentIndex.set(index);
+  }
+
+  // Helper used in template for safe binding
+  trackByIndex(_: number, __: any) {
+    return _;
   }
 }

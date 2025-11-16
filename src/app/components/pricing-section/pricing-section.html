@@ -1,0 +1,28 @@
+<section class="pricing-section">
+  <h2 class="section-title">Ready to Grow Your Business?</h2>
+  <p class="section-subtitle">
+    Choose a plan that fits your needs and start managing your rentals with
+    TapRide today. Simple, transparent pricing.
+  </p>
+
+  <div class="plans-grid">
+    <div
+      class="plan-card"
+      *ngFor="let plan of plans"
+      [ngClass]="{ premium: plan.popular }"
+    >
+      <div class="plan-badge" *ngIf="plan.popular">Popular</div>
+      <h3>{{ plan.name }}</h3>
+      <p class="plan-price">{{ plan.price }}</p>
+
+      <ul>
+        <li *ngFor="let feature of plan.features">
+          <fa-icon [icon]="feature.icon" class="feature-icon"></fa-icon>
+          {{ feature.label }}
+        </li>
+      </ul>
+
+      <button class="primary">{{ plan.cta }}</button>
+    </div>
+  </div>
+</section>

@@ -1,32 +1,32 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { ApiService } from '../../../../../services/api.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Modalrelative } from '../../../../../components/shared/modalrelative/modalrelative';
+import { ApiService } from '../../../../../services/api.service';
 
 import {
-  faUser,
-  faComment,
-  faShieldAlt,
-  faBell,
-  faCar,
-  faCalendar,
-  faCoins,
   faBars,
+  faBell,
+  faCalendar,
+  faCar,
+  faCheckCircle,
   faChevronLeft,
   faChevronRight,
+  faCoins,
+  faComment,
   faListDots,
-  faTimes,
-  faCheckCircle,
   faMapPin,
+  faShieldAlt,
+  faTimes,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { Booking } from '../../../../../Interfaces/BookingInterface';
+import { BookingDetails } from '../../../../../components/Dealer/booking-details/booking-details';
 
 @Component({
   selector: 'app-my-bookings',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, Modalrelative, BookingDetails],
   templateUrl: './my-bookings.html',
   styleUrls: ['./my-bookings.css'],
 })
@@ -58,6 +58,8 @@ export class MyBookings implements OnInit {
   pastEndPoint = `bookings/user/past?userId=`;
   isModalOpen: boolean = false;
   bookings: any[] = [];
+  bookingDetails: any;
+
   //
   rating = 0;
   feedbackText = '';
@@ -91,7 +93,9 @@ export class MyBookings implements OnInit {
           this.bookings = res.data;
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        console.error('error getting bookings by status');
+      },
     });
   }
 
@@ -103,7 +107,34 @@ export class MyBookings implements OnInit {
           this.bookings = res.data;
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        console.error('error getting recent bookings');
+      },
     });
+  }
+  getBookingsDetails(booking_id: string) {
+    this.API.get(`dealer/bookings/details/${booking_id}`).subscribe({
+      next: (res: any) => {
+        console.log('data of booking details', res.data);
+        if (res.success) {
+          console.log('data of booking details', res.data);
+          this.bookingDetails = res?.data;
+        }
+      },
+      error: (err) => {
+        console.error('error getting bookings details', err);
+      },
+    });
+  }
+
+  openModal(booking_id: string) {
+    this.getBookingsDetails(booking_id);
+    this.isModalOpen = !this.isModalOpen;
+
+    document.body.style.overflow = 'hidden'; // disable page scroll
+  }
+  closeModal() {
+    this.isModalOpen = !this.isModalOpen;
+    document.body.style.overflow = 'auto'; // enable page scroll
   }
 }

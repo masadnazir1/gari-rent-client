@@ -51,7 +51,14 @@
                 <td>{{ booking.start_date }}</td>
                 <td>{{ booking.end_date }}</td>
                 <td>${{ booking.amount }}</td>
-                <td><button class="view-btn">View</button></td>
+                <td>
+                  <button
+                    class="view-btn"
+                    (click)="openModal(booking.booking_id)"
+                  >
+                    View
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -64,4 +71,13 @@
       </ng-template>
     </div>
   </section>
+  <div class="Topdiv">
+    <app-modalrelative
+      title="Booking details"
+      [isOpen]="isModalOpen"
+      (close)="closeModal()"
+    >
+      <app-booking-details [data]="bookingDetails"></app-booking-details>
+    </app-modalrelative>
+  </div>
 </div>

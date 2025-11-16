@@ -52,7 +52,7 @@ export class Signup implements OnInit {
         email: this.email,
         phone: this.phone,
         password: this.password,
-        role: this.userRole || 'renter',
+        role: 'dealer',
       }).subscribe({
         next: (data: any) => {
           this.isLoading = false;
