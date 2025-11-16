@@ -15,6 +15,7 @@ import { UserContextService } from '../../../../../services/shared/context/user-
 })
 export class CustomersComponent implements OnInit {
   customers: any[] = [];
+  userData: any = {};
   //
   isModalOpen = false;
   constructor(
@@ -23,11 +24,12 @@ export class CustomersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userData = this.UserContext.getUser();
     this.getCustomer();
   }
 
   getCustomer() {
-    this.API.get(`dealer/customers/${6}`).subscribe({
+    this.API.get(`dealer/customers/${this.userData?.id}`).subscribe({
       next: (data: any) => {
         this.customers = data.data;
       },

@@ -3,6 +3,12 @@
   <!-- Sidebar (Desktop) -->
   <aside class="sidebar desktop-only">
     <div class="sidebar-header">
+      <img
+        class="logo-sidebar-header"
+        (click)="handleHome()"
+        src="/logo.png"
+        alt=""
+      />
       <button
         class="collapse-btn"
         (click)="toggleSidebar()"
@@ -30,6 +36,12 @@
       <button class="add-new-car" (click)="openModal()">
         <fa-icon [icon]="faAdd"></fa-icon>
         <span *ngIf="!sidebarCollapsed"> Add Vehicle</span>
+      </button>
+    </div>
+    <div class="side-bottom-section-logout">
+      <button class="SignOut" (click)="isconfirm = !isconfirm">
+        <fa-icon [icon]="faSignOut"></fa-icon>
+        <span *ngIf="!sidebarCollapsed">logout</span>
       </button>
     </div>
 
@@ -72,3 +84,10 @@
     <app-add-vehicle />
   </app-modalrelative>
 </div>
+
+<app-confirm-dialog
+  [isOpen]="isconfirm"
+  description="Do you really want to logout?"
+  (onConfirm)="logout()"
+  (onCancel)="isconfirm = false"
+/>

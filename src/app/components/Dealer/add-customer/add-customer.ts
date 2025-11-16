@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
-  FontAwesomeModule,
   FaIconComponent,
+  FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from '../../../services/api.service';
+import { UserContextService } from '../../../services/shared/context/user-context.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -15,7 +16,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './add-customer.html',
   styleUrls: ['./add-customer.css'],
 })
-export class AddCustomer {
+export class AddCustomer implements OnInit {
   form = {
     dealerId: '6',
     full_name: '',
@@ -23,12 +24,22 @@ export class AddCustomer {
     phone: '',
     address: '',
   };
+
+  userData: any = {};
   loading = false;
   success = false;
 
-  constructor(private API: ApiService) {}
+  constructor(
+    private API: ApiService,
+    private UserContext: UserContextService
+  ) {}
 
   faCheckCircle = faCheckCircle;
+
+  ngOnInit(): void {
+    this.userData = this.UserContext.getUser();
+    this.form.dealerId = this.userData?.id;
+  }
 
   addCustomer() {
     this.loading = true;

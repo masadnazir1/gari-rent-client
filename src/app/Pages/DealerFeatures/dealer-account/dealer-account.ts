@@ -1,29 +1,32 @@
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { DealerHeader } from './account-sections/dealer-header/dealer-header';
-import { Modalrelative } from '../../../components/shared/modalrelative/modalrelative';
 import { AddVehicle } from '../../../components/Dealer/add-vehicle/add-vehicle';
+import { ConfirmDialogComponent } from '../../../components/shared/confirm-dialog/confirm-dialog';
+import { Modalrelative } from '../../../components/shared/modalrelative/modalrelative';
+import { DealerHeader } from './account-sections/dealer-header/dealer-header';
 
 import {
-  faUser,
-  faComment,
-  faShieldAlt,
-  faBell,
-  faCar,
-  faCalendar,
-  faStar,
-  faUsers,
+  faAdd,
   faBars,
+  faBell,
+  faCalendar,
+  faCar,
+  faCarAlt,
   faChevronLeft,
   faChevronRight,
+  faComment,
   faDashboard,
-  faTimes,
-  faCarAlt,
-  faAdd,
-  faTicket,
+  faShieldAlt,
   faShop,
+  faSignOut,
+  faStar,
+  faTicket,
+  faTimes,
+  faUser,
+  faUsers,
 } from '@fortawesome/free-solid-svg-icons';
+import { LocalStorageService } from '../../../services/shared/storage/local-storage.service';
 
 type LazyComponentType = any;
 
@@ -38,11 +41,13 @@ type LazyComponentType = any;
     DealerHeader,
     Modalrelative,
     AddVehicle,
+    ConfirmDialogComponent,
   ],
   templateUrl: './dealer-account.html',
   styleUrls: ['./dealer-account.css'],
 })
 export class DealerAccount {
+  isconfirm: boolean = false;
   // Icons
   faAdd = faAdd;
   faDashboard = faDashboard;
@@ -61,6 +66,7 @@ export class DealerAccount {
   faTicket = faTicket;
   faStar = faStar;
   faShop = faShop;
+  faSignOut = faSignOut;
 
   //states
   sidebarCollapsed = false;
@@ -87,8 +93,9 @@ export class DealerAccount {
     { key: 'profile', label: 'Profile', icon: this.faUser },
   ];
 
-  constructor() {
+  constructor(private localStorage: LocalStorageService) {
     // On init: get the tab key from URL if available
+
     const params = new URLSearchParams(window.location.search);
     const tabFromUrl = params.get('tab');
     if (tabFromUrl && this.menu.some((m) => m.key === tabFromUrl)) {
@@ -190,5 +197,14 @@ export class DealerAccount {
   closeModal() {
     this.isModalOpen = !this.isModalOpen;
     document.body.style.overflow = 'auto'; // enable page scroll
+  }
+
+  logout() {
+    this.localStorage.clear();
+    window.location.href = '/login';
+    this.isconfirm = false;
+  }
+  handleHome() {
+    window.location.href = '/';
   }
 }

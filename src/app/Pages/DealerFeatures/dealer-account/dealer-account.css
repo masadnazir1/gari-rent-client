@@ -32,7 +32,22 @@
 .sidebar-header {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--text-primary);
+    padding-bottom: 10px;
+}
+
+.account-layout:not(.sidebar-collapsed) .logo-sidebar-header {
+    display: flex;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.logo-sidebar-header {
+    display: none;
+    cursor: pointer;
+
 }
 
 .menu {
@@ -232,7 +247,7 @@
 /*side-bottom-section*/
 .side-bottom-section {
     position: absolute;
-    bottom: 10px;
+    bottom: 60px;
     width: -webkit-fill-available;
     display: flex;
     flex-direction: column;
@@ -259,6 +274,40 @@
 
 .add-new-car:hover {
     background: rgba(112, 234, 216, 0.72);
+}
+
+
+/*side-bottom-section-logout*/
+.side-bottom-section-logout {
+    position: absolute;
+    bottom: 10px;
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    gap: 4px;
+
+}
+
+.SignOut {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background 220ms ease, color 220ms ease;
+    font-size: 1.5rem;
+    color: #f32323ec;
+    ;
+    border-radius: var(--radius);
+    margin-right: 10px;
+}
+
+.SignOut:hover {
+    background: rgb(165, 41, 0);
+    color: #fff;
 }
 
 .Topdiv {
