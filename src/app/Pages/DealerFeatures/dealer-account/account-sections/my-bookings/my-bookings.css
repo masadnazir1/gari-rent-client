@@ -119,7 +119,8 @@
     white-space: nowrap;
     background: var(--card-bg);
     border-radius: var(--radius);
-    overflow: hidden;
+    /* overflow: hidden;
+    overflow-x: scroll; */
     box-shadow: var(--shadow);
 }
 
@@ -221,6 +222,14 @@
 /*  Responsive */
 @media (max-width: 768px) {
 
+    .row-title {
+        flex-direction: column-reverse;
+        justify-content: left;
+        width: 100%;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
     .statusButton {
 
         width: 100%;
@@ -228,7 +237,7 @@
 
     .bookings-table {
         display: block;
-        overflow-x: hidden;
+
     }
 
     .recent-bookings {

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
@@ -13,7 +13,6 @@ export class LoadingComponent {
   @Input() size = 40;
 
   /** Logo URL */
-  @Input() logo = 'assets/logo.png';
 
   /** Animation speed in seconds */
   @Input() speed = 1.2;

@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   FaIconLibrary,
   FontAwesomeModule,
 } from '@fortawesome/angular-fontawesome';
 import {
-  faPen,
-  faTimes,
-  faSave,
   faCamera,
   faEnvelope,
+  faPen,
   faPhone,
+  faSave,
+  faTimes,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { ConfirmDialogComponent } from '../../../../../components/shared/confirm-dialog/confirm-dialog';
+import { LocalStorageService } from '../../../../../services/shared/storage/local-storage.service';
 
 export interface UserProfile {
   name: string;
@@ -26,7 +28,12 @@ export interface UserProfile {
 @Component({
   selector: 'app-profile-component',
   standalone: true,
-  imports: [CommonModule, FormsModule, FontAwesomeModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ConfirmDialogComponent,
+    FontAwesomeModule,
+  ],
   templateUrl: './profile-component.html',
   styleUrls: ['./profile-component.css'],
 })
@@ -42,6 +49,8 @@ export class ProfileComponent implements OnInit {
 
   isEditing = false;
   tempUser!: UserProfile;
+  isModalOpen: boolean = false;
+  isconfirm: boolean = false;
 
   ngOnInit(): void {
     const user = localStorage.getItem('user');
@@ -62,7 +71,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor(library: FaIconLibrary) {
+  constructor(
+    library: FaIconLibrary,
+
+    private localStorage: LocalStorageService
+  ) {
     library.addIcons(
       faPen,
       faTimes,
@@ -98,5 +111,24 @@ export class ProfileComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  openModal() {
+    this.isModalOpen = !this.isModalOpen;
+    document.body.style.overflow = 'hidden'; // disable page scroll
+  }
+  closeModal() {
+    this.isModalOpen = !this.isModalOpen;
+    document.body.style.overflow = 'auto'; // enable page scroll
+  }
+
+  logout() {
+    this.localStorage.clear();
+    window.location.href = '/login';
+    this.isconfirm = false;
+  }
+
+  handleCustomer() {
+    window.location.href = '/dealer-account?tab=customers';
   }
 }

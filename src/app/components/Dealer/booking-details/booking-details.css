@@ -102,7 +102,17 @@
   color: #fff;
 }
 
+.errorMessage {
+  font-weight: bold;
+  color: var(--danger);
+  text-align: center;
+}
 
+.successMessage {
+  font-weight: bold;
+  color: var(--success);
+  text-align: center;
+}
 
 
 button:disabled {

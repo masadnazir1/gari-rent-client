@@ -133,6 +133,15 @@
 
 /*  Responsive Table */
 @media (max-width: 768px) {
+
+    /*  Status Filter Buttons */
+    .Row-status {
+        margin-bottom: 20px;
+        flex-direction: column;
+        display: flex;
+
+    }
+
     .vehicles-table {
         display: block;
         overflow-x: auto;

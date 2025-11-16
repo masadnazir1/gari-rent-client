@@ -68,4 +68,25 @@
       </button>
     </div>
   </form>
+
+  <div class="options-menu">
+    <h3 class="menu-title">Options</h3>
+
+    <button class="menu-item" (click)="handleCustomer()">
+      <fa-icon [icon]="'user'"></fa-icon>
+      View Customer
+    </button>
+
+    <button class="menu-item logout" (click)="isconfirm = !isconfirm">
+      <fa-icon [icon]="'times'"></fa-icon>
+      Logout
+    </button>
+  </div>
 </div>
+
+<app-confirm-dialog
+  [isOpen]="isconfirm"
+  description="Do you really want to logout?"
+  (onConfirm)="logout()"
+  (onCancel)="isconfirm = false"
+/>

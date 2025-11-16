@@ -34,12 +34,15 @@
       class="confirm"
       (click)="updateBooking()"
       [disabled]="booking_status === ''"
+      *ngIf="!isLoading"
     >
       Update the Booking
     </button>
     <button class="confirm" *ngIf="isLoading">
-      <app-loading text="Updating..." />
+      <app-loading text="" />
     </button>
+    <span class="successMessage">{{ successMessage }}</span>
+    <span class="errorMessage">{{ errorMessage }}</span>
   </div>
   <div class="section">
     <div class="title">Booking</div>
