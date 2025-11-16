@@ -4,4 +4,7 @@ services:
     container_name: angular_client
     ports:
       - "4200:4200"
+    volumes:
+      - .:/app # optional: live reload
+      - /app/node_modules
     restart: unless-stopped
