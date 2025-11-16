@@ -1,18 +1,33 @@
-# Dockerfile
-FROM node:22-alpine
+# Stage 1: Build Angular app
+FROM node:22-alpine AS build
 
-# Set working directory
 WORKDIR /app
 
-# Install dependencies first
+# Copy package.json and package-lock.json
 COPY package*.json ./
-RUN npm install
 
-# Copy all source files
+# Install dependencies
+RUN npm ci
+
+# Copy the rest of the source
 COPY . .
 
-# Expose Angular dev server port
-EXPOSE 4200
+# Build Angular production files
+RUN npm run build --configuration production
 
-# Serve Angular app on all network interfaces
-CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "4200"]
+# Stage 2: Serve with Nginx
+FROM nginx:alpine
+
+# Remove default Nginx static files
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy Angular build files
+COPY --from=build /app/dist/<app-name>/ /usr/share/nginx/html/
+
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose HTTP port
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

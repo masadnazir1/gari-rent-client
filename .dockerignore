@@ -4,7 +4,3 @@ dist
 .gitignore
 Dockerfile
 docker-compose.yml
-*.log
-*.tmp
-.idea
-.vscode
