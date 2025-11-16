@@ -1,0 +1,184 @@
+/* Progress Bar */
+.progress-container {
+  margin-bottom: 2rem;
+  position: relative;
+
+}
+
+.progress-line {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  right: 15px;
+  height: 4px;
+  background: var(--borderColor);
+  z-index: 1;
+}
+
+.progress-fill {
+  height: 4px;
+  background: var(--primary);
+  width: 0%;
+  transition: width 0.4s ease;
+  z-index: 2;
+  position: relative;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 3;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--muted-bg);
+  border: 2px solid var(--borderColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.step-circle.completed {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Form & container same as before */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  /* box-shadow: var(--shadow); */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
+  justify-content: center;
+}
+
+h2 {
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.required {
+  color: var(--danger);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+input[type="file"] {
+  padding: var(--input-padding);
+  border: 1px solid var(--borderColor);
+  border-radius: var(--radius);
+  outline: none;
+  font-size: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.now-login-btn {
+  padding: 1rem 1.5rem;
+  background: var(--buttons);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 3rem;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  font-weight: bold;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background: var(--buttons);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background: var(--buttonHover);
+}
+
+.error {
+  color: var(--danger);
+  margin-bottom: 1rem;
+}
+
+.success {
+  color: var(--success);
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.step {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+}

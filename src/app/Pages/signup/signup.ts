@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { Toast } from '../../Interfaces/ToastInterface';
 import { ApiService } from '../../services/api.service';
-import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/shared/storage/local-storage.service';
 import { ToastService } from '../../services/shared/toast/toast.service';
-import { Toast } from '../../Interfaces/ToastInterface';
 
 @Component({
   selector: 'app-signup',
@@ -19,10 +19,10 @@ import { Toast } from '../../Interfaces/ToastInterface';
 export class Signup implements OnInit {
   faUserPlus = faUserPlus;
   isLoading: boolean = false;
-  fullName: string = 'Muhammad Asad Nazir';
-  email: string = 'masadnazir1@gmail.com';
-  phone: string = '+923208648637';
-  password: string = 'masadnazir1@';
+  fullName: string = '';
+  email: string = '';
+  phone: string = '';
+  password: string = '';
   userRole: string | null = null;
 
   //
@@ -62,7 +62,16 @@ export class Signup implements OnInit {
             `Account created for ${data.user.full_name} `,
             ''
           );
-          this.Naviagte('/login');
+
+          const autoLoginPayload: any = {
+            dealer_id: data.user?.id,
+            email: this.email,
+            password: this.password,
+          };
+
+          this.LocalStorage.setItem('auto-login', autoLoginPayload);
+
+          this.Naviagte('/create-business-profile');
         },
 
         error: (error: any) => {

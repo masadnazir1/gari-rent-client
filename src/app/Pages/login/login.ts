@@ -22,10 +22,10 @@ export class Login {
   faSignIn = faRightToBracket;
   faGoogle = faGoogle;
   isLoading: boolean = false;
-  email: string = 'masadnazir1@gmail.com';
-  password: string = 'masadnazir1@';
+  email: string = '';
+  password: string = '';
   rememberMe: boolean = true;
-
+  loginParam: string | null = null;
   //
   constructor(
     private API: ApiService,
