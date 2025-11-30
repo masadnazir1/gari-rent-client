@@ -31,10 +31,18 @@
           <p class="hero-sub">{{ slide.subtitle }}</p>
 
           <div class="cta-row">
-            <button class="btn primary" type="button">
+            <button
+              class="btn primary"
+              type="button"
+              (click)="goToRoute('/create')"
+            >
               {{ slide.primaryBtn }}
             </button>
-            <button class="btn secondary" type="button">
+            <button
+              class="btn secondary"
+              type="button"
+              (click)="goToRoute('/login')"
+            >
               {{ slide.secondaryBtn }}
             </button>
           </div>

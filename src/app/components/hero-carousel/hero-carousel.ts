@@ -1,5 +1,6 @@
-import { Component, signal, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-carousel',
@@ -16,7 +17,7 @@ export class HeroCarousel implements OnInit, OnDestroy {
       subtitle:
         'TapRide helps you handle bookings, cars, and earnings from a single dashboard.',
       image: '/slider-1.jpg',
-      mockupImage: '/dashboard-mockup.png',
+      mockupImage: '/dashboard/dashboardTop.png',
       primaryBtn: 'Register as Dealer',
       secondaryBtn: 'Login',
     },
@@ -24,7 +25,7 @@ export class HeroCarousel implements OnInit, OnDestroy {
       title: 'Add & Manage Cars Quickly',
       subtitle: 'Create listings, set availability and pricing in seconds.',
       image: '/hero-bg-2.jpg',
-      mockupImage: '/dashboard-mockup-2.png',
+      mockupImage: '/dashboard/addcars.png',
       primaryBtn: 'Register as Dealer',
       secondaryBtn: 'Learn More',
     },
@@ -32,11 +33,13 @@ export class HeroCarousel implements OnInit, OnDestroy {
       title: 'Track Bookings & Earnings',
       subtitle: 'View bookings, earnings reports and payouts in one place.',
       image: '/hero-bg-3.jpg',
-      mockupImage: '/dashboard-mockup-3.png',
+      mockupImage: '/dashboard/bookings.png',
       primaryBtn: 'Get Started',
       secondaryBtn: 'Contact Sales',
     },
   ]);
+
+  constructor(private router: Router) {}
 
   currentIndex = signal(0);
   autoplayInterval: any;
@@ -80,5 +83,9 @@ export class HeroCarousel implements OnInit, OnDestroy {
   // Helper used in template for safe binding
   trackByIndex(_: number, __: any) {
     return _;
+  }
+
+  goToRoute(path: string) {
+    this.router.navigate([path]);
   }
 }

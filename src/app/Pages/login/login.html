@@ -1,80 +1,95 @@
-<div class="login-container">
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login-form">
-    <img src="/logo.png" alt="Carx  car rentals" class="login-logo" />
-    <div class="engagment-text">
-      <h3 class="welcome-txt">Welcome back!</h3>
-      <h3 class="welcome-txt">Sign in to pick up where you left off.</h3>
-    </div>
+<div class="login-wrapper">
+  <!-- Left Image Section (Desktop Only) -->
+  <div class="login-image-container">
+    <img
+      src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600"
+      alt="Car rental fleet"
+      class="side-image"
+    />
+  </div>
 
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="email"
-        placeholder="example@domain.com"
-        required
-        email
-        #emailField="ngModel"
-      />
-      <div class="error" *ngIf="emailField.invalid && emailField.touched">
-        Please enter a valid email.
+  <!-- Right Form Section -->
+  <div class="login-form-container">
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="onSubmit(loginForm)"
+      class="login-form"
+    >
+      <div class="form-header">
+        <img src="/logo.png" alt="Carx car rentals" class="login-logo" />
+
+        <h2 class="title">Welcome back</h2>
+        <p class="subtitle">Sign in to pick up where you left off.</p>
       </div>
-    </div>
 
-    <!-- Password -->
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="password"
-        placeholder="Enter your password"
-        required
-        minlength="6"
-        #passwordField="ngModel"
-      />
-      <div class="error" *ngIf="passwordField.invalid && passwordField.touched">
-        Password must be at least 6 characters.
-      </div>
-    </div>
-
-    <!-- Remember Me & Forgot Password -->
-    <div class="options">
-      <label>
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email address</label>
         <input
-          type="checkbox"
-          [(ngModel)]="rememberMe"
-          name="rememberMe"
-          checked
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="example@domain.com"
+          required
+          email
+          #emailField="ngModel"
         />
-        Remember me
-      </label>
-      <a href="/forgot-assword" class="forgot-password">Forgot password?</a>
-    </div>
+        <div class="error" *ngIf="emailField.invalid && emailField.touched">
+          Please enter a valid email.
+        </div>
+      </div>
 
-    <!-- Login Button -->
-    <button type="submit" [disabled]="loginForm.invalid" class="btn login-btn">
-      <fa-icon [icon]="faSignIn" *ngIf="!isLoading"></fa-icon>
-      {{ isLoading ? "Loading..." : "Login" }}
-    </button>
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter your password"
+          required
+          minlength="6"
+          #passwordField="ngModel"
+        />
+        <div
+          class="error"
+          *ngIf="passwordField.invalid && passwordField.touched"
+        >
+          Password must be at least 6 characters.
+        </div>
+      </div>
 
-    <!-- Divider -->
-    <!-- <div class="divider">
-      <span>or continue with Google</span>
-    </div> -->
+      <!-- Options -->
+      <div class="options">
+        <label class="remember-me">
+          <input
+            type="checkbox"
+            [(ngModel)]="rememberMe"
+            name="rememberMe"
+            checked
+          />
+          Remember me
+        </label>
 
-    <!-- Google Login -->
-    <!-- <button type="button" class="btn google-btn">
-      <fa-icon [icon]="faGoogle"></fa-icon> Sign in with Google
-    </button> -->
+        <a href="/forgot-password" class="forgot-password">Forgot password?</a>
+      </div>
 
-    <!-- Register Link -->
-    <p class="signup-link">
-      Don’t have an account? <a href="/create">Sign up</a>
-    </p>
-  </form>
+      <!-- Login Button -->
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="btn login-btn"
+      >
+        <fa-icon [icon]="faSignIn" *ngIf="!isLoading"></fa-icon>
+        {{ isLoading ? "Loading..." : "Login" }}
+      </button>
+
+      <!-- Signup -->
+      <p class="signup-link">
+        Don’t have an account? <a href="/create">Sign up</a>
+      </p>
+    </form>
+  </div>
 </div>

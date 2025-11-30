@@ -131,6 +131,111 @@
     font-size: 0.95rem;
 }
 
+.Topdiv {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    z-index: 1000000;
+    position: relative;
+}
+
+
+.edit-car-image {
+    width: 100%;
+    overflow-y: hidden;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.edit-vehicle-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.edit-car-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.input-field,
+.select-field {
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--borderColor);
+    background: var(--muted-bg);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.input-field:focus,
+.select-field:focus {
+    border-color: var(--primary);
+    background: #fff;
+}
+
+.checkbox-group label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.submit-btn {
+    padding: 1rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    font-size: 1.1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .edit-vehicle-section {
+        padding: 1rem;
+    }
+}
+
+
 /*  Responsive Table */
 @media (max-width: 768px) {
 

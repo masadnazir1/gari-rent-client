@@ -59,7 +59,9 @@
               </span>
             </td>
             <td>
-              <button class="view-btn">View</button>
+              <button class="view-btn" (click)="openModal(vehicle)">
+                View
+              </button>
             </td>
           </tr>
         </tbody>
@@ -70,4 +72,128 @@
   <ng-template #noData>
     <p class="no-data">No vehicles found.</p>
   </ng-template>
+</div>
+
+<div class="Topdiv">
+  <app-modalrelative
+    [title]="'Update the Vehicle Details'"
+    [isOpen]="isModalOpen"
+    [size]="'md'"
+    (close)="closeModal()"
+  >
+    <section *ngIf="vehicleToEdit?.brand_id" class="edit-vehicle-section">
+      <!-- Vehicle Image -->
+      <img
+        [src]="vehicleToEdit?.images[0]"
+        class="edit-car-image"
+        alt="Vehicle image"
+      />
+
+      <form (ngSubmit)="updateVehicle()" #f="ngForm" class="edit-form">
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+          <label>Edit Description for {{ vehicleToEdit?.name }}</label>
+          <input
+            type="text"
+            placeholder="Vehicle description"
+            name="description"
+            [(ngModel)]="form.description"
+            class="input-field"
+          />
+        </div>
+
+        <!-- FUEL TYPE -->
+        <div class="form-group">
+          <label>Edit Fuel Type</label>
+          <select [(ngModel)]="form.fuel" name="fuel" class="select-field">
+            <option disabled>Select fuel type</option>
+            <option [value]="vehicleToEdit.fuel">
+              {{ vehicleToEdit.fuel | titlecase }}
+            </option>
+            <option value="petrol">Petrol</option>
+            <option value="diesel">Diesel</option>
+            <option value="ev">EV</option>
+          </select>
+        </div>
+
+        <!-- AC -->
+        <div class="form-group checkbox-group">
+          <label>AC Availability</label>
+          <div class="checkbox-wrapper">
+            <input type="checkbox" id="ac" name="ac" [(ngModel)]="form.ac" />
+            <label for="ac">Has AC</label>
+          </div>
+        </div>
+
+        <!-- YEAR -->
+        <div class="form-group">
+          <label>Edit Model Year</label>
+          <select name="year" [(ngModel)]="form.year" class="select-field">
+            <option value="">Select Year</option>
+            <option
+              *ngFor="let y of [].constructor(26); let i = index"
+              [value]="2025 - i"
+            >
+              {{ 2025 - i }}
+            </option>
+          </select>
+        </div>
+
+        <!-- MILEAGE -->
+        <div class="form-group">
+          <label>Edit Mileage</label>
+          <input
+            type="number"
+            id="mileage"
+            name="mileage"
+            min="100"
+            step="100"
+            [(ngModel)]="form.mileage"
+            class="input-field"
+          />
+        </div>
+
+        <!-- BADGE -->
+        <div class="form-group">
+          <label>Edit Badge</label>
+          <select [(ngModel)]="form.badge" name="badge" class="select-field">
+            <option [value]="vehicleToEdit.badge">
+              {{ vehicleToEdit.badge | titlecase }}
+            </option>
+            <option value="premium">Premium</option>
+            <option value="new">New</option>
+          </select>
+        </div>
+
+        <!-- STATUS -->
+        <div class="form-group">
+          <label>Edit Status</label>
+          <select [(ngModel)]="form.status" name="status" class="select-field">
+            <option [value]="vehicleToEdit.status">
+              {{ vehicleToEdit.status | titlecase }}
+            </option>
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
+          </select>
+        </div>
+
+        <!-- DAILY RATE -->
+        <div class="form-group">
+          <label>Edit Daily Rate</label>
+          <input
+            type="number"
+            id="daily_rate"
+            name="daily_rate"
+            min="100"
+            step="100"
+            [(ngModel)]="form.daily_rate"
+            class="input-field"
+          />
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="submit-btn">Update Now</button>
+      </form>
+    </section>
+  </app-modalrelative>
 </div>

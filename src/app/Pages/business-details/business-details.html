@@ -1,54 +1,86 @@
-<div class="container">
-  <h2>Setup Your Business</h2>
-  <p class="subtitle">{{ getStepMessage() }}</p>
+<div class="onboard-container">
+  <!-- Header -->
+  <div class="onboard-header">
+    <h2 class="title">Setup Your Business</h2>
+    <p class="subtitle">{{ getStepMessage() }}</p>
+  </div>
 
-  <!-- Progress Bar -->
-  <div class="progress-container">
-    <div class="progress-line">
-      <div class="progress-fill" [style.width.%]="progressPercentage"></div>
+  <!-- Progress -->
+  <div class="progress-wrapper">
+    <div class="progress-bar">
+      <div class="progress-bar-fill" [style.width.%]="progressPercentage"></div>
     </div>
+
     <div class="progress-steps">
-      <div class="step-circle" [class.completed]="currentStep >= 1">1</div>
-      <div class="step-circle" [class.completed]="currentStep >= 2">2</div>
-      <div class="step-circle" [class.completed]="currentStep >= 3">3</div>
+      <div class="step" [class.active]="currentStep >= 1">1</div>
+      <div class="step" [class.active]="currentStep >= 2">2</div>
+      <div class="step" [class.active]="currentStep >= 3">3</div>
     </div>
   </div>
 
-  <form *ngIf="currentStep < 4">
-    <!-- Step 1 -->
-    <div *ngIf="currentStep === 1" class="step">
+  <!-- Form -->
+  <form *ngIf="currentStep < 4" class="form-area">
+    <!-- STEP 1 -->
+    <div *ngIf="currentStep === 1" class="step-card animate">
+      <h3 class="step-title">Basic Business Info</h3>
+
       <div class="form-group">
-        <label>Business Logo <span class="required">*</span></label>
-        <input type="file" (change)="onFileChange($event)" accept="image/*" />
+        <label>Business Logo <span>*</span></label>
+
+        <div class="file-upload">
+          <input type="file" (change)="onFileChange($event)" accept="image/*" />
+        </div>
       </div>
+
       <div class="form-group">
-        <label>Business Name <span class="required">*</span></label>
-        <input type="text" [(ngModel)]="business_name" name="business_name" />
+        <label>Business Name <span>*</span></label>
+        <input
+          type="text"
+          [(ngModel)]="business_name"
+          name="business_name"
+          placeholder="Ex: CarX Rentals"
+        />
       </div>
     </div>
 
-    <!-- Step 2 -->
-    <div *ngIf="currentStep === 2" class="step">
+    <!-- STEP 2 -->
+    <div *ngIf="currentStep === 2" class="step-card animate">
+      <h3 class="step-title">Business Profile</h3>
+
       <div class="form-group">
         <label>Website URL</label>
-        <input type="text" [(ngModel)]="website_url" name="website_url" />
+        <input
+          type="text"
+          [(ngModel)]="website_url"
+          name="website_url"
+          placeholder="https://yourbusiness.com"
+        />
       </div>
+
       <div class="form-group">
         <label>Description</label>
-        <textarea [(ngModel)]="description" name="description"></textarea>
+        <textarea
+          [(ngModel)]="description"
+          name="description"
+          placeholder="Tell customers about your business..."
+        ></textarea>
       </div>
+
       <div class="form-group">
         <label>Established Year</label>
         <input
           type="number"
           [(ngModel)]="established_year"
           name="established_year"
+          placeholder="2020"
         />
       </div>
     </div>
 
-    <!-- Step 3 -->
-    <div *ngIf="currentStep === 3" class="step">
+    <!-- STEP 3 -->
+    <div *ngIf="currentStep === 3" class="step-card animate">
+      <h3 class="step-title">Compliance & Contact</h3>
+
       <div class="form-group">
         <label>Registration Number</label>
         <input
@@ -57,36 +89,57 @@
           name="registration_number"
         />
       </div>
+
       <div class="form-group">
         <label>Tax ID</label>
         <input type="text" [(ngModel)]="tax_id" name="tax_id" />
       </div>
+
       <div class="form-group">
         <label>Address</label>
         <input type="text" [(ngModel)]="address" name="address" />
       </div>
+
       <div class="form-group">
         <label>Contact Email</label>
         <input type="email" [(ngModel)]="contact_email" name="contact_email" />
       </div>
+
       <div class="form-group">
         <label>Contact Phone</label>
         <input type="tel" [(ngModel)]="contact_phone" name="contact_phone" />
       </div>
     </div>
 
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <!-- Errors -->
+    <div *ngIf="errorMessage" class="error-box">
+      {{ errorMessage }}
+    </div>
 
+    <!-- Actions -->
     <div class="actions">
-      <button type="button" (click)="prevStep()" [disabled]="currentStep === 1">
+      <button
+        type="button"
+        class="btn secondary"
+        (click)="prevStep()"
+        [disabled]="currentStep === 1"
+      >
         Previous
       </button>
-      <button type="button" *ngIf="currentStep < 3" (click)="nextStep()">
+
+      <button
+        type="button"
+        *ngIf="currentStep < 3"
+        class="btn primary"
+        (click)="nextStep()"
+      >
         Next
       </button>
+
       <button
         type="button"
         *ngIf="currentStep === 3"
+        class="btn primary"
         (click)="submit()"
         [disabled]="submitting"
       >
@@ -95,10 +148,14 @@
     </div>
   </form>
 
-  <div *ngIf="currentStep === 4" class="success">
+  <!-- Success -->
+  <div *ngIf="currentStep === 4" class="success-screen animate">
+    <img src="/success.svg" class="success-icon" />
     <h3>{{ successMessage }}</h3>
-    <p>Congratulations! Your business setup is complete.</p>
+    <p>Your business setup is complete.</p>
 
-    <button (click)="loginTheUser()" class="now-login-btn">Login now</button>
+    <button (click)="loginTheUser()" class="btn primary large">
+      Login Now
+    </button>
   </div>
 </div>
